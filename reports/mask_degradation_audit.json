@@ -1,0 +1,356 @@
+{
+  "validation": {
+    "total_annotated_images": 966,
+    "images_with_any_disappeared_class": 0,
+    "class_stats": {
+      "ACrack": {
+        "orig_count": 42,
+        "resized_count": 42,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 33140234,
+        "resized_pixel_sum": 2274435,
+        "min_orig_pixels": 4989,
+        "max_orig_pixels": 5764948
+      },
+      "Bearing": {
+        "orig_count": 105,
+        "resized_count": 105,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 89241549,
+        "resized_pixel_sum": 2718528,
+        "min_orig_pixels": 301,
+        "max_orig_pixels": 8830965
+      },
+      "Cavity": {
+        "orig_count": 167,
+        "resized_count": 167,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 13658524,
+        "resized_pixel_sum": 1380253,
+        "min_orig_pixels": 87,
+        "max_orig_pixels": 1758868
+      },
+      "Crack": {
+        "orig_count": 254,
+        "resized_count": 254,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 11463527,
+        "resized_pixel_sum": 657386,
+        "min_orig_pixels": 354,
+        "max_orig_pixels": 696923
+      },
+      "Drainage": {
+        "orig_count": 151,
+        "resized_count": 151,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 35331141,
+        "resized_pixel_sum": 1726436,
+        "min_orig_pixels": 79,
+        "max_orig_pixels": 3704672
+      },
+      "EJoint": {
+        "orig_count": 51,
+        "resized_count": 51,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 21140701,
+        "resized_pixel_sum": 1566662,
+        "min_orig_pixels": 3008,
+        "max_orig_pixels": 6605066
+      },
+      "Efflorescence": {
+        "orig_count": 206,
+        "resized_count": 206,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 69279180,
+        "resized_pixel_sum": 3110751,
+        "min_orig_pixels": 1207,
+        "max_orig_pixels": 6744481
+      },
+      "ExposedRebars": {
+        "orig_count": 104,
+        "resized_count": 104,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 3826797,
+        "resized_pixel_sum": 186142,
+        "min_orig_pixels": 121,
+        "max_orig_pixels": 457622
+      },
+      "Graffiti": {
+        "orig_count": 146,
+        "resized_count": 146,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 71475378,
+        "resized_pixel_sum": 5156403,
+        "min_orig_pixels": 655,
+        "max_orig_pixels": 12192768
+      },
+      "Hollowareas": {
+        "orig_count": 155,
+        "resized_count": 155,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 68237000,
+        "resized_pixel_sum": 5506642,
+        "min_orig_pixels": 5099,
+        "max_orig_pixels": 4427630
+      },
+      "JTape": {
+        "orig_count": 128,
+        "resized_count": 128,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 8563475,
+        "resized_pixel_sum": 862179,
+        "min_orig_pixels": 287,
+        "max_orig_pixels": 593997
+      },
+      "PEquipment": {
+        "orig_count": 175,
+        "resized_count": 175,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 103093271,
+        "resized_pixel_sum": 5787312,
+        "min_orig_pixels": 1799,
+        "max_orig_pixels": 8755155
+      },
+      "Restformwork": {
+        "orig_count": 133,
+        "resized_count": 133,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 6252630,
+        "resized_pixel_sum": 819205,
+        "min_orig_pixels": 403,
+        "max_orig_pixels": 288721
+      },
+      "Rockpocket": {
+        "orig_count": 52,
+        "resized_count": 52,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 4038272,
+        "resized_pixel_sum": 461380,
+        "min_orig_pixels": 971,
+        "max_orig_pixels": 417552
+      },
+      "Rust": {
+        "orig_count": 465,
+        "resized_count": 465,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 79111502,
+        "resized_pixel_sum": 4121516,
+        "min_orig_pixels": 47,
+        "max_orig_pixels": 4954513
+      },
+      "Spalling": {
+        "orig_count": 477,
+        "resized_count": 477,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 92277187,
+        "resized_pixel_sum": 4838186,
+        "min_orig_pixels": 100,
+        "max_orig_pixels": 6920724
+      },
+      "WConccor": {
+        "orig_count": 38,
+        "resized_count": 38,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 11569293,
+        "resized_pixel_sum": 842492,
+        "min_orig_pixels": 2381,
+        "max_orig_pixels": 2466379
+      },
+      "Weathering": {
+        "orig_count": 392,
+        "resized_count": 392,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 342491679,
+        "resized_pixel_sum": 25531666,
+        "min_orig_pixels": 152,
+        "max_orig_pixels": 11992000
+      },
+      "Wetspot": {
+        "orig_count": 144,
+        "resized_count": 144,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 47691200,
+        "resized_pixel_sum": 4504217,
+        "min_orig_pixels": 549,
+        "max_orig_pixels": 5958065
+      }
+    }
+  },
+  "train": {
+    "total_annotated_images": 6873,
+    "images_with_any_disappeared_class": 0,
+    "class_stats": {
+      "ACrack": {
+        "orig_count": 332,
+        "resized_count": 332,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 372298090,
+        "resized_pixel_sum": 18905797,
+        "min_orig_pixels": 1434,
+        "max_orig_pixels": 13973040
+      },
+      "Bearing": {
+        "orig_count": 730,
+        "resized_count": 730,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 430966384,
+        "resized_pixel_sum": 16710049,
+        "min_orig_pixels": 112,
+        "max_orig_pixels": 11195114
+      },
+      "Cavity": {
+        "orig_count": 1188,
+        "resized_count": 1188,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 107797147,
+        "resized_pixel_sum": 10874189,
+        "min_orig_pixels": 20,
+        "max_orig_pixels": 8177713
+      },
+      "Crack": {
+        "orig_count": 1727,
+        "resized_count": 1727,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 89374704,
+        "resized_pixel_sum": 4427897,
+        "min_orig_pixels": 171,
+        "max_orig_pixels": 2786143
+      },
+      "Drainage": {
+        "orig_count": 1030,
+        "resized_count": 1030,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 368534975,
+        "resized_pixel_sum": 13486264,
+        "min_orig_pixels": 22,
+        "max_orig_pixels": 8695421
+      },
+      "EJoint": {
+        "orig_count": 395,
+        "resized_count": 395,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 335420507,
+        "resized_pixel_sum": 15711975,
+        "min_orig_pixels": 130,
+        "max_orig_pixels": 9603463
+      },
+      "Efflorescence": {
+        "orig_count": 1523,
+        "resized_count": 1523,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 773393065,
+        "resized_pixel_sum": 27219217,
+        "min_orig_pixels": 287,
+        "max_orig_pixels": 10077696
+      },
+      "ExposedRebars": {
+        "orig_count": 773,
+        "resized_count": 773,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 44826556,
+        "resized_pixel_sum": 1967568,
+        "min_orig_pixels": 76,
+        "max_orig_pixels": 1545291
+      },
+      "Graffiti": {
+        "orig_count": 795,
+        "resized_count": 795,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 308241093,
+        "resized_pixel_sum": 27343924,
+        "min_orig_pixels": 166,
+        "max_orig_pixels": 10937104
+      },
+      "Hollowareas": {
+        "orig_count": 1097,
+        "resized_count": 1097,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 587421014,
+        "resized_pixel_sum": 37991696,
+        "min_orig_pixels": 3985,
+        "max_orig_pixels": 11824248
+      },
+      "JTape": {
+        "orig_count": 767,
+        "resized_count": 767,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 47209144,
+        "resized_pixel_sum": 4891017,
+        "min_orig_pixels": 157,
+        "max_orig_pixels": 1880928
+      },
+      "PEquipment": {
+        "orig_count": 1319,
+        "resized_count": 1319,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 1070375296,
+        "resized_pixel_sum": 54227165,
+        "min_orig_pixels": 317,
+        "max_orig_pixels": 12135146
+      },
+      "Restformwork": {
+        "orig_count": 713,
+        "resized_count": 713,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 42311229,
+        "resized_pixel_sum": 4098504,
+        "min_orig_pixels": 260,
+        "max_orig_pixels": 2497412
+      },
+      "Rockpocket": {
+        "orig_count": 311,
+        "resized_count": 311,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 41824352,
+        "resized_pixel_sum": 3748369,
+        "min_orig_pixels": 61,
+        "max_orig_pixels": 3765262
+      },
+      "Rust": {
+        "orig_count": 3450,
+        "resized_count": 3450,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 591957848,
+        "resized_pixel_sum": 30540807,
+        "min_orig_pixels": 38,
+        "max_orig_pixels": 10870338
+      },
+      "Spalling": {
+        "orig_count": 3262,
+        "resized_count": 3262,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 748055455,
+        "resized_pixel_sum": 35045323,
+        "min_orig_pixels": 85,
+        "max_orig_pixels": 13857359
+      },
+      "WConccor": {
+        "orig_count": 265,
+        "resized_count": 265,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 176990976,
+        "resized_pixel_sum": 6870669,
+        "min_orig_pixels": 564,
+        "max_orig_pixels": 8304738
+      },
+      "Weathering": {
+        "orig_count": 2704,
+        "resized_count": 2704,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 2384962561,
+        "resized_pixel_sum": 182269021,
+        "min_orig_pixels": 616,
+        "max_orig_pixels": 16132499
+      },
+      "Wetspot": {
+        "orig_count": 965,
+        "resized_count": 965,
+        "disappeared_count": 0,
+        "orig_pixel_sum": 404404325,
+        "resized_pixel_sum": 35535203,
+        "min_orig_pixels": 300,
+        "max_orig_pixels": 12000000
+      }
+    }
+  }
+}

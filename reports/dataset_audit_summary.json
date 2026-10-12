@@ -1,0 +1,82 @@
+{
+    "images_per_split": {
+        "testdev": 1012,
+        "train": 6935,
+        "validation": 975
+    },
+    "annotations_per_split": {
+        "train": 6935,
+        "validation": 975
+    },
+    "missing_annotations": 0,
+    "missing_images": 0,
+    "corrupted_images": 0,
+    "malformed_jsons": 0,
+    "duplicate_filenames": 0,
+    "invalid_polygons": 0,
+    "empty_annotations": 71,
+    "class_frequencies": {
+        "Hollowareas": 1557,
+        "Spalling": 9884,
+        "Efflorescence": 3965,
+        "WConccor": 412,
+        "Cavity": 9271,
+        "Drainage": 1652,
+        "Rust": 14720,
+        "Weathering": 4634,
+        "ExposedRebars": 2000,
+        "PEquipment": 1888,
+        "JTape": 1078,
+        "Crack": 3626,
+        "Bearing": 1208,
+        "Restformwork": 1022,
+        "ACrack": 424,
+        "Graffiti": 2200,
+        "Wetspot": 1661,
+        "Rockpocket": 617,
+        "EJoint": 506
+    },
+    "severity_keys_found": [],
+    "had_WConccor_values": {
+        "True": 1219
+    },
+    "description_values": {
+        "": 61844,
+        "None": 481
+    },
+    "total_polygons": 62325,
+    "width_mean": 1965.6662452591656,
+    "height_mean": 1596.6865992414664,
+    "shapes_min": 0,
+    "shapes_max": 158,
+    "shapes_mean": 7.879266750948167,
+    "shapes_median": 5.0,
+    "shapes_std": 8.116080242428406,
+    "imbalance_ratios": {
+        "Hollowareas": 9.45407835581246,
+        "Spalling": 1.489275596924322,
+        "Efflorescence": 3.712484237074401,
+        "WConccor": 35.728155339805824,
+        "Cavity": 1.58774673713731,
+        "Drainage": 8.91041162227603,
+        "Rust": 1.0,
+        "Weathering": 3.176521363832542,
+        "ExposedRebars": 7.36,
+        "PEquipment": 7.796610169491525,
+        "JTape": 13.65491651205937,
+        "Crack": 4.059569773855488,
+        "Bearing": 12.185430463576159,
+        "Restformwork": 14.403131115459882,
+        "ACrack": 34.716981132075475,
+        "Graffiti": 6.6909090909090905,
+        "Wetspot": 8.862131246237206,
+        "Rockpocket": 23.85737439222042,
+        "EJoint": 29.09090909090909
+    },
+    "rare_classes": [
+        "WConccor",
+        "ACrack",
+        "Rockpocket",
+        "EJoint"
+    ]
+}

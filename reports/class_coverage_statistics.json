@@ -1,0 +1,183 @@
+{
+    "dataset": "DACL10K-v2",
+    "split_analyzed": "train",
+    "total_images": 6935,
+    "total_polygons": 54158,
+    "total_image_pixels": 29088654848.0,
+    "total_defect_pixels": 8918880256.0,
+    "overall_defect_pixel_coverage_pct": 30.66,
+    "overall_background_pixel_coverage_pct": 69.34,
+    "classes": {
+        "ACrack": {
+            "polygon_count": 376,
+            "polygon_pct": 0.69,
+            "image_occurrence": 332,
+            "image_occurrence_pct": 4.79,
+            "pixel_area_mpx": 371.65,
+            "pixel_coverage_pct_of_images": 1.2783,
+            "pixel_coverage_pct_of_defects": 4.17
+        },
+        "Bearing": {
+            "polygon_count": 1048,
+            "polygon_pct": 1.94,
+            "image_occurrence": 730,
+            "image_occurrence_pct": 10.53,
+            "pixel_area_mpx": 430.07,
+            "pixel_coverage_pct_of_images": 1.4793,
+            "pixel_coverage_pct_of_defects": 4.82
+        },
+        "Cavity": {
+            "polygon_count": 8119,
+            "polygon_pct": 14.99,
+            "image_occurrence": 1188,
+            "image_occurrence_pct": 17.13,
+            "pixel_area_mpx": 107.05,
+            "pixel_coverage_pct_of_images": 0.3682,
+            "pixel_coverage_pct_of_defects": 1.20
+        },
+        "Crack": {
+            "polygon_count": 3154,
+            "polygon_pct": 5.82,
+            "image_occurrence": 1727,
+            "image_occurrence_pct": 24.90,
+            "pixel_area_mpx": 87.37,
+            "pixel_coverage_pct_of_images": 0.3005,
+            "pixel_coverage_pct_of_defects": 0.98
+        },
+        "Drainage": {
+            "polygon_count": 1404,
+            "polygon_pct": 2.59,
+            "image_occurrence": 1030,
+            "image_occurrence_pct": 14.85,
+            "pixel_area_mpx": 367.54,
+            "pixel_coverage_pct_of_images": 1.2642,
+            "pixel_coverage_pct_of_defects": 4.12
+        },
+        "EJoint": {
+            "polygon_count": 450,
+            "polygon_pct": 0.83,
+            "image_occurrence": 395,
+            "image_occurrence_pct": 5.70,
+            "pixel_area_mpx": 334.75,
+            "pixel_coverage_pct_of_images": 1.1514,
+            "pixel_coverage_pct_of_defects": 3.75
+        },
+        "Efflorescence": {
+            "polygon_count": 3450,
+            "polygon_pct": 6.37,
+            "image_occurrence": 1523,
+            "image_occurrence_pct": 21.96,
+            "pixel_area_mpx": 772.06,
+            "pixel_coverage_pct_of_images": 2.6556,
+            "pixel_coverage_pct_of_defects": 8.66
+        },
+        "ExposedRebars": {
+            "polygon_count": 1753,
+            "polygon_pct": 3.24,
+            "image_occurrence": 773,
+            "image_occurrence_pct": 11.15,
+            "pixel_area_mpx": 44.38,
+            "pixel_coverage_pct_of_images": 0.1527,
+            "pixel_coverage_pct_of_defects": 0.50
+        },
+        "Graffiti": {
+            "polygon_count": 1880,
+            "polygon_pct": 3.47,
+            "image_occurrence": 795,
+            "image_occurrence_pct": 11.46,
+            "pixel_area_mpx": 306.91,
+            "pixel_coverage_pct_of_images": 1.0556,
+            "pixel_coverage_pct_of_defects": 3.44
+        },
+        "Hollowareas": {
+            "polygon_count": 1363,
+            "polygon_pct": 2.52,
+            "image_occurrence": 1097,
+            "image_occurrence_pct": 15.82,
+            "pixel_area_mpx": 589.52,
+            "pixel_coverage_pct_of_images": 2.0277,
+            "pixel_coverage_pct_of_defects": 6.61
+        },
+        "JTape": {
+            "polygon_count": 923,
+            "polygon_pct": 1.70,
+            "image_occurrence": 767,
+            "image_occurrence_pct": 11.06,
+            "pixel_area_mpx": 46.49,
+            "pixel_coverage_pct_of_images": 0.1599,
+            "pixel_coverage_pct_of_defects": 0.52
+        },
+        "PEquipment": {
+            "polygon_count": 1674,
+            "polygon_pct": 3.09,
+            "image_occurrence": 1319,
+            "image_occurrence_pct": 19.02,
+            "pixel_area_mpx": 1068.00,
+            "pixel_coverage_pct_of_images": 3.6735,
+            "pixel_coverage_pct_of_defects": 11.98
+        },
+        "Restformwork": {
+            "polygon_count": 851,
+            "polygon_pct": 1.57,
+            "image_occurrence": 713,
+            "image_occurrence_pct": 10.28,
+            "pixel_area_mpx": 41.77,
+            "pixel_coverage_pct_of_images": 0.1437,
+            "pixel_coverage_pct_of_defects": 0.47
+        },
+        "Rockpocket": {
+            "polygon_count": 525,
+            "polygon_pct": 0.97,
+            "image_occurrence": 311,
+            "image_occurrence_pct": 4.48,
+            "pixel_area_mpx": 41.52,
+            "pixel_coverage_pct_of_images": 0.1428,
+            "pixel_coverage_pct_of_defects": 0.47
+        },
+        "Rust": {
+            "polygon_count": 12837,
+            "polygon_pct": 23.70,
+            "image_occurrence": 3450,
+            "image_occurrence_pct": 49.75,
+            "pixel_area_mpx": 589.85,
+            "pixel_coverage_pct_of_images": 2.0288,
+            "pixel_coverage_pct_of_defects": 6.61
+        },
+        "Spalling": {
+            "polygon_count": 8484,
+            "polygon_pct": 15.67,
+            "image_occurrence": 3262,
+            "image_occurrence_pct": 47.04,
+            "pixel_area_mpx": 747.05,
+            "pixel_coverage_pct_of_images": 2.5695,
+            "pixel_coverage_pct_of_defects": 8.38
+        },
+        "WConccor": {
+            "polygon_count": 360,
+            "polygon_pct": 0.66,
+            "image_occurrence": 265,
+            "image_occurrence_pct": 3.82,
+            "pixel_area_mpx": 176.53,
+            "pixel_coverage_pct_of_images": 0.6072,
+            "pixel_coverage_pct_of_defects": 1.98
+        },
+        "Weathering": {
+            "polygon_count": 4064,
+            "polygon_pct": 7.50,
+            "image_occurrence": 2704,
+            "image_occurrence_pct": 38.99,
+            "pixel_area_mpx": 2391.23,
+            "pixel_coverage_pct_of_images": 8.2248,
+            "pixel_coverage_pct_of_defects": 26.81
+        },
+        "Wetspot": {
+            "polygon_count": 1443,
+            "polygon_pct": 2.66,
+            "image_occurrence": 965,
+            "image_occurrence_pct": 13.91,
+            "pixel_area_mpx": 403.77,
+            "pixel_coverage_pct_of_images": 1.3888,
+            "pixel_coverage_pct_of_defects": 4.53
+        }
+    }
+}

@@ -1,0 +1,655 @@
+{
+  "mode": "fast",
+  "total_execution_time_seconds": 0.01,
+  "mapping_verified": true,
+  "annotation_audit_full": {
+    "train": {
+      "split": "train",
+      "total_files": 6935,
+      "empty_annotation_files": 62,
+      "annotated_files": 6873,
+      "total_polygons": 54158,
+      "class_stats": {
+        "ACrack": {
+          "polygon_count": 376,
+          "images_present": 332,
+          "total_area_shoelace": 371646719.7265625,
+          "min_area": 217.84375,
+          "max_area": 13965486.0
+        },
+        "Bearing": {
+          "polygon_count": 1048,
+          "images_present": 730,
+          "total_area_shoelace": 430070988.78027344,
+          "min_area": 10.0625,
+          "max_area": 11187502.0
+        },
+        "Cavity": {
+          "polygon_count": 8119,
+          "images_present": 1188,
+          "total_area_shoelace": 107053169.07707214,
+          "min_area": 2.40625,
+          "max_area": 8166296.0
+        },
+        "Crack": {
+          "polygon_count": 3154,
+          "images_present": 1727,
+          "total_area_shoelace": 87369355.62921143,
+          "min_area": 86.5625,
+          "max_area": 1088588.0
+        },
+        "Drainage": {
+          "polygon_count": 1404,
+          "images_present": 1030,
+          "total_area_shoelace": 367542651.6080322,
+          "min_area": 8.125,
+          "max_area": 8689680.0
+        },
+        "EJoint": {
+          "polygon_count": 450,
+          "images_present": 395,
+          "total_area_shoelace": 334754318.93310547,
+          "min_area": 106.76611328125,
+          "max_area": 9596366.0
+        },
+        "Efflorescence": {
+          "polygon_count": 3450,
+          "images_present": 1523,
+          "total_area_shoelace": 772061694.8327637,
+          "min_area": 27.5625,
+          "max_area": 10071217.0
+        },
+        "ExposedRebars": {
+          "polygon_count": 1753,
+          "images_present": 773,
+          "total_area_shoelace": 44382086.861816406,
+          "min_area": 34.125,
+          "max_area": 1541900.0
+        },
+        "Graffiti": {
+          "polygon_count": 1880,
+          "images_present": 795,
+          "total_area_shoelace": 306909886.3453369,
+          "min_area": 45.8125,
+          "max_area": 8235725.0
+        },
+        "Hollowareas": {
+          "polygon_count": 1363,
+          "images_present": 1097,
+          "total_area_shoelace": 589515488.859375,
+          "min_area": 3000.5,
+          "max_area": 11817756.0
+        },
+        "JTape": {
+          "polygon_count": 923,
+          "images_present": 767,
+          "total_area_shoelace": 46487463.571777344,
+          "min_area": 136.75,
+          "max_area": 1876430.5
+        },
+        "PEquipment": {
+          "polygon_count": 1674,
+          "images_present": 1319,
+          "total_area_shoelace": 1067998816.4049072,
+          "min_area": 129.796875,
+          "max_area": 12128221.0
+        },
+        "Restformwork": {
+          "polygon_count": 851,
+          "images_present": 713,
+          "total_area_shoelace": 41769337.80761719,
+          "min_area": 80.828125,
+          "max_area": 2494364.0
+        },
+        "Rockpocket": {
+          "polygon_count": 525,
+          "images_present": 311,
+          "total_area_shoelace": 41517153.52685547,
+          "min_area": 47.9375,
+          "max_area": 3761464.0
+        },
+        "Rust": {
+          "polygon_count": 12837,
+          "images_present": 3450,
+          "total_area_shoelace": 589851937.2974548,
+          "min_area": 0.53759765625,
+          "max_area": 10862612.0
+        },
+        "Spalling": {
+          "polygon_count": 8484,
+          "images_present": 3262,
+          "total_area_shoelace": 747053606.8504028,
+          "min_area": 26.5625,
+          "max_area": 13848840.0
+        },
+        "WConccor": {
+          "polygon_count": 360,
+          "images_present": 265,
+          "total_area_shoelace": 176531835.4736328,
+          "min_area": 515.40625,
+          "max_area": 8295988.0
+        },
+        "Weathering": {
+          "polygon_count": 4064,
+          "images_present": 2704,
+          "total_area_shoelace": 2391234493.3599854,
+          "min_area": 71.4375,
+          "max_area": 16125931.0
+        },
+        "Wetspot": {
+          "polygon_count": 1443,
+          "images_present": 965,
+          "total_area_shoelace": 403774854.8647461,
+          "min_area": 166.875,
+          "max_area": 11993002.0
+        }
+      }
+    },
+    "validation": {
+      "split": "validation",
+      "total_files": 975,
+      "empty_annotation_files": 9,
+      "annotated_files": 966,
+      "total_polygons": 8167,
+      "class_stats": {
+        "ACrack": {
+          "polygon_count": 48,
+          "images_present": 42,
+          "total_area_shoelace": 33061848.515625,
+          "min_area": 4793.0,
+          "max_area": 5760842.5
+        },
+        "Bearing": {
+          "polygon_count": 160,
+          "images_present": 105,
+          "total_area_shoelace": 89093575.9584961,
+          "min_area": 29.3125,
+          "max_area": 8825294.0
+        },
+        "Cavity": {
+          "polygon_count": 1152,
+          "images_present": 167,
+          "total_area_shoelace": 13554193.075744629,
+          "min_area": 5.375,
+          "max_area": 1746682.0
+        },
+        "Crack": {
+          "polygon_count": 472,
+          "images_present": 254,
+          "total_area_shoelace": 11152437.188476562,
+          "min_area": 139.685546875,
+          "max_area": 595700.0
+        },
+        "Drainage": {
+          "polygon_count": 248,
+          "images_present": 151,
+          "total_area_shoelace": 35202544.47558594,
+          "min_area": 10.0625,
+          "max_area": 3700988.0
+        },
+        "EJoint": {
+          "polygon_count": 56,
+          "images_present": 51,
+          "total_area_shoelace": 21075446.9765625,
+          "min_area": 2887.75,
+          "max_area": 6599180.0
+        },
+        "Efflorescence": {
+          "polygon_count": 515,
+          "images_present": 206,
+          "total_area_shoelace": 68916373.25585938,
+          "min_area": 40.1875,
+          "max_area": 6738524.0
+        },
+        "ExposedRebars": {
+          "polygon_count": 247,
+          "images_present": 104,
+          "total_area_shoelace": 3757163.9155273438,
+          "min_area": 51.875,
+          "max_area": 456040.0
+        },
+        "Graffiti": {
+          "polygon_count": 320,
+          "images_present": 146,
+          "total_area_shoelace": 71223221.2902832,
+          "min_area": 98.75,
+          "max_area": 12185713.0
+        },
+        "Hollowareas": {
+          "polygon_count": 194,
+          "images_present": 155,
+          "total_area_shoelace": 68477678.125,
+          "min_area": 3627.5,
+          "max_area": 4423424.0
+        },
+        "JTape": {
+          "polygon_count": 155,
+          "images_present": 128,
+          "total_area_shoelace": 8508830.671875,
+          "min_area": 255.578125,
+          "max_area": 590047.0
+        },
+        "PEquipment": {
+          "polygon_count": 214,
+          "images_present": 175,
+          "total_area_shoelace": 102787197.14013672,
+          "min_area": 1056.5,
+          "max_area": 8750734.0
+        },
+        "Restformwork": {
+          "polygon_count": 171,
+          "images_present": 133,
+          "total_area_shoelace": 6143410.496582031,
+          "min_area": 237.0,
+          "max_area": 242315.734375
+        },
+        "Rockpocket": {
+          "polygon_count": 92,
+          "images_present": 52,
+          "total_area_shoelace": 3989894.12109375,
+          "min_area": 512.4375,
+          "max_area": 414636.0
+        },
+        "Rust": {
+          "polygon_count": 1883,
+          "images_present": 465,
+          "total_area_shoelace": 78772293.13330078,
+          "min_area": 10.4921875,
+          "max_area": 2481252.0
+        },
+        "Spalling": {
+          "polygon_count": 1400,
+          "images_present": 477,
+          "total_area_shoelace": 91737910.95092773,
+          "min_area": 33.59375,
+          "max_area": 3679072.0
+        },
+        "WConccor": {
+          "polygon_count": 52,
+          "images_present": 38,
+          "total_area_shoelace": 11540551.109375,
+          "min_area": 249.5,
+          "max_area": 1690044.0
+        },
+        "Weathering": {
+          "polygon_count": 570,
+          "images_present": 392,
+          "total_area_shoelace": 341715122.21777344,
+          "min_area": 123.5,
+          "max_area": 11985003.0
+        },
+        "Wetspot": {
+          "polygon_count": 218,
+          "images_present": 144,
+          "total_area_shoelace": 47475530.265625,
+          "min_area": 131.0625,
+          "max_area": 5947934.0
+        }
+      }
+    }
+  },
+  "mask_degradation_audit": {
+    "train": {
+      "split": "train",
+      "is_subset": true,
+      "samples_audited": 99,
+      "total_files_in_split": 100,
+      "images_with_disappearance": 0,
+      "elapsed_seconds": 1.75,
+      "class_stats": {
+        "ACrack": {
+          "orig_count": 6,
+          "resized_count": 6,
+          "disappeared_count": 0,
+          "orig_pixels_total": 3891352,
+          "resized_pixels_total": 588421,
+          "min_orig_pixels": 79372,
+          "min_retained_pixels": 12704
+        },
+        "Bearing": {
+          "orig_count": 11,
+          "resized_count": 11,
+          "disappeared_count": 0,
+          "orig_pixels_total": 5148252,
+          "resized_pixels_total": 266784,
+          "min_orig_pixels": 5921,
+          "min_retained_pixels": 608
+        },
+        "Cavity": {
+          "orig_count": 20,
+          "resized_count": 20,
+          "disappeared_count": 0,
+          "orig_pixels_total": 3093610,
+          "resized_pixels_total": 246991,
+          "min_orig_pixels": 193,
+          "min_retained_pixels": 28
+        },
+        "Crack": {
+          "orig_count": 18,
+          "resized_count": 18,
+          "disappeared_count": 0,
+          "orig_pixels_total": 697545,
+          "resized_pixels_total": 22599,
+          "min_orig_pixels": 1435,
+          "min_retained_pixels": 182
+        },
+        "Drainage": {
+          "orig_count": 13,
+          "resized_count": 13,
+          "disappeared_count": 0,
+          "orig_pixels_total": 11085650,
+          "resized_pixels_total": 259270,
+          "min_orig_pixels": 202,
+          "min_retained_pixels": 51
+        },
+        "EJoint": {
+          "orig_count": 5,
+          "resized_count": 5,
+          "disappeared_count": 0,
+          "orig_pixels_total": 1359623,
+          "resized_pixels_total": 150021,
+          "min_orig_pixels": 48830,
+          "min_retained_pixels": 5843
+        },
+        "Efflorescence": {
+          "orig_count": 16,
+          "resized_count": 16,
+          "disappeared_count": 0,
+          "orig_pixels_total": 9837097,
+          "resized_pixels_total": 322630,
+          "min_orig_pixels": 16893,
+          "min_retained_pixels": 1276
+        },
+        "ExposedRebars": {
+          "orig_count": 9,
+          "resized_count": 9,
+          "disappeared_count": 0,
+          "orig_pixels_total": 281102,
+          "resized_pixels_total": 26376,
+          "min_orig_pixels": 1186,
+          "min_retained_pixels": 208
+        },
+        "Graffiti": {
+          "orig_count": 9,
+          "resized_count": 9,
+          "disappeared_count": 0,
+          "orig_pixels_total": 3602957,
+          "resized_pixels_total": 218389,
+          "min_orig_pixels": 5719,
+          "min_retained_pixels": 1432
+        },
+        "Hollowareas": {
+          "orig_count": 17,
+          "resized_count": 17,
+          "disappeared_count": 0,
+          "orig_pixels_total": 5502761,
+          "resized_pixels_total": 442774,
+          "min_orig_pixels": 4517,
+          "min_retained_pixels": 341
+        },
+        "JTape": {
+          "orig_count": 7,
+          "resized_count": 7,
+          "disappeared_count": 0,
+          "orig_pixels_total": 390507,
+          "resized_pixels_total": 50838,
+          "min_orig_pixels": 2314,
+          "min_retained_pixels": 368
+        },
+        "PEquipment": {
+          "orig_count": 18,
+          "resized_count": 18,
+          "disappeared_count": 0,
+          "orig_pixels_total": 26798303,
+          "resized_pixels_total": 974261,
+          "min_orig_pixels": 2299,
+          "min_retained_pixels": 332
+        },
+        "Restformwork": {
+          "orig_count": 14,
+          "resized_count": 14,
+          "disappeared_count": 0,
+          "orig_pixels_total": 818012,
+          "resized_pixels_total": 81210,
+          "min_orig_pixels": 3237,
+          "min_retained_pixels": 524
+        },
+        "Rockpocket": {
+          "orig_count": 6,
+          "resized_count": 6,
+          "disappeared_count": 0,
+          "orig_pixels_total": 2386539,
+          "resized_pixels_total": 113555,
+          "min_orig_pixels": 3090,
+          "min_retained_pixels": 320
+        },
+        "Rust": {
+          "orig_count": 48,
+          "resized_count": 48,
+          "disappeared_count": 0,
+          "orig_pixels_total": 5993738,
+          "resized_pixels_total": 248939,
+          "min_orig_pixels": 677,
+          "min_retained_pixels": 42
+        },
+        "Spalling": {
+          "orig_count": 52,
+          "resized_count": 52,
+          "disappeared_count": 0,
+          "orig_pixels_total": 6261150,
+          "resized_pixels_total": 377132,
+          "min_orig_pixels": 2538,
+          "min_retained_pixels": 175
+        },
+        "WConccor": {
+          "orig_count": 2,
+          "resized_count": 2,
+          "disappeared_count": 0,
+          "orig_pixels_total": 528943,
+          "resized_pixels_total": 24055,
+          "min_orig_pixels": 197739,
+          "min_retained_pixels": 5454
+        },
+        "Weathering": {
+          "orig_count": 45,
+          "resized_count": 45,
+          "disappeared_count": 0,
+          "orig_pixels_total": 37576062,
+          "resized_pixels_total": 2895929,
+          "min_orig_pixels": 34066,
+          "min_retained_pixels": 3426
+        },
+        "Wetspot": {
+          "orig_count": 15,
+          "resized_count": 15,
+          "disappeared_count": 0,
+          "orig_pixels_total": 3184862,
+          "resized_pixels_total": 558367,
+          "min_orig_pixels": 4101,
+          "min_retained_pixels": 565
+        }
+      }
+    },
+    "validation": {
+      "split": "validation",
+      "is_subset": true,
+      "samples_audited": 50,
+      "total_files_in_split": 50,
+      "images_with_disappearance": 0,
+      "elapsed_seconds": 0.86,
+      "class_stats": {
+        "ACrack": {
+          "orig_count": 3,
+          "resized_count": 3,
+          "disappeared_count": 0,
+          "orig_pixels_total": 1995818,
+          "resized_pixels_total": 77675,
+          "min_orig_pixels": 83995,
+          "min_retained_pixels": 13389
+        },
+        "Bearing": {
+          "orig_count": 5,
+          "resized_count": 5,
+          "disappeared_count": 0,
+          "orig_pixels_total": 824302,
+          "resized_pixels_total": 117464,
+          "min_orig_pixels": 743,
+          "min_retained_pixels": 195
+        },
+        "Cavity": {
+          "orig_count": 9,
+          "resized_count": 9,
+          "disappeared_count": 0,
+          "orig_pixels_total": 1603744,
+          "resized_pixels_total": 121256,
+          "min_orig_pixels": 554,
+          "min_retained_pixels": 55
+        },
+        "Crack": {
+          "orig_count": 15,
+          "resized_count": 15,
+          "disappeared_count": 0,
+          "orig_pixels_total": 548958,
+          "resized_pixels_total": 46522,
+          "min_orig_pixels": 5947,
+          "min_retained_pixels": 683
+        },
+        "Drainage": {
+          "orig_count": 9,
+          "resized_count": 9,
+          "disappeared_count": 0,
+          "orig_pixels_total": 2915555,
+          "resized_pixels_total": 62902,
+          "min_orig_pixels": 191,
+          "min_retained_pixels": 12
+        },
+        "EJoint": {
+          "orig_count": 3,
+          "resized_count": 3,
+          "disappeared_count": 0,
+          "orig_pixels_total": 215327,
+          "resized_pixels_total": 34206,
+          "min_orig_pixels": 20469,
+          "min_retained_pixels": 5111
+        },
+        "Efflorescence": {
+          "orig_count": 12,
+          "resized_count": 12,
+          "disappeared_count": 0,
+          "orig_pixels_total": 4262907,
+          "resized_pixels_total": 112101,
+          "min_orig_pixels": 11413,
+          "min_retained_pixels": 783
+        },
+        "ExposedRebars": {
+          "orig_count": 4,
+          "resized_count": 4,
+          "disappeared_count": 0,
+          "orig_pixels_total": 178830,
+          "resized_pixels_total": 8440,
+          "min_orig_pixels": 4147,
+          "min_retained_pixels": 291
+        },
+        "Graffiti": {
+          "orig_count": 9,
+          "resized_count": 9,
+          "disappeared_count": 0,
+          "orig_pixels_total": 3509871,
+          "resized_pixels_total": 376902,
+          "min_orig_pixels": 48439,
+          "min_retained_pixels": 6445
+        },
+        "Hollowareas": {
+          "orig_count": 10,
+          "resized_count": 10,
+          "disappeared_count": 0,
+          "orig_pixels_total": 4275817,
+          "resized_pixels_total": 432607,
+          "min_orig_pixels": 12229,
+          "min_retained_pixels": 1948
+        },
+        "JTape": {
+          "orig_count": 3,
+          "resized_count": 3,
+          "disappeared_count": 0,
+          "orig_pixels_total": 79611,
+          "resized_pixels_total": 10436,
+          "min_orig_pixels": 12904,
+          "min_retained_pixels": 1319
+        },
+        "PEquipment": {
+          "orig_count": 11,
+          "resized_count": 11,
+          "disappeared_count": 0,
+          "orig_pixels_total": 3841707,
+          "resized_pixels_total": 243321,
+          "min_orig_pixels": 28437,
+          "min_retained_pixels": 4403
+        },
+        "Restformwork": {
+          "orig_count": 7,
+          "resized_count": 7,
+          "disappeared_count": 0,
+          "orig_pixels_total": 361561,
+          "resized_pixels_total": 52066,
+          "min_orig_pixels": 2087,
+          "min_retained_pixels": 218
+        },
+        "Rockpocket": {
+          "orig_count": 3,
+          "resized_count": 3,
+          "disappeared_count": 0,
+          "orig_pixels_total": 322054,
+          "resized_pixels_total": 23376,
+          "min_orig_pixels": 3676,
+          "min_retained_pixels": 379
+        },
+        "Rust": {
+          "orig_count": 22,
+          "resized_count": 22,
+          "disappeared_count": 0,
+          "orig_pixels_total": 2980466,
+          "resized_pixels_total": 195466,
+          "min_orig_pixels": 234,
+          "min_retained_pixels": 67
+        },
+        "Spalling": {
+          "orig_count": 22,
+          "resized_count": 22,
+          "disappeared_count": 0,
+          "orig_pixels_total": 4650069,
+          "resized_pixels_total": 243612,
+          "min_orig_pixels": 3335,
+          "min_retained_pixels": 374
+        },
+        "WConccor": {
+          "orig_count": 1,
+          "resized_count": 1,
+          "disappeared_count": 0,
+          "orig_pixels_total": 382777,
+          "resized_pixels_total": 53812,
+          "min_orig_pixels": 382777,
+          "min_retained_pixels": 53812
+        },
+        "Weathering": {
+          "orig_count": 21,
+          "resized_count": 21,
+          "disappeared_count": 0,
+          "orig_pixels_total": 23161393,
+          "resized_pixels_total": 1547778,
+          "min_orig_pixels": 44608,
+          "min_retained_pixels": 4589
+        },
+        "Wetspot": {
+          "orig_count": 10,
+          "resized_count": 10,
+          "disappeared_count": 0,
+          "orig_pixels_total": 1658107,
+          "resized_pixels_total": 231096,
+          "min_orig_pixels": 8494,
+          "min_retained_pixels": 3479
+        }
+      }
+    }
+  }
+}

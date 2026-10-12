@@ -1,0 +1,69 @@
+# DACL10K-v2 Stage 1 Semantic Segmentation Baseline Configuration
+# Model: DeepLabV3+ with ResNet-34 Encoder (19 multi-label classes)
+
+dataset:
+  name: "DACL10K-v2"
+  root_dir: "/Users/kundankumar/Downloads/dacl10k_v2_devphase"
+  splits:
+    train_images: "images/train"
+    train_annotations: "annotations/train"
+    val_images: "images/validation"
+    val_annotations: "annotations/validation"
+    testdev_images: "images/testdev" # Held-out, unannotated (never used in supervised training)
+  num_classes: 19
+  classes:
+    - ACrack
+    - Bearing
+    - Cavity
+    - Crack
+    - Drainage
+    - EJoint
+    - Efflorescence
+    - ExposedRebars
+    - Graffiti
+    - Hollowareas
+    - JTape
+    - PEquipment
+    - Restformwork
+    - Rockpocket
+    - Rust
+    - Spalling
+    - WConccor
+    - Weathering
+    - Wetspot
+
+model:
+  architecture: "DeepLabV3Plus"
+  encoder_name: "resnet34"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  num_classes: 19
+
+loss:
+  # Loss types supported: 'bce', 'dice', 'combined_bce_dice', 'focal'
+  # Combined BCE + Soft Dice provides optimal balance between pixel-level calibration and sparse defect overlap
+  type: "combined_bce_dice"
+  bce_weight: 1.0
+  dice_weight: 1.0
+  # Note on pos_weights: Derived from empirical pixel-level coverage analysis (not polygon counts).
+  # Kept configurable; disabled by default to avoid biasing rare classes into extreme false positive rates.
+  use_pos_weight: false
+
+training:
+  image_size: [512, 512] # (Height, Width) after letterbox aspect-ratio preserving resize
+  batch_size: 4          # Tuned for 16GB RAM / 4GB VRAM
+  num_workers: 2
+  epochs: 30
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  gradient_clip: 1.0
+  seed: 42
+  device: "auto"         # 'auto' selects MPS on Mac, CUDA on NVIDIA, or CPU fallback
+  threshold: 0.5         # Sigmoid probability decision threshold for binary masks
+  best_metric: "val_miou"
+
+experiment:
+  name: "segmentation_baseline_deeplabv3p_resnet34"
+  output_dir: "experiments/segmentation_baseline"

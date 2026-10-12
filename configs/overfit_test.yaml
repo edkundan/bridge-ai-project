@@ -1,0 +1,80 @@
+# Stage 1A: Small-Subset Overfit Diagnostic Configuration
+# Target: Train repeatedly on 16 diverse training images for up to 20 epochs without augmentation.
+
+dataset:
+  name: "DACL10K-v2"
+  root_dir: "/Users/kundankumar/Downloads/dacl10k_v2_devphase"
+  splits:
+    train_images: "images/train"
+    train_annotations: "annotations/train"
+  num_classes: 19
+  classes:
+    - ACrack
+    - Bearing
+    - Cavity
+    - Crack
+    - Drainage
+    - EJoint
+    - Efflorescence
+    - ExposedRebars
+    - Graffiti
+    - Hollowareas
+    - JTape
+    - PEquipment
+    - Restformwork
+    - Rockpocket
+    - Rust
+    - Spalling
+    - WConccor
+    - Weathering
+    - Wetspot
+  # 16 selected training samples covering all 19 classes
+  sample_filenames:
+    - "dacl10k_v2_train_1065.jpg"
+    - "dacl10k_v2_train_6649.jpg"
+    - "dacl10k_v2_train_0522.jpg"
+    - "dacl10k_v2_train_1644.jpg"
+    - "dacl10k_v2_train_1304.jpg"
+    - "dacl10k_v2_train_1816.jpg"
+    - "dacl10k_v2_train_1350.jpg"
+    - "dacl10k_v2_train_1994.jpg"
+    - "dacl10k_v2_train_1974.jpg"
+    - "dacl10k_v2_train_1888.jpg"
+    - "dacl10k_v2_train_1326.jpg"
+    - "dacl10k_v2_train_6637.jpg"
+    - "dacl10k_v2_train_1596.jpg"
+    - "dacl10k_v2_train_6912.jpg"
+    - "dacl10k_v2_train_0507.jpg"
+    - "dacl10k_v2_train_1240.jpg"
+
+model:
+  architecture: "DeepLabV3Plus"
+  encoder_name: "resnet34"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  num_classes: 19
+
+loss:
+  type: "combined_bce_dice"
+  bce_weight: 1.0
+  dice_weight: 1.0
+  use_pos_weight: false
+
+training:
+  image_size: [512, 512]
+  batch_size: 4
+  num_workers: 2
+  epochs: 20
+  learning_rate: 0.0003
+  weight_decay: 0.0
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  gradient_clip: 1.0
+  seed: 42
+  device: "auto"
+  threshold: 0.5
+  augment: false
+
+experiment:
+  name: "overfit_test_16samples"
+  output_dir: "experiments/overfit_test"

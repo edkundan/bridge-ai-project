@@ -1,0 +1,30 @@
+dataset:
+  root_dir: '/Users/kundankumar/Downloads/dacl10k_v2_devphase'
+  splits:
+    images:
+      - train
+      - validation
+      - testdev
+    annotations:
+      - train
+      - validation
+  classes:
+    - ACrack
+    - Bearing
+    - Cavity
+    - Crack
+    - Drainage
+    - EJoint
+    - Efflorescence
+    - ExposedRebars
+    - Graffiti
+    - Hollowareas
+    - JTape
+    - PEquipment
+    - Restformwork
+    - Rockpocket
+    - Rust
+    - Spalling
+    - WConccor
+    - Weathering
+    - Wetspot

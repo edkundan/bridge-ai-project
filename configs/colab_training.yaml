@@ -1,0 +1,65 @@
+# Google Colab Training Configuration for DACL10K-v2 Stage 1 Baseline
+# Model: DeepLabV3+ with ResNet-34 Encoder (19 multi-label channels)
+
+dataset:
+  name: "DACL10K-v2"
+  root_dir: "/content/drive/MyDrive/dacl10k_v2_devphase" # Update to match your Drive or local /content path
+  splits:
+    train_images: "images/train"
+    train_annotations: "annotations/train"
+    val_images: "images/validation"
+    val_annotations: "annotations/validation"
+    testdev_images: "images/testdev"
+  num_classes: 19
+  classes:
+    - ACrack
+    - Bearing
+    - Cavity
+    - Crack
+    - Drainage
+    - EJoint
+    - Efflorescence
+    - ExposedRebars
+    - Graffiti
+    - Hollowareas
+    - JTape
+    - PEquipment
+    - Restformwork
+    - Rockpocket
+    - Rust
+    - Spalling
+    - WConccor
+    - Weathering
+    - Wetspot
+
+model:
+  architecture: "DeepLabV3Plus"
+  encoder_name: "resnet34"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  num_classes: 19
+
+loss:
+  type: "combined_bce_dice"
+  bce_weight: 1.0
+  dice_weight: 1.0
+  use_pos_weight: false
+
+training:
+  image_size: [512, 512]
+  batch_size: 8         # Standard for Colab T4 (16GB) or A100 (40GB)
+  num_workers: 4
+  epochs: 25
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  gradient_clip: 1.0
+  seed: 42
+  device: "cuda"
+  threshold: 0.5
+  best_metric: "val_miou"
+
+experiment:
+  name: "colab_segmentation_baseline"
+  output_dir: "/content/drive/MyDrive/bridge_ai_experiments/segmentation_baseline"

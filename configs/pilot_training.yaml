@@ -1,0 +1,66 @@
+# Controlled Pilot Experiment Configuration for DACL10K-v2
+# Model: DeepLabV3+ with ResNet-34 Encoder (19 classes)
+# Artifacts stored exclusively in experiments/pilot_run/
+
+dataset:
+  name: "DACL10K-v2"
+  root_dir: "/Users/kundankumar/Downloads/dacl10k_v2_devphase"
+  splits:
+    train_images: "images/train"
+    train_annotations: "annotations/train"
+    val_images: "images/validation"
+    val_annotations: "annotations/validation"
+    testdev_images: "images/testdev"
+  num_classes: 19
+  classes:
+    - ACrack
+    - Bearing
+    - Cavity
+    - Crack
+    - Drainage
+    - EJoint
+    - Efflorescence
+    - ExposedRebars
+    - Graffiti
+    - Hollowareas
+    - JTape
+    - PEquipment
+    - Restformwork
+    - Rockpocket
+    - Rust
+    - Spalling
+    - WConccor
+    - Weathering
+    - Wetspot
+
+model:
+  architecture: "DeepLabV3Plus"
+  encoder_name: "resnet34"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  num_classes: 19
+
+loss:
+  type: "combined_bce_dice"
+  bce_weight: 1.0
+  dice_weight: 1.0
+  use_pos_weight: false
+
+training:
+  image_size: [512, 512]
+  batch_size: 4
+  num_workers: 2
+  epochs: 1
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  gradient_clip: 1.0
+  seed: 42
+  device: "auto"
+  threshold: 0.5
+  best_metric: "val_miou"
+
+experiment:
+  name: "pilot_run_deeplabv3p_resnet34"
+  output_dir: "experiments/pilot_run"
