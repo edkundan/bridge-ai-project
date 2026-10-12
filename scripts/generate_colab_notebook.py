@@ -110,7 +110,7 @@ from google.colab import drive
 drive.mount('/content/drive', force_remount=False)
 
 PROJECT_DIR = "/content/bridge-ai-project"
-REPO_URL = "https://github.com/your-username/bridge-ai-project.git" # Update if using GitHub
+REPO_URL = "https://github.com/edkundan/bridge-ai-project.git"
 
 code_found = False
 
@@ -140,19 +140,10 @@ if not code_found and os.path.exists(colab_zip_path):
 
 # --- OPTION C: Clone from GitHub ---
 if not code_found:
-    if "your-username" not in REPO_URL and "github.com" in REPO_URL:
-        print(f"Cloning from GitHub repository: {REPO_URL}...")
-        !git clone {REPO_URL} {PROJECT_DIR}
-        if os.path.exists(f"{PROJECT_DIR}/src/data/dataset.py"):
-            code_found = True
-    else:
-        print("\\n" + "=" * 70)
-        print("[SETUP REQUIRED] How to provide your project code to Colab:")
-        print("Choose ANY of these 3 easy methods:")
-        print("  Method 1: Upload 'bridge-ai-project-code.zip' to your Google Drive root (MyDrive/)")
-        print("  Method 2: Drag & drop 'bridge-ai-project-code.zip' into Colab's left sidebar file panel")
-        print("  Method 3: Set REPO_URL to your GitHub repository address and re-run")
-        print("=" * 70 + "\\n")
+    print(f"Cloning from GitHub repository: {REPO_URL}...")
+    !git clone {REPO_URL} {PROJECT_DIR}
+    if os.path.exists(f"{PROJECT_DIR}/src/data/dataset.py"):
+        code_found = True
 
 # Add repository root to Python path
 if PROJECT_DIR not in sys.path:
@@ -246,7 +237,16 @@ else:
 add_markdown("""## Section 4: Configuration & Hyperparameters
 Inspect and customize the Colab training configuration. All 19 classes are verified for consistent alphabetical indexing.""")
 
-add_code("""import yaml
+add_code("""import os
+import sys
+import yaml
+
+PROJECT_DIR = "/content/bridge-ai-project"
+if not os.path.exists(f"{PROJECT_DIR}/src/data/dataset.py"):
+    !git clone https://github.com/edkundan/bridge-ai-project.git {PROJECT_DIR}
+
+if PROJECT_DIR not in sys.path:
+    sys.path.insert(0, PROJECT_DIR)
 
 # ==============================================================================
 # CONFIGURABLE TRAINING HYPERPARAMETERS
