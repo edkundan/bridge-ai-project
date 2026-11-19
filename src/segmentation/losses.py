@@ -15,7 +15,7 @@ Description:
 """
 
 import logging
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 import torch
 import torch.nn as nn
@@ -68,6 +68,80 @@ class MultiLabelSoftDiceLoss(nn.Module):
         elif self.reduction == "sum":
             return dice_loss.sum()
         return dice_loss
+
+
+class ClassWeightedBCEDiceLoss(nn.Module):
+    """
+    Channel-level class-weighted BCE + Soft Dice loss for multi-label segmentation.
+    Weights each class channel c by w_c:
+        Loss = sum_c(w_c * (BCE_c + Dice_c)) / sum_c(w_c)
+    
+    Formula per channel c:
+        BCE_c = mean over batch and spatial pixels of BCEWithLogits (reduction='mean')
+        Dice_c = mean over batch of (1.0 - SoftDice_c)
+    
+    Note:
+        This is channel-level class weighting applied uniformly across all pixels
+        for each class channel c, NOT positive-only BCE weighting (no pos_weight is added).
+    """
+
+    def __init__(
+        self,
+        class_weights: Union[List[float], torch.Tensor],
+        bce_weight: float = 1.0,
+        dice_weight: float = 1.0,
+        eps: float = 1e-6,
+    ):
+        super().__init__()
+        if isinstance(class_weights, list):
+            class_weights = torch.tensor(class_weights, dtype=torch.float32)
+        elif not isinstance(class_weights, torch.Tensor):
+            class_weights = torch.tensor(list(class_weights), dtype=torch.float32)
+
+        if class_weights.ndim != 1:
+            raise ValueError(f"class_weights must be 1D, got ndim={class_weights.ndim}")
+        if len(class_weights) != 19:
+            raise ValueError(f"Expected 19 class weights, got {len(class_weights)}")
+
+        self.register_buffer("class_weights", class_weights.float())
+        self.bce_weight = float(bce_weight)
+        self.dice_weight = float(dice_weight)
+        self.eps = float(eps)
+
+    def forward(self, logits: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            logits: (B, C, H, W) raw unnormalized model outputs.
+            targets: (B, C, H, W) binary ground truth tensor in {0, 1}.
+        Returns:
+            Scalar weighted loss tensor.
+        """
+        if logits.shape != targets.shape:
+            raise ValueError(f"Shape mismatch: logits {logits.shape} vs targets {targets.shape}")
+
+        b, c, h, w = logits.shape
+        if c != len(self.class_weights):
+            raise ValueError(f"Expected {len(self.class_weights)} channels, got logits with {c} channels")
+
+        # 1. Per-channel BCE loss (averaged over B, H, W) -> shape (C,)
+        bce_all = F.binary_cross_entropy_with_logits(logits, targets, reduction="none")
+        bce_c = bce_all.mean(dim=(0, 2, 3))
+
+        # 2. Per-channel Soft Dice loss (computed per sample then averaged over B) -> shape (C,)
+        probs = torch.sigmoid(logits)
+        probs_flat = probs.view(b, c, -1)
+        targets_flat = targets.view(b, c, -1)
+        intersection = (probs_flat * targets_flat).sum(dim=2)
+        cardinality = probs_flat.sum(dim=2) + targets_flat.sum(dim=2)
+        dice_score = (2.0 * intersection + self.eps) / (cardinality + self.eps)
+        dice_c = (1.0 - dice_score).mean(dim=0)
+
+        # 3. Channel combined loss -> shape (C,)
+        loss_c = self.bce_weight * bce_c + self.dice_weight * dice_c
+
+        # 4. Weighted combination normalized by sum of weights
+        weights = self.class_weights.to(logits.device)
+        return (weights * loss_c).sum() / weights.sum()
 
 
 class CombinedBCEDiceLoss(nn.Module):
@@ -136,17 +210,19 @@ def create_loss_function(
     dice_weight: float = 1.0,
     focal_gamma: float = 2.0,
     focal_alpha: float = 0.25,
+    class_weights: Optional[Union[List[float], torch.Tensor]] = None,
 ) -> nn.Module:
     """
     Factory function for loss modules.
     
     Args:
-        loss_type: 'bce', 'dice', 'combined_bce_dice', or 'focal'.
+        loss_type: 'bce', 'dice', 'combined_bce_dice', 'class_weighted_bce_dice', or 'focal'.
         pos_weight: Optional (19,) positive class weights for BCEWithLogitsLoss.
         bce_weight: Scaling factor for BCE in combined loss.
         dice_weight: Scaling factor for Dice in combined loss.
         focal_gamma: Focusing parameter for Focal loss.
         focal_alpha: Class balance parameter for Focal loss.
+        class_weights: Optional (19,) channel weights for ClassWeightedBCEDiceLoss.
         
     Returns:
         Instantiated nn.Module loss.
@@ -168,10 +244,22 @@ def create_loss_function(
             dice_weight=dice_weight,
             pos_weight=pos_weight,
         )
+    elif loss_type in ["class_weighted_bce_dice", "weighted_bce_dice", "sqrt_weighted_bcedice"]:
+        if class_weights is None:
+            raise ValueError("class_weights must be provided when loss_type is 'class_weighted_bce_dice'")
+        logger.info(
+            f"Using ClassWeightedBCEDiceLoss (bce_w={bce_weight}, dice_w={dice_weight}, "
+            f"num_classes={len(class_weights)})."
+        )
+        return ClassWeightedBCEDiceLoss(
+            class_weights=class_weights,
+            bce_weight=bce_weight,
+            dice_weight=dice_weight,
+        )
     elif loss_type == "focal":
         logger.info(f"Using MultiLabelFocalLoss (alpha={focal_alpha}, gamma={focal_gamma}).")
         return MultiLabelFocalLoss(alpha=focal_alpha, gamma=focal_gamma)
     else:
         raise ValueError(
-            f"Unknown loss_type: '{loss_type}'. Expected 'bce', 'dice', 'combined', or 'focal'."
+            f"Unknown loss_type: '{loss_type}'. Expected 'bce', 'dice', 'combined', 'class_weighted_bce_dice', or 'focal'."
         )

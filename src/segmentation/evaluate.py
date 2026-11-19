@@ -229,6 +229,7 @@ class SegmentationEvaluator:
             "mIoU_all_classes": round(float(np.mean(ious)), 4),
             "mIoU_present_classes": round(float(np.mean(present_ious)) if present_ious else 0.0, 4),
             "macro_dice": round(float(np.mean(dices)), 4),
+            "macro_dice_all_classes": round(float(np.mean(dices)), 4),
             "macro_dice_present": round(float(np.mean(present_dices)) if present_dices else 0.0, 4),
             "macro_precision": round(float(np.mean(precisions)), 4),
             "macro_recall": round(float(np.mean(recalls)), 4),
@@ -457,7 +458,7 @@ def main():
     ).to(device)
 
     checkpoint = torch.load(args.checkpoint, map_location=device)
-    state_dict = checkpoint.get("model_state_dict", checkpoint)
+    state_dict = checkpoint.get("model_state_dict", checkpoint.get("model_state", checkpoint))
     model.load_state_dict(state_dict)
     logger.info(f"Loaded checkpoint from: {args.checkpoint}")
 

@@ -49,7 +49,7 @@ training:
   image_size: [512, 512]
   batch_size: 8         # Standard for Colab T4 (16GB) or A100 (40GB)
   num_workers: 4
-  epochs: 25
+  epochs: 15
   learning_rate: 0.0001
   weight_decay: 0.0001
   optimizer: "AdamW"

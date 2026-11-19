@@ -43,3 +43,8 @@ outputs/*
 .cache*
 reports/.cache*
 
+# Generated Visualizations & Diagnostic Scratch Outputs
+reports/visualizations/
+reports/val_probability_audit/visualizations/
+reports/audit_output.txt
+

@@ -30,6 +30,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
 import yaml
@@ -300,6 +301,7 @@ def train(
         pos_weight=pos_weight,
         bce_weight=float(loss_cfg.get("bce_weight", 1.0)),
         dice_weight=float(loss_cfg.get("dice_weight", 1.0)),
+        class_weights=loss_cfg.get("class_weights", None),
     )
 
     # Build Optimizer & Scheduler
@@ -326,17 +328,48 @@ def train(
         "lr": [],
     }
 
+    resumed = False
     if resume_path is not None and os.path.exists(resume_path):
         logger.info(f"Resuming training from checkpoint: {resume_path}")
         chk = torch.load(resume_path, map_location=device)
-        model.load_state_dict(chk["model_state_dict"])
-        optimizer.load_state_dict(chk["optimizer_state_dict"])
-        if "scheduler_state_dict" in chk and scheduler is not None:
-            scheduler.load_state_dict(chk["scheduler_state_dict"])
+        model_state = chk.get("model_state_dict", chk.get("model_state"))
+        if model_state is None:
+            model_state = chk
+        model.load_state_dict(model_state)
+
+        opt_state = chk.get("optimizer_state_dict", chk.get("optimizer_state"))
+        if opt_state is not None:
+            optimizer.load_state_dict(opt_state)
+            logger.info("Optimizer state restored successfully.")
+        else:
+            logger.warning("No optimizer state found in checkpoint. Optimizer re-initialized from current learning rate.")
+
+        sched_state = chk.get("scheduler_state_dict", chk.get("scheduler_state"))
+        if sched_state is not None and scheduler is not None:
+            scheduler.load_state_dict(sched_state)
+            logger.info("Scheduler state restored successfully.")
+
         start_epoch = chk.get("epoch", 0) + 1
-        best_miou = chk.get("best_miou", 0.0)
+        best_miou = chk.get("best_miou", chk.get("best_val_miou", 0.0))
         history = chk.get("history", history)
         logger.info(f"Resumed at epoch {start_epoch} with previous best mIoU: {best_miou:.4f}")
+        resumed = True
+
+    # Pretrained checkpoint initialization (e.g. baseline transfer without optimizer state)
+    pretrained_path = (
+        model_cfg.get("pretrained_checkpoint")
+        or train_cfg.get("pretrained_checkpoint")
+        or config.get("pretrained_checkpoint")
+    )
+    if not resumed and pretrained_path:
+        if os.path.exists(pretrained_path):
+            logger.info(f"Loading pretrained weights (fresh optimizer/scheduler) from: {pretrained_path}")
+            chk = torch.load(pretrained_path, map_location=device)
+            model_state = chk.get("model_state_dict", chk.get("model_state", chk))
+            model.load_state_dict(model_state, strict=True)
+            logger.info("Pretrained weights loaded successfully.")
+        else:
+            logger.warning(f"Pretrained checkpoint not found at: {pretrained_path}. Using base model initialization.")
 
     threshold = float(train_cfg.get("threshold", 0.5))
     grad_clip = float(train_cfg.get("gradient_clip", 1.0))
@@ -393,8 +426,7 @@ def train(
             f"Time: {epoch_duration:.1f}s"
         )
 
-        # Check for best checkpoint
-        metric_to_check = val_miou_all if best_metric_name == "val_miou" else -val_loss
+        # Check for best checkpoint based on validation mIoU
         is_best = (val_miou_all > best_miou)
         if is_best:
             best_miou = val_miou_all
@@ -402,20 +434,30 @@ def train(
             torch.save({
                 "epoch": epoch,
                 "model_state_dict": model.state_dict(),
+                "model_state": model.state_dict(),
                 "best_miou": best_miou,
+                "best_val_miou": best_miou,
+                "val_miou": val_miou_all,
+                "val_loss": val_loss,
                 "val_metrics": val_metrics,
                 "config": config,
             }, best_checkpoint_path)
-            logger.info(f"[*] New best model saved to: {best_checkpoint_path} (mIoU: {best_miou:.4f})")
+            logger.info(f"[*] New best model saved to: {best_checkpoint_path} (mIoU: {best_miou:.4f}, Val Loss: {val_loss:.4f})")
 
         # Save latest resume checkpoint
         latest_checkpoint_path = checkpoint_dir / "latest_checkpoint.pth"
         torch.save({
             "epoch": epoch,
             "model_state_dict": model.state_dict(),
+            "model_state": model.state_dict(),
             "optimizer_state_dict": optimizer.state_dict(),
+            "optimizer_state": optimizer.state_dict(),
             "scheduler_state_dict": scheduler.state_dict(),
+            "scheduler_state": scheduler.state_dict(),
             "best_miou": best_miou,
+            "best_val_miou": best_miou,
+            "val_miou": val_miou_all,
+            "val_loss": val_loss,
             "history": history,
             "config": config,
         }, latest_checkpoint_path)
@@ -424,6 +466,26 @@ def train(
         with open(exp_dir / "training_history.json", "w", encoding="utf-8") as f:
             json.dump(history, f, indent=4)
         plot_learning_curves(history, exp_dir / "learning_curves.png")
+
+        # Save per-class validation metrics CSV (including TP, FP, FN, IoU, Dice)
+        if "per_class" in val_metrics:
+            per_class_df = pd.DataFrame(val_metrics["per_class"])
+            per_class_df["epoch"] = epoch
+            epoch_csv_path = exp_dir / f"val_metrics_epoch_{epoch:03d}.csv"
+            per_class_df.to_csv(epoch_csv_path, index=False)
+            per_class_df.to_csv(exp_dir / "val_metrics_latest.csv", index=False)
+
+            history_csv_path = exp_dir / "val_metrics_history.csv"
+            if history_csv_path.exists():
+                try:
+                    all_metrics_df = pd.read_csv(history_csv_path)
+                    all_metrics_df = all_metrics_df[all_metrics_df["epoch"] != epoch]
+                    all_metrics_df = pd.concat([all_metrics_df, per_class_df], ignore_index=True)
+                except Exception:
+                    all_metrics_df = per_class_df
+            else:
+                all_metrics_df = per_class_df
+            all_metrics_df.to_csv(history_csv_path, index=False)
 
     total_time = time.time() - start_time
 

@@ -1,0 +1,93 @@
+# Experiment 02: Channel-Level Class-Weighted BCE-Dice Loss
+# Strategy: Normalized square-root inverse-pixel weights derived exclusively from all 6,935 training set annotations.
+# Note: This is channel-level class-weighted BCE-Dice (L = sum(w_c * (BCE_c + Dice_c)) / sum(w_c)),
+# NOT positive-only BCE weighting (no pos_weight is added; use_pos_weight is false).
+# The weights naturally lie within [0.2538, 2.3887] (mean = 1.0, sum = 19.0).
+# Baseline Epoch-15 best checkpoint is loaded for model weights, with a fresh AdamW optimizer and CosineAnnealing scheduler.
+
+dataset:
+  name: "DACL10K-v2"
+  root_dir: "/content/drive/MyDrive/dacl10k_v2_devphase"
+  splits:
+    train_images: "images/train"
+    train_annotations: "annotations/train"
+    val_images: "images/validation"
+    val_annotations: "annotations/validation"
+    testdev_images: "images/testdev"
+  num_classes: 19
+  classes:
+    - ACrack
+    - Bearing
+    - Cavity
+    - Crack
+    - Drainage
+    - EJoint
+    - Efflorescence
+    - ExposedRebars
+    - Graffiti
+    - Hollowareas
+    - JTape
+    - PEquipment
+    - Restformwork
+    - Rockpocket
+    - Rust
+    - Spalling
+    - WConccor
+    - Weathering
+    - Wetspot
+
+model:
+  architecture: "DeepLabV3Plus"
+  encoder_name: "resnet34"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  num_classes: 19
+  # Initialized from the preserved Stage 1 baseline 15-epoch best checkpoint
+  pretrained_checkpoint: "/content/drive/MyDrive/bridge_ai_experiments/segmentation_baseline/checkpoints/best_model.pth"
+
+loss:
+  type: "class_weighted_bce_dice"
+  bce_weight: 1.0
+  dice_weight: 1.0
+  use_pos_weight: false
+  # Exact 19 normalized sqrt inverse pixel frequency weights (sum=19.0, mean=1.0)
+  # Derived exclusively from all 6,935 training set annotations:
+  class_weights:
+    - 0.7862  # ACrack
+    - 0.8357  # Bearing
+    - 1.0322  # Cavity
+    - 1.5679  # Crack
+    - 0.9288  # Drainage
+    - 0.8624  # EJoint
+    - 0.6528  # Efflorescence
+    - 2.3887  # ExposedRebars
+    - 0.6528  # Graffiti
+    - 0.5537  # Hollowareas
+    - 1.5268  # JTape
+    - 0.4644  # PEquipment
+    - 1.6697  # Restformwork
+    - 1.7576  # Rockpocket
+    - 0.6147  # Rust
+    - 0.5753  # Spalling
+    - 1.3025  # WConccor
+    - 0.2538  # Weathering
+    - 0.5740  # Wetspot
+
+training:
+  image_size: [512, 512]
+  batch_size: 8
+  num_workers: 4
+  epochs: 5
+  learning_rate: 0.00005  # Fine-tuning LR (0.5x of baseline 1e-4) to prevent disruption of learned features
+  weight_decay: 0.0001
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  gradient_clip: 1.0
+  seed: 42
+  device: "cuda"
+  threshold: 0.5
+  best_metric: "val_miou"
+
+experiment:
+  name: "exp_02_sqrt_weighted_bcedice"
+  output_dir: "/content/drive/MyDrive/bridge_ai_experiments/exp_02_sqrt_weighted_bcedice"
