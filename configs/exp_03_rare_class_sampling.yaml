@@ -1,0 +1,82 @@
+# Experiment 03: Rare-Class-Aware Sampling Ablation
+# Hypothesis: Oversampling training images containing severe under-represented defect classes
+# (WConccor, Rockpocket, Crack) via WeightedRandomSampler will increase gradient exposure to
+# rare features while using the original UNWEIGHTED BCE-Dice loss, cleanly isolating sampling
+# from loss re-weighting.
+
+dataset:
+  name: "DACL10K-v2"
+  root_dir: "/content/dataset/dacl10k_v2_devphase"
+  splits:
+    train_images: "images/train"
+    train_annotations: "annotations/train"
+    val_images: "images/validation"
+    val_annotations: "annotations/validation"
+    testdev_images: "images/testdev"
+  num_classes: 19
+  classes:
+    - ACrack
+    - Bearing
+    - Cavity
+    - Crack
+    - Drainage
+    - EJoint
+    - Efflorescence
+    - ExposedRebars
+    - Graffiti
+    - Hollowareas
+    - JTape
+    - PEquipment
+    - Restformwork
+    - Rockpocket
+    - Rust
+    - Spalling
+    - WConccor
+    - Weathering
+    - Wetspot
+
+model:
+  architecture: "DeepLabV3Plus"
+  encoder_name: "resnet34"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  num_classes: 19
+  # Initialized strictly from preserved baseline Epoch-15 best checkpoint
+  pretrained_checkpoint: "/content/drive/MyDrive/bridge_ai_experiments/segmentation_baseline/checkpoints/best_model.pth"
+
+loss:
+  type: "combined_bce_dice"  # Original unweighted BCE-Dice loss
+  bce_weight: 1.0
+  dice_weight: 1.0
+  use_pos_weight: false      # No positive weighting to strictly isolate sampling
+
+sampling:
+  enabled: true
+  strategy: "rare_class_aware"
+  # Preliminary image sampling weights:
+  # weight = min(max_weight, base_weight + 2.0*has_WConccor + 1.5*has_Rockpocket + 0.5*has_Crack)
+  base_weight: 1.0
+  wconccor_boost: 2.0
+  rockpocket_boost: 1.5
+  crack_boost: 0.5
+  max_weight: 4.0
+  replacement: true
+
+training:
+  image_size: [512, 512]
+  batch_size: 8
+  num_workers: 2
+  epochs: 5
+  learning_rate: 0.00005     # 5e-5 fine-tuning LR with fresh optimizer/scheduler
+  weight_decay: 0.0001
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  gradient_clip: 1.0
+  seed: 42
+  device: "cuda"
+  threshold: 0.5
+  best_metric: "val_miou"
+
+experiment:
+  name: "exp_03_rare_class_sampling"
+  output_dir: "/content/drive/MyDrive/bridge_ai_experiments/exp_03_rare_class_sampling"

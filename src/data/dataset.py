@@ -17,13 +17,13 @@ import logging
 import os
 import random
 from pathlib import Path
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 
 import cv2
 import numpy as np
 import torch
 from PIL import Image
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
 
 from src.data.mask_converter import DACL10K_CLASSES, MaskConverter
 
@@ -303,6 +303,141 @@ def custom_collate_fn(batch: List[Any]) -> Union[Tuple[torch.Tensor, torch.Tenso
         return images, masks
 
 
+class RecordingWeightedRandomSampler(WeightedRandomSampler):
+    """
+    WeightedRandomSampler that records the sampled indices for each epoch iteration.
+    Enables exact monitoring of unique image coverage, repetition counts, and actual
+    per-class exposure without disrupting PyTorch's native sampling loop.
+    """
+
+    def __init__(
+        self,
+        weights: Sequence[float],
+        num_samples: int,
+        replacement: bool = True,
+        generator: Optional[torch.Generator] = None,
+    ):
+        super().__init__(weights=weights, num_samples=num_samples, replacement=replacement, generator=generator)
+        self.last_epoch_indices: List[int] = []
+        self.presence_matrix: Optional[np.ndarray] = None
+        self.expected_summary: Optional[Dict[str, Any]] = None
+        self.weights_list: List[float] = list(weights)
+
+    def __iter__(self):
+        rand_tensor = torch.multinomial(self.weights, self.num_samples, self.replacement, generator=self.generator)
+        self.last_epoch_indices = rand_tensor.tolist()
+        yield from iter(self.last_epoch_indices)
+
+
+def compute_rare_class_sampling_weights(
+    dataset: DACL10KDataset,
+    sampling_cfg: Optional[Dict[str, Any]] = None,
+) -> Tuple[List[float], np.ndarray, Dict[str, Any]]:
+    """
+    Computes per-image sampling weights for rare-class-aware oversampling on the training split.
+    Determines class presence from the actual training annotation JSON files using canonical classes.
+    
+    Formula:
+        weight = min(max_weight, base_weight + wconccor_boost * has_WConccor
+                                            + rockpocket_boost * has_Rockpocket
+                                            + crack_boost * has_Crack)
+    Default parameters:
+        base_weight = 1.0
+        wconccor_boost = 2.0
+        rockpocket_boost = 1.5
+        crack_boost = 0.5
+        max_weight = 4.0
+        
+    Args:
+        dataset: DACL10KDataset instance (strictly aligns with dataset.anno_paths).
+        sampling_cfg: Optional dictionary of sampling parameters.
+        
+    Returns:
+        weights: List[float] of length len(dataset), strictly 1:1 aligned with dataset indices.
+        presence_matrix: np.ndarray of shape (len(dataset), num_classes) with binary indicators {0, 1}.
+        summary: Dict containing expected sampling probabilities and boost factors.
+    """
+    cfg = sampling_cfg or {}
+    base_weight = float(cfg.get("base_weight", 1.0))
+    wc_boost = float(cfg.get("wconccor_boost", 2.0))
+    rp_boost = float(cfg.get("rockpocket_boost", 1.5))
+    cr_boost = float(cfg.get("crack_boost", 0.5))
+    max_weight = float(cfg.get("max_weight", 4.0))
+
+    class_names = dataset.classes
+    class_to_idx = {name: i for i, name in enumerate(class_names)}
+    num_classes = len(class_names)
+    num_samples = len(dataset)
+
+    presence_matrix = np.zeros((num_samples, num_classes), dtype=np.uint8)
+    weights = []
+
+    wc_idx = class_to_idx.get("WConccor")
+    rp_idx = class_to_idx.get("Rockpocket")
+    cr_idx = class_to_idx.get("Crack")
+
+    for i, anno_path in enumerate(dataset.anno_paths):
+        has_wc = 0
+        has_rp = 0
+        has_cr = 0
+
+        if anno_path is not None and os.path.exists(anno_path):
+            try:
+                with open(anno_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                labels = {s.get("label") for s in data.get("shapes", [])}
+                for l in labels:
+                    if l in class_to_idx:
+                        presence_matrix[i, class_to_idx[l]] = 1
+                if wc_idx is not None:
+                    has_wc = int(presence_matrix[i, wc_idx])
+                if rp_idx is not None:
+                    has_rp = int(presence_matrix[i, rp_idx])
+                if cr_idx is not None:
+                    has_cr = int(presence_matrix[i, cr_idx])
+            except Exception as e:
+                logger.warning(f"Failed to read annotation at {anno_path}: {e}")
+
+        raw_w = base_weight + wc_boost * has_wc + rp_boost * has_rp + cr_boost * has_cr
+        w = min(max_weight, raw_w)
+        weights.append(float(w))
+
+    total_w = sum(weights)
+    mean_w = total_w / max(1, num_samples)
+
+    # Compute expected probabilities and exposure per class
+    expected_stats = {}
+    for c_idx, c_name in enumerate(class_names):
+        c_count = int(presence_matrix[:, c_idx].sum())
+        c_base_prob = c_count / max(1, num_samples)
+        c_weight_sum = float(sum(w for w, has_c in zip(weights, presence_matrix[:, c_idx]) if has_c > 0))
+        c_expected_prob = c_weight_sum / max(1e-8, total_w)
+        c_expected_count = c_expected_prob * num_samples
+        boost_factor = c_expected_prob / max(1e-8, c_base_prob) if c_base_prob > 0 else 1.0
+
+        expected_stats[c_name] = {
+            "class_index": c_idx,
+            "image_count": c_count,
+            "base_prevalence": round(c_base_prob, 4),
+            "base_prevalence_pct": round(c_base_prob * 100, 2),
+            "expected_sampling_prob": round(c_expected_prob, 4),
+            "expected_sampling_prob_pct": round(c_expected_prob * 100, 2),
+            "expected_samples_per_epoch": round(c_expected_count, 1),
+            "expected_boost_factor": round(boost_factor, 2),
+        }
+
+    summary = {
+        "num_images": num_samples,
+        "total_weight": round(total_w, 2),
+        "mean_weight": round(mean_w, 4),
+        "min_weight": round(min(weights) if weights else 1.0, 2),
+        "max_weight": round(max(weights) if weights else 1.0, 2),
+        "expected_class_exposure": expected_stats,
+    }
+
+    return weights, presence_matrix, summary
+
+
 def create_dataloaders(
     root_dir: Union[str, Path],
     target_size: Tuple[int, int] = (512, 512),
@@ -312,9 +447,12 @@ def create_dataloaders(
     pin_memory: bool = False,
     max_train_samples: Optional[int] = None,
     max_val_samples: Optional[int] = None,
+    sampling_cfg: Optional[Dict[str, Any]] = None,
 ) -> Tuple[DataLoader, DataLoader]:
     """
     Factory function to build training and validation DataLoaders.
+    Supports optional rare-class oversampling for training via WeightedRandomSampler.
+    Validation loader remains strictly unweighted, without replacement or augmentation.
     
     Args:
         root_dir: DACL10K-v2 dataset root path.
@@ -325,6 +463,7 @@ def create_dataloaders(
         pin_memory: PyTorch pin_memory flag.
         max_train_samples: Optional subset limit for training.
         max_val_samples: Optional subset limit for validation.
+        sampling_cfg: Optional configuration dictionary for rare-class sampling.
         
     Returns:
         Tuple of (train_loader, val_loader).
@@ -348,17 +487,47 @@ def create_dataloaders(
         max_samples=max_val_samples,
     )
 
-    train_loader = DataLoader(
-        train_dataset,
-        batch_size=batch_size,
-        shuffle=True,
-        num_workers=num_workers,
-        pin_memory=pin_memory,
-        worker_init_fn=seed_worker,
-        generator=g,
-        drop_last=True if len(train_dataset) > batch_size else False,
-    )
+    # Configure training sampler if enabled
+    sampling_enabled = bool(sampling_cfg and sampling_cfg.get("enabled", False))
+    if sampling_enabled:
+        weights, presence_matrix, summary = compute_rare_class_sampling_weights(train_dataset, sampling_cfg)
+        sampler_gen = torch.Generator()
+        sampler_gen.manual_seed(seed)
+        replacement = bool(sampling_cfg.get("replacement", True))
 
+        train_sampler = RecordingWeightedRandomSampler(
+            weights=weights,
+            num_samples=len(train_dataset),
+            replacement=replacement,
+            generator=sampler_gen,
+        )
+        train_sampler.presence_matrix = presence_matrix
+        train_sampler.expected_summary = summary
+        train_sampler.seed = seed
+
+        train_loader = DataLoader(
+            train_dataset,
+            batch_size=batch_size,
+            sampler=train_sampler,
+            shuffle=False,
+            num_workers=num_workers,
+            pin_memory=pin_memory,
+            worker_init_fn=seed_worker,
+            drop_last=True if len(train_dataset) > batch_size else False,
+        )
+    else:
+        train_loader = DataLoader(
+            train_dataset,
+            batch_size=batch_size,
+            shuffle=True,
+            num_workers=num_workers,
+            pin_memory=pin_memory,
+            worker_init_fn=seed_worker,
+            generator=g,
+            drop_last=True if len(train_dataset) > batch_size else False,
+        )
+
+    # Validation DataLoader is strictly unweighted, non-replacement, shuffle=False
     val_loader = DataLoader(
         val_dataset,
         batch_size=batch_size,

@@ -14,6 +14,7 @@ Description:
 """
 
 import argparse
+from collections import Counter
 import json
 import logging
 import os
@@ -259,6 +260,7 @@ def train(
     batch_size = int(train_cfg.get("batch_size", 4))
     num_workers = int(train_cfg.get("num_workers", 2))
 
+    sampling_cfg = config.get("sampling", {})
     train_loader, val_loader = create_dataloaders(
         root_dir=root_dir,
         target_size=image_size,
@@ -267,7 +269,29 @@ def train(
         seed=seed,
         max_train_samples=max_train_samples,
         max_val_samples=max_val_samples,
+        sampling_cfg=sampling_cfg,
     )
+
+    # Log and export expected sampling distribution if rare-class sampling is active
+    is_sampling_active = hasattr(train_loader.sampler, "expected_summary") and train_loader.sampler.expected_summary is not None
+    if is_sampling_active:
+        expected = train_loader.sampler.expected_summary
+        logger.info("=" * 60)
+        logger.info("RARE-CLASS SAMPLING ACTIVE (WeightedRandomSampler)")
+        logger.info(
+            f"Images: {expected['num_images']} | Total Weight: {expected['total_weight']:.1f} | "
+            f"Mean Weight: {expected['mean_weight']:.4f} | Range: [{expected['min_weight']}, {expected['max_weight']}]"
+        )
+        for focal in ["WConccor", "Rockpocket", "Crack"]:
+            st = expected["expected_class_exposure"].get(focal, {})
+            logger.info(
+                f"  [{focal}] Base: {st.get('base_prevalence_pct', 0)}% ({st.get('image_count', 0)} imgs) -> "
+                f"Expected: {st.get('expected_sampling_prob_pct', 0)}% (~{st.get('expected_samples_per_epoch', 0):.0f} imgs/epoch) | "
+                f"Boost: {st.get('expected_boost_factor', 1.0)}x"
+            )
+        logger.info("=" * 60)
+        with open(exp_dir / "sampling_expected_distribution.json", "w", encoding="utf-8") as f:
+            json.dump(expected, f, indent=4)
 
     # Build Model
     model_cfg = config.get("model", {})
@@ -383,6 +407,10 @@ def train(
         epoch_start = time.time()
         current_lr = optimizer.param_groups[0]["lr"]
 
+        # Deterministic sampling generator reseeding for reproducible resumption
+        if hasattr(train_loader.sampler, "generator") and train_loader.sampler.generator is not None:
+            train_loader.sampler.generator.manual_seed(seed + epoch)
+
         # Train
         train_loss = train_one_epoch(
             model=model,
@@ -393,6 +421,74 @@ def train(
             epoch=epoch,
             grad_clip=grad_clip,
         )
+
+        # Record and log actual sampled exposure if recording sampler is active
+        if is_sampling_active and hasattr(train_loader.sampler, "last_epoch_indices"):
+            sampled_indices = train_loader.sampler.last_epoch_indices
+            presence_mat = getattr(train_loader.sampler, "presence_matrix", None)
+            dataset_classes = getattr(train_loader.dataset, "classes", DACL10K_CLASSES)
+            num_total_dataset = len(train_loader.dataset)
+            total_drawn = len(sampled_indices)
+            unique_indices = sorted(list(set(sampled_indices)))
+            unique_count = len(unique_indices)
+            counts = list(Counter(sampled_indices).values())
+            max_reps = max(counts) if counts else 0
+            mean_reps = round(total_drawn / max(1, unique_count), 2)
+
+            actual_class_exposure = {}
+            if total_drawn > 0 and presence_mat is not None:
+                sampled_presence = presence_mat[sampled_indices]
+                class_draw_counts = sampled_presence.sum(axis=0)
+                unique_presence = presence_mat[unique_indices]
+                class_unique_counts = unique_presence.sum(axis=0)
+
+                for c_idx, c_name in enumerate(dataset_classes):
+                    d_cnt = int(class_draw_counts[c_idx])
+                    u_cnt = int(class_unique_counts[c_idx])
+                    actual_class_exposure[c_name] = {
+                        "class_index": c_idx,
+                        "sampled_instances": d_cnt,
+                        "sampled_fraction": round(d_cnt / max(1, total_drawn), 4),
+                        "sampled_fraction_pct": round(d_cnt / max(1, total_drawn) * 100, 2),
+                        "unique_images_sampled": u_cnt,
+                    }
+
+            epoch_sampling_stats = {
+                "epoch": epoch,
+                "total_samples_drawn": total_drawn,
+                "unique_images_sampled": unique_count,
+                "unique_coverage_pct": round(unique_count / max(1, num_total_dataset) * 100, 2),
+                "max_repetitions": max_reps,
+                "mean_repetitions": mean_reps,
+                "class_exposure": actual_class_exposure,
+            }
+            with open(exp_dir / f"sampling_epoch_{epoch:03d}.json", "w", encoding="utf-8") as f:
+                json.dump(epoch_sampling_stats, f, indent=4)
+
+            sampling_history_path = exp_dir / "sampling_exposure_history.json"
+            sampling_history = []
+            if sampling_history_path.exists():
+                try:
+                    with open(sampling_history_path, "r", encoding="utf-8") as f:
+                        sampling_history = json.load(f)
+                    sampling_history = [item for item in sampling_history if item.get("epoch") != epoch]
+                except Exception:
+                    sampling_history = []
+            sampling_history.append(epoch_sampling_stats)
+            with open(sampling_history_path, "w", encoding="utf-8") as f:
+                json.dump(sampling_history, f, indent=4)
+
+            wc_actual = actual_class_exposure.get("WConccor", {})
+            rp_actual = actual_class_exposure.get("Rockpocket", {})
+            cr_actual = actual_class_exposure.get("Crack", {})
+            logger.info(
+                f"Epoch {epoch:03d} Sampling | "
+                f"Unique: {unique_count}/{num_total_dataset} ({epoch_sampling_stats['unique_coverage_pct']}%) | "
+                f"Max Reps: {max_reps} | Mean Reps: {mean_reps:.2f} | "
+                f"WConccor: {wc_actual.get('sampled_instances', 0)} ({wc_actual.get('sampled_fraction_pct', 0)}%) | "
+                f"Rockpocket: {rp_actual.get('sampled_instances', 0)} ({rp_actual.get('sampled_fraction_pct', 0)}%) | "
+                f"Crack: {cr_actual.get('sampled_instances', 0)} ({cr_actual.get('sampled_fraction_pct', 0)}%)"
+            )
 
         # Validate
         val_loss, val_metrics = validate_one_epoch(
@@ -440,6 +536,7 @@ def train(
                 "val_miou": val_miou_all,
                 "val_loss": val_loss,
                 "val_metrics": val_metrics,
+                "sampling_config": sampling_cfg,
                 "config": config,
             }, best_checkpoint_path)
             logger.info(f"[*] New best model saved to: {best_checkpoint_path} (mIoU: {best_miou:.4f}, Val Loss: {val_loss:.4f})")
@@ -459,6 +556,7 @@ def train(
             "val_miou": val_miou_all,
             "val_loss": val_loss,
             "history": history,
+            "sampling_config": sampling_cfg,
             "config": config,
         }, latest_checkpoint_path)
 
