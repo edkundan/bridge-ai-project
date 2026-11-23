@@ -28,6 +28,26 @@ from src.prioritization.schema import (
 )
 
 
+def safe_render_dataframe(
+    df: pd.DataFrame,
+    use_container_width: bool = True,
+    hide_index: bool = True,
+) -> None:
+    """
+    Safely render a pandas DataFrame in Streamlit.
+    Attempts st.dataframe (with PyArrow engine), and seamlessly falls back
+    to st.table if PyArrow or binary serialization encounters an environment issue.
+    """
+    try:
+        try:
+            st.dataframe(df, width="stretch", hide_index=hide_index)
+        except (TypeError, ValueError):
+            st.dataframe(df, use_container_width=True, hide_index=hide_index)
+    except Exception as exc:
+        st.caption(f"ℹ️ Rendering standard table view (backend fallback: {type(exc).__name__})")
+        st.table(df)
+
+
 def render_header_and_disclaimers():
     """Renders dashboard header, scientific badges, and prominent guardrail alerts."""
     st.markdown(
@@ -63,7 +83,7 @@ def render_header_and_disclaimers():
         col1, col2 = st.columns(2)
         with col1:
             st.markdown(
-                """
+                r"""
                 **1. Pixel-Domain Measurement Boundary:**  
                 All lengths, widths, perimeters, and areas reported herein are in **pixels (`px`)** or **image-relative percentages (`%`)**.  
                 *Never label pixel measurements as metric millimeters without physical camera calibration, rangefinder depth, or optical fiducial markers.*
@@ -75,7 +95,7 @@ def render_header_and_disclaimers():
             )
         with col2:
             st.markdown(
-                """
+                r"""
                 **3. Provisional Review Tiers vs. Statutory Orders:**  
                 Labels such as `URGENT_INSPECTION_REVIEW` are **prototype triage flags** to prioritize human field inspector attention.  
                 *They are NOT certified emergency orders, speed restrictions, or bridge closure declarations.*
@@ -259,7 +279,7 @@ def render_measurements_panel(measurement_dict: Optional[Dict[str, Any]]):
 
     if rows:
         df_classes = pd.DataFrame(rows)
-        st.dataframe(df_classes, use_container_width=True, hide_index=True)
+        safe_render_dataframe(df_classes, use_container_width=True, hide_index=True)
     else:
         st.success("✅ Clean scan: No defect components detected above probability threshold.")
 
@@ -287,7 +307,7 @@ def render_measurements_panel(measurement_dict: Optional[Dict[str, Any]]):
         with st.expander("🔬 Component Morphological Features & Centerline Geometry", expanded=False):
             st.caption("All geometric metrics are strictly in pixel units (px). Metric width in millimeters requires metric optical calibration.")
             df_comp = pd.DataFrame(comp_rows)
-            st.dataframe(df_comp, use_container_width=True, hide_index=True)
+            safe_render_dataframe(df_comp, use_container_width=True, hide_index=True)
 
 
 def render_inspection_review_queue(
@@ -364,7 +384,7 @@ def render_inspection_review_queue(
             "Uncertainty": it.get("optical_uncertainty_level", "LOW"),
         })
 
-    st.dataframe(pd.DataFrame(table_rows), use_container_width=True, hide_index=True)
+    safe_render_dataframe(pd.DataFrame(table_rows), use_container_width=True, hide_index=True)
 
     # Selector
     finding_options = [it.get("finding_id") for it in filtered_items]

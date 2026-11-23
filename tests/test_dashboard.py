@@ -13,7 +13,9 @@ Verifies:
 import json
 import unittest
 from pathlib import Path
+from unittest.mock import MagicMock, patch
 import numpy as np
+import pandas as pd
 
 from src.dashboard.data_loader import (
     AVAILABLE_DEMO_CASES,
@@ -171,6 +173,24 @@ class TestDashboardIntegration(unittest.TestCase):
         self.assertEqual(maint.status, MaintenancePriorityStatus.ASSESSED_RESEARCH_DEMO_ONLY)
         self.assertIn("RESEARCH SIMULATION", maint.abstention_reason)
         self.assertIsNotNone(maint.disclaimer)
+
+    def test_safe_render_dataframe_and_fallback(self):
+        """Verify safe_render_dataframe uses st.dataframe and falls back gracefully to st.table."""
+        import streamlit as st
+        from src.dashboard.components import safe_render_dataframe
+
+        df = pd.DataFrame({"col_a": [1, 2], "col_b": ["x", "y"]})
+
+        # Test normal path
+        with patch.object(st, "dataframe") as mock_df, patch.object(st, "table") as mock_table:
+            safe_render_dataframe(df)
+            mock_df.assert_called_once()
+            mock_table.assert_not_called()
+
+        # Test fallback path when pyarrow/dataframe serialization fails
+        with patch.object(st, "dataframe", side_effect=ImportError("pyarrow requires NumPy 2.0 or newer")), patch.object(st, "table") as mock_table:
+            safe_render_dataframe(df)
+            mock_table.assert_called_once()
 
 
 if __name__ == "__main__":
