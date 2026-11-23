@@ -1,0 +1,28 @@
+{
+  "bridge_id": "BRIDGE-US-I80-0442",
+  "structural_component": "Main Prestressed Girder G3, Midspan Tension Zone",
+  "element_criticality": "PRIMARY_LOAD_BEARING",
+  "calibrated_dimensions": {
+    "length_mm": 480.0,
+    "width_mm": 210.0,
+    "depth_mm": 45.0
+  },
+  "defect_depth_mm": 45.0,
+  "inspection_history": [
+    {
+      "date": "2024-05-12",
+      "condition_state": "CS2",
+      "inspector_notes": "Minor cracking observed, no rebar exposure"
+    },
+    {
+      "date": "2025-10-18",
+      "condition_state": "CS3",
+      "inspector_notes": "Spalling initiation with hairline cracks extending laterally"
+    }
+  ],
+  "progression_rate": "ACTIVE_PROPAGATION",
+  "exposure_conditions": "SEVERE_DEICING_SALTS",
+  "is_verified_by_pe": true,
+  "pe_license_id": "PE-CA-C88392",
+  "notes": "Verified by Professional Structural Engineer via sounding hammer and covermeter survey."
+}
