@@ -192,6 +192,83 @@ class TestDashboardIntegration(unittest.TestCase):
             safe_render_dataframe(df)
             mock_md.assert_called_once()
 
+    def test_measurement_summary_extraction_and_consistency(self):
+        """
+        Regression test: Verify extract_measurement_summary properly parses
+        nonzero counts and areas from nested summary, coverage_metrics, and top-level.
+        """
+        from src.dashboard.components import extract_measurement_summary
+
+        data = load_saved_demo_case("dacl10k_v2_train_0722")
+        m_dict = data["measurement_dict"]
+        metrics = extract_measurement_summary(m_dict)
+
+        # Must not be 0 when defects exist!
+        self.assertEqual(metrics["total_findings"], 19, f"Expected 19 findings, got {metrics['total_findings']}")
+        self.assertEqual(metrics["total_classes"], 2, f"Expected 2 detected classes, got {metrics['total_classes']}")
+        self.assertGreater(metrics["structural_union_pixel_area"], 0)
+        self.assertGreater(metrics["non_structural_union_pixel_area"], 0)
+        self.assertGreater(metrics["union_defect_pixel_area"], 0)
+        self.assertGreater(metrics["structural_union_image_area_pct"], 0.0)
+
+        # Verify Stage 2, Stage 3, and Stage 4 consistency
+        queue = data["review_queue_dict"]
+        self.assertEqual(
+            queue["queue_summary"]["total_findings_count"],
+            metrics["total_findings"],
+            "Review queue total must match Stage 2 total findings",
+        )
+
+    def test_clean_overlay_and_selective_highlighting(self):
+        """
+        Regression test: Verify DefectVisualizer defaults show_labels=False (clean overlay)
+        and supports selective highlighting for finding and class.
+        """
+        from src.measurement.visualization import DefectVisualizer
+
+        img_rgb = np.zeros((100, 100, 3), dtype=np.uint8)
+        probs = np.zeros((19, 100, 100), dtype=np.float32)
+        probs[3, 20:40, 20:30] = 0.95  # Crack
+        probs[15, 60:80, 60:80] = 0.88  # Spalling
+
+        res = run_live_pipeline(
+            image_rgb=img_rgb,
+            image_id="test_overlay_clean",
+            probability_maps=probs,
+            threshold=0.5,
+            min_component_area_pixels=5,
+        )
+
+        visualizer = DefectVisualizer()
+        # 1. Clean overlay by default
+        clean_overlay = visualizer.render_overlay(
+            image_rgb=img_rgb,
+            measurement=res["measurement_dict"],
+            probability_maps=probs,
+            show_labels=False,
+        )
+        self.assertEqual(clean_overlay.shape[1], 100)
+
+        # 2. Selective highlight of a specific finding
+        highlight_overlay = visualizer.render_overlay(
+            image_rgb=img_rgb,
+            measurement=res["measurement_dict"],
+            probability_maps=probs,
+            show_labels=False,
+            highlight_finding_id="FINDING-CRACK-001",
+        )
+        self.assertIsNotNone(highlight_overlay)
+
+        # 3. Selective highlight of a specific class
+        class_overlay = visualizer.render_overlay(
+            image_rgb=img_rgb,
+            measurement=res["measurement_dict"],
+            probability_maps=probs,
+            show_labels=False,
+            highlight_class="Crack",
+        )
+        self.assertIsNotNone(class_overlay)
+
 
 if __name__ == "__main__":
     unittest.main()

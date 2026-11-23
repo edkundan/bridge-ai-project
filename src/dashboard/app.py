@@ -249,6 +249,7 @@ def main():
         overlay_rgb=overlay_rgb,
         measurement_dict=measurement_dict,
         selected_finding_id=selected_finding_id,
+        probability_maps=data_bundle.get("probability_maps"),
     )
 
     st.markdown("---")
@@ -273,6 +274,8 @@ def main():
         measurement_dict=measurement_dict,
         severity_dict=severity_dict,
         prioritization_dict=prioritization_dict,
+        review_queue_dict=review_queue_dict,
+        maintenance_priority_dict=maintenance_priority_dict,
         image_id=image_id,
     )
 

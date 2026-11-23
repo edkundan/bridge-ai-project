@@ -165,6 +165,27 @@ def load_saved_demo_case(case_id: str) -> Dict[str, Any]:
         if not out["maintenance_priority_dict"] and "output_b_engineering_maintenance_priority" in p_dict:
             out["maintenance_priority_dict"] = p_dict["output_b_engineering_maintenance_priority"]
 
+    # Normalize measurement dictionary top-level keys for backward compatibility
+    if out["measurement_dict"]:
+        m_dict = out["measurement_dict"]
+        summary = m_dict.get("summary") or {}
+        cov = summary.get("coverage_metrics") or {}
+        for k in ["total_components_count", "total_detected_classes", "summed_class_pixel_area", "summed_class_image_area_pct"]:
+            if k not in m_dict and k in summary:
+                m_dict[k] = summary[k]
+        for k in [
+            "structural_union_image_area_pct",
+            "structural_union_pixel_area",
+            "non_structural_union_image_area_pct",
+            "non_structural_union_pixel_area",
+            "union_defect_image_area_pct",
+            "union_defect_pixel_area",
+            "overlapping_defect_image_area_pct",
+            "overlapping_defect_pixel_area",
+        ]:
+            if k not in m_dict and k in cov:
+                m_dict[k] = cov[k]
+
     # Normalize maintenance priority dictionary for backward compatibility
     if out["maintenance_priority_dict"]:
         m_dict = out["maintenance_priority_dict"]

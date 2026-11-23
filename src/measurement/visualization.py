@@ -19,7 +19,7 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-from src.measurement.schema import ImageMeasurementResult
+from src.measurement.schema import ImageMeasurementResult, NON_STRUCTURAL_CLASSES
 
 # Distinct 19-class colormap (RGB format, 0-255)
 # Grounded in standard qualitative color palettes
@@ -55,28 +55,34 @@ class DefectVisualizer:
     def render_overlay(
         self,
         image_rgb: np.ndarray,
-        measurement: ImageMeasurementResult,
+        measurement: Union[ImageMeasurementResult, Dict[str, Any]],
         probability_maps: Optional[np.ndarray] = None,
         roi_mask: Optional[np.ndarray] = None,
         alpha: float = 0.45,
         show_bboxes: bool = True,
-        show_labels: bool = True,
+        show_labels: bool = False,
         show_roi: bool = True,
         show_banner: bool = True,
+        highlight_finding_id: Optional[str] = None,
+        highlight_class: Optional[str] = None,
     ) -> np.ndarray:
         """
         Renders defect masks, bounding boxes, labels, and ROI boundaries onto image.
+        Supports selective highlighting of a specific finding ID or class, with component
+        labels hidden by default to keep the visual inspection view clean and uncluttered.
 
         Args:
             image_rgb: Original RGB image array (H, W, 3) in uint8 [0, 255].
-            measurement: ImageMeasurementResult from DefectMeasurementPipeline.
+            measurement: ImageMeasurementResult or measurement_dict from pipeline.
             probability_maps: Optional (19, H, W) float array to render exact masks.
             roi_mask: Optional (H, W) ROI mask.
             alpha: Transparency weight for mask blending (0.0 to 1.0).
             show_bboxes: Whether to render bounding boxes around components.
-            show_labels: Whether to render text callouts.
+            show_labels: Whether to render text callouts (defaults to False for clean display).
             show_roi: Whether to render ROI boundary.
             show_banner: Whether to render top summary header banner.
+            highlight_finding_id: Optional finding ID to highlight prominently (e.g. 'FINDING-CRACK-001').
+            highlight_class: Optional class name to highlight/filter (e.g. 'Crack').
 
         Returns:
             RGB array of the overlaid image (H, W, 3).
@@ -89,20 +95,52 @@ class DefectVisualizer:
         mask_overlay = np.zeros_like(image_rgb, dtype=np.uint8)
         has_any_mask = False
 
+        # Normalize measurement input (supports both ImageMeasurementResult and plain Dict)
+        if isinstance(measurement, dict):
+            class_dict = measurement.get("class_measurements", {})
+            thresh_meta = measurement.get("metadata", {}).get("threshold", 0.5)
+            roi_present = measurement.get("metadata", {}).get("roi", {}).get("present", False)
+            roi_pct = measurement.get("metadata", {}).get("roi", {}).get("roi_relative_area_pct")
+            det_classes = [c for c, d in class_dict.items() if d.get("detected", False)]
+            det_struct = [c for c in det_classes if c not in NON_STRUCTURAL_CLASSES]
+            det_non_struct = [c for c in det_classes if c in NON_STRUCTURAL_CLASSES]
+            struct_union_pct = measurement.get("structural_union_image_area_pct", 0.0)
+            non_struct_union_pct = measurement.get("non_structural_union_image_area_pct", 0.0)
+            union_defect_roi_area_pct = measurement.get("union_defect_roi_area_pct")
+        else:
+            class_dict = measurement.class_measurements
+            thresh_meta = measurement.threshold
+            roi_present = measurement.roi_present
+            roi_pct = measurement.roi_relative_area_pct
+            det_classes = measurement.get_detected_classes()
+            det_struct = measurement.get_detected_structural_classes()
+            det_non_struct = measurement.get_detected_non_structural_classes()
+            struct_union_pct = measurement.structural_union_image_area_pct
+            non_struct_union_pct = measurement.non_structural_union_image_area_pct
+            union_defect_roi_area_pct = measurement.union_defect_roi_area_pct
+
+        is_filtered_class = bool(highlight_class and highlight_class not in ("All", "All Classes", "All Detected Classes"))
+
         # 1. Render defect masks
         if probability_maps is not None:
-            # Render directly from thresholded probability maps
-            for class_name, summary in measurement.class_measurements.items():
-                if not summary.detected:
+            for class_name, summary in class_dict.items():
+                is_detected = summary.get("detected", False) if isinstance(summary, dict) else summary.detected
+                if not is_detected:
                     continue
-                cid = summary.class_id
+                if is_filtered_class and class_name != highlight_class:
+                    continue
+
+                cid = summary.get("class_id") if isinstance(summary, dict) else summary.class_id
+                if cid is None or not (0 <= cid < len(probability_maps)):
+                    continue
+
                 color = self.get_class_color(cid)
 
                 # Threshold for this class
-                if isinstance(measurement.threshold, dict):
-                    tau = float(measurement.threshold.get(class_name, 0.5))
+                if isinstance(thresh_meta, dict):
+                    tau = float(thresh_meta.get(class_name, 0.5))
                 else:
-                    tau = float(measurement.threshold)
+                    tau = float(thresh_meta)
 
                 c_mask = probability_maps[cid] >= tau
                 if np.any(c_mask):
@@ -117,66 +155,87 @@ class DefectVisualizer:
         if show_roi and roi_mask is not None:
             roi_u8 = (roi_mask > 0).astype(np.uint8) * 255
             contours, _ = cv2.findContours(roi_u8, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-            # Draw distinct cyan boundary (R=0, G=255, B=255)
             cv2.drawContours(canvas, contours, -1, (0, 255, 255), thickness=max(2, self.line_thickness))
 
         # 3. Render bounding boxes and component annotations
-        for class_name, summary in measurement.class_measurements.items():
-            if not summary.detected:
+        finding_counter = 1
+        for class_name, summary in class_dict.items():
+            is_detected = summary.get("detected", False) if isinstance(summary, dict) else summary.detected
+            if not is_detected:
                 continue
 
-            cid = summary.class_id
-            color = self.get_class_color(cid)
+            cid = summary.get("class_id") if isinstance(summary, dict) else summary.class_id
+            color = self.get_class_color(cid) if cid is not None else (0, 255, 0)
+            components = summary.get("components", []) if isinstance(summary, dict) else summary.components
 
-            for comp in summary.components:
-                xmin, ymin, xmax, ymax = comp.bbox.xyxy
+            for comp in components:
+                if isinstance(comp, dict):
+                    b = comp.get("bbox", {})
+                    xmin, ymin, xmax, ymax = b.get("xmin", 0), b.get("ymin", 0), b.get("xmax", 0), b.get("ymax", 0)
+                    comp_id = comp.get("component_id", 1)
+                    fid = comp.get("finding_id", f"FINDING-{class_name[:5].upper()}-{finding_counter:03d}")
+                    area_pct = comp.get("image_relative_area_pct", 0.0)
+                    conf_mean = comp.get("confidence", {}).get("mean", 0.0)
+                    shapes = comp.get("shape_features", {})
+                    is_linear = shapes.get("is_linear_defect", False)
+                    skel_len = shapes.get("skeleton_length_pixels")
+                else:
+                    xmin, ymin, xmax, ymax = comp.bbox.xyxy
+                    comp_id = comp.component_id
+                    fid = getattr(comp, "finding_id", f"FINDING-{class_name[:5].upper()}-{finding_counter:03d}")
+                    area_pct = comp.image_relative_area_pct
+                    conf_mean = comp.confidence.mean
+                    is_linear = comp.shape_features.is_linear_defect
+                    skel_len = comp.shape_features.skeleton_length_pixels
+
+                finding_counter += 1
+
+                # Matching conditions
+                is_selected_finding = bool(highlight_finding_id and (fid == highlight_finding_id or f"{class_name} #{comp_id}" == highlight_finding_id))
+                matches_class_filter = (not is_filtered_class or class_name == highlight_class)
+
+                if is_filtered_class and not matches_class_filter and not is_selected_finding:
+                    continue
 
                 # Draw bounding box
-                if show_bboxes:
-                    cv2.rectangle(
-                        canvas,
-                        (xmin, ymin),
-                        (xmax, ymax),
-                        color,
-                        thickness=self.line_thickness,
-                    )
+                if is_selected_finding:
+                    # Prominent neon callout with dark outer halo for maximum contrast
+                    cv2.rectangle(canvas, (max(0, xmin - 2), max(0, ymin - 2)), (min(w - 1, xmax + 2), min(h - 1, ymax + 2)), (0, 0, 0), thickness=5)
+                    cv2.rectangle(canvas, (xmin, ymin), (xmax, ymax), (0, 245, 255), thickness=3)
+                elif show_bboxes:
+                    box_thick = 1 if (highlight_finding_id or is_filtered_class) else self.line_thickness
+                    cv2.rectangle(canvas, (xmin, ymin), (xmax, ymax), color, thickness=box_thick)
 
-                # Draw annotation tag
-                if show_labels:
-                    # Construct text label
-                    # Example: "Crack #1 | 0.08% | Conf: 0.91"
-                    tag_parts = [f"{class_name} #{comp.component_id}"]
-                    tag_parts.append(f"{comp.image_relative_area_pct:.2f}%")
-                    tag_parts.append(f"C:{comp.confidence.mean:.2f}")
+                # Draw annotation tag: ALWAYS drawn for selected finding, hidden by default for others
+                if is_selected_finding or show_labels:
+                    if is_selected_finding:
+                        label_text = f"★ {fid} | {class_name} #{comp_id} | {area_pct:.2f}% | Conf:{conf_mean:.2f}"
+                    else:
+                        tag_parts = [f"{class_name} #{comp_id}", f"{area_pct:.2f}%", f"C:{conf_mean:.2f}"]
+                        if is_linear and skel_len:
+                            tag_parts.append(f"L:{skel_len}px")
+                        label_text = " | ".join(tag_parts)
 
-                    if comp.shape_features.is_linear_defect and comp.shape_features.skeleton_length_pixels:
-                        tag_parts.append(f"L:{comp.shape_features.skeleton_length_pixels}px")
-
-                    label_text = " | ".join(tag_parts)
-
-                    # Text background pill for contrast
                     font = cv2.FONT_HERSHEY_SIMPLEX
-                    (text_w, text_h), baseline = cv2.getTextSize(
-                        label_text, font, self.font_scale, thickness=1
-                    )
+                    scale = max(self.font_scale, 0.45) if is_selected_finding else self.font_scale
+                    (text_w, text_h), baseline = cv2.getTextSize(label_text, font, scale, thickness=1)
 
                     label_ymin = max(text_h + 4, ymin - 4)
                     pill_top_left = (xmin, label_ymin - text_h - 4)
                     pill_bottom_right = (min(w, xmin + text_w + 6), label_ymin + baseline)
 
-                    # Dark background box
+                    pill_border = (0, 245, 255) if is_selected_finding else color
                     cv2.rectangle(canvas, pill_top_left, pill_bottom_right, (20, 20, 20), -1)
-                    # Colored border indicator
-                    cv2.rectangle(canvas, pill_top_left, pill_bottom_right, color, 1)
+                    cv2.rectangle(canvas, pill_top_left, pill_bottom_right, pill_border, 2 if is_selected_finding else 1)
 
-                    # White text
+                    text_color = (0, 245, 255) if is_selected_finding else (255, 255, 255)
                     cv2.putText(
                         canvas,
                         label_text,
                         (xmin + 3, label_ymin - 2),
                         font,
-                        self.font_scale,
-                        (255, 255, 255),
+                        scale,
+                        text_color,
                         thickness=1,
                         lineType=cv2.LINE_AA,
                     )
@@ -185,30 +244,24 @@ class DefectVisualizer:
         if show_banner:
             banner_h = max(36, int(h * 0.05))
             banner = np.zeros((banner_h, w, 3), dtype=np.uint8)
-            banner[:] = (25, 25, 25)  # Dark charcoal
-
-            det_classes = measurement.get_detected_classes()
-            det_struct = measurement.get_detected_structural_classes()
-            det_non_struct = measurement.get_detected_non_structural_classes()
+            banner[:] = (25, 25, 25)
 
             classes_str = ", ".join(det_classes) if det_classes else "None"
+            roi_str = f" | ROI: {roi_pct:.2f}%" if roi_present and roi_pct is not None else ""
 
-            roi_str = f" | ROI: {measurement.union_defect_roi_area_pct:.2f}%" if measurement.roi_present and measurement.union_defect_roi_area_pct is not None else ""
-            
-            # Show structural vs non-structural breakdown
-            if det_non_struct and det_struct:
+            if highlight_finding_id:
+                summary_text = f"🎯 Highlight Target: {highlight_finding_id} | Total Detected: {len(det_classes)} classes ({classes_str}){roi_str}"
+            elif is_filtered_class:
+                summary_text = f"🎯 Class Focus: {highlight_class} | Total Detected: {len(det_classes)} classes ({classes_str}){roi_str}"
+            elif det_non_struct and det_struct:
                 summary_text = (
-                    f"Structural: {measurement.structural_union_image_area_pct:.2f}% {det_struct} | "
-                    f"Non-Struct: {measurement.non_structural_union_image_area_pct:.2f}% {det_non_struct}{roi_str}"
+                    f"Structural: {struct_union_pct:.2f}% {det_struct} | "
+                    f"Non-Struct: {non_struct_union_pct:.2f}% {det_non_struct}{roi_str}"
                 )
             elif det_struct:
-                summary_text = (
-                    f"Structural: {measurement.structural_union_image_area_pct:.2f}% {det_struct}{roi_str}"
-                )
+                summary_text = f"Structural: {struct_union_pct:.2f}% {det_struct}{roi_str}"
             elif det_non_struct:
-                summary_text = (
-                    f"Non-Structural: {measurement.non_structural_union_image_area_pct:.2f}% {det_non_struct} (No structural defects)"
-                )
+                summary_text = f"Non-Structural: {non_struct_union_pct:.2f}% {det_non_struct} (No structural defects)"
             else:
                 summary_text = "No defect patterns detected above threshold (Clean Inspection Scan)"
 
@@ -225,8 +278,9 @@ class DefectVisualizer:
                 lineType=cv2.LINE_AA,
             )
 
-            # Stack banner on top of canvas
             canvas = np.vstack([banner, canvas])
+
+        return canvas
 
         return canvas
 

@@ -473,6 +473,19 @@ class ImageMeasurementResult:
                 name: summary.to_dict()
                 for name, summary in self.class_measurements.items()
             },
+            # Top-level direct summary bindings for dashboard and external consumers
+            "total_detected_classes": self.total_detected_classes,
+            "total_components_count": self.total_components_count,
+            "summed_class_pixel_area": self.summed_class_pixel_area,
+            "summed_class_image_area_pct": round(float(self.summed_class_image_area_pct), 5),
+            "union_defect_pixel_area": self.union_defect_pixel_area,
+            "union_defect_image_area_pct": round(float(self.union_defect_image_area_pct), 5),
+            "structural_union_pixel_area": self.structural_union_pixel_area,
+            "structural_union_image_area_pct": round(float(self.structural_union_image_area_pct), 5),
+            "non_structural_union_pixel_area": self.non_structural_union_pixel_area,
+            "non_structural_union_image_area_pct": round(float(self.non_structural_union_image_area_pct), 5),
+            "overlapping_defect_pixel_area": self.overlapping_defect_pixel_area,
+            "overlapping_defect_image_area_pct": round(float(self.overlapping_defect_image_area_pct), 5),
         }
 
     def to_json(self, indent: int = 2) -> str:
