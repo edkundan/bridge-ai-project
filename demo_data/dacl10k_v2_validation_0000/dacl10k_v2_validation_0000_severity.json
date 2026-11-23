@@ -1,0 +1,206 @@
+{
+  "image_id": "dacl10k_v2_validation_0000",
+  "provisional_criticality_tier": "TIER_4_NON_STRUCTURAL",
+  "detected_tiers": [
+    "TIER_4_NON_STRUCTURAL"
+  ],
+  "tier_summary": {
+    "TIER_1_CRITICAL": {
+      "classes_detected": [],
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0
+    },
+    "TIER_2_PROGRESSIVE": {
+      "classes_detected": [],
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0
+    },
+    "TIER_3_SUPERFICIAL": {
+      "classes_detected": [],
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0
+    },
+    "TIER_4_NON_STRUCTURAL": {
+      "classes_detected": [
+        "Graffiti"
+      ],
+      "component_count": 1,
+      "total_pixel_area": 174283,
+      "image_relative_area_pct": 14.18319
+    }
+  },
+  "total_defect_image_area_pct": 14.183186848958334,
+  "total_defect_roi_area_pct": null,
+  "validation_status": {
+    "is_calibrated": false,
+    "requires_expert_validation": true,
+    "missing_engineering_parameters": [
+      "structural_component_identity",
+      "element_importance",
+      "physical_defect_dimensions",
+      "internal_defect_depth",
+      "reinforcement_section_loss",
+      "inspection_history",
+      "engineering_assessment"
+    ],
+    "literature_grounding": [
+      "AASHTO Manual for Bridge Element Inspection (MBEI, 2019)",
+      "FHWA Bridge Inspection Reference Manual (BIRM, 2012)",
+      "DIN 1076 / RI-EBW-PR\u00dcF: Bridge Evaluation Guidelines",
+      "FIB Model Code 2010 (Concrete Durability and Service Life Design)"
+    ]
+  },
+  "visual_severity_assessment": {
+    "visual_concern_level": "NEGLIGIBLE_NON_STRUCTURAL",
+    "official_structural_condition_state": "NOT_ASSESSED",
+    "abstention_reason": "OFFICIAL CONDITION STATE ABSTENTION: An official bridge condition state (e.g. AASHTO MBEI CS1-CS4 or NBIS Item 58-60 ratings) CANNOT be established from 2D optical imagery alone. Grounded structural assessment requires unobservable parameters: structural component identity, primary/secondary load path importance, defect depth, rebar section loss, and physical metric calibration. Consequently, the official structural condition state is marked NOT_ASSESSED.",
+    "review_flags": [
+      "NON_STRUCTURAL_SURFACE_COVERAGE"
+    ]
+  },
+  "coverage_breakdown": {
+    "summed_class_pixel_area": 174283,
+    "summed_class_image_area_pct": 14.183186848958334,
+    "union_pixel_area": 174283,
+    "union_defect_pixel_area": 174283,
+    "union_defect_image_area_pct": 14.183186848958334,
+    "structural_union_pixel_area": 0,
+    "structural_union_image_area_pct": 0.0,
+    "non_structural_union_pixel_area": 174283,
+    "non_structural_union_image_area_pct": 14.183186848958334,
+    "overlapping_defect_pixel_area": 0,
+    "overlapping_defect_image_area_pct": 0.0,
+    "roi_coverage": {
+      "roi_available": false,
+      "summed_class_roi_pixels": null,
+      "union_defect_roi_area_pct": null,
+      "structural_union_roi_area_pct": null,
+      "non_structural_union_roi_area_pct": null
+    }
+  },
+  "confidence_contract": {
+    "segmentation_model_confidence_mean": 0.94,
+    "calibrated_structural_severity_confidence": null,
+    "confidence_distinction_notice": "CONFIDENCE CONTRACT: The reported confidence score is the mean pixel-level classification probability produced by the neural network segmentation model. This indicates optical pattern clarity, NOT calibrated engineering confidence in structural severity or safety risk."
+  },
+  "missing_data_checklist": {
+    "structural_component_identity": {
+      "status": "MISSING",
+      "required_source": "Bridge BIM, element segmentation, or engineering inspection plan.",
+      "description": "Specific structural element (e.g. pier column, fracture-critical girder, deck slab)."
+    },
+    "element_importance": {
+      "status": "MISSING",
+      "required_source": "National Bridge Inventory (NBI) / AASHTO Element records.",
+      "description": "Primary load-bearing vs. secondary vs. non-structural appurtenance."
+    },
+    "physical_defect_dimensions": {
+      "status": "MISSING",
+      "required_source": "Optical rangefinder, calibrated stereo rig, or fiducial scale.",
+      "description": "Metric crack width (mm), spall surface area (m^2), or rebar span (m)."
+    },
+    "internal_defect_depth": {
+      "status": "MISSING",
+      "required_source": "Non-destructive testing (GPR, ultrasonic pulse velocity, impact echo).",
+      "description": "Subsurface void depth, delamination plane, or crack penetration depth."
+    },
+    "reinforcement_section_loss": {
+      "status": "MISSING",
+      "required_source": "Physical caliper measurement, ultrasonic thickness gauge, or electrochemistry.",
+      "description": "Residual rebar diameter, percentage cross-sectional area loss."
+    },
+    "inspection_history": {
+      "status": "MISSING",
+      "required_source": "Historical bridge inspection agency database (e.g. AASHTO BrM).",
+      "description": "Defect progression rate, date of first observation, active vs dormant status."
+    },
+    "engineering_assessment": {
+      "status": "MISSING",
+      "required_source": "Licensed Professional Engineer (PE / SE) field evaluation.",
+      "description": "Certified structural capacity determination and maintenance work order sign-off."
+    }
+  },
+  "observations": [
+    {
+      "finding_id": "FINDING-GRAFF-001",
+      "class_name": "Graffiti",
+      "class_id": 8,
+      "component_id": 1,
+      "visual_concern_level": "NEGLIGIBLE_NON_STRUCTURAL",
+      "is_structural": false,
+      "pixel_area": 174283,
+      "image_relative_extent_pct": 14.18319,
+      "roi_relative_extent_pct": null,
+      "bbox": {
+        "xmin": 205,
+        "ymin": 430,
+        "xmax": 1204,
+        "ymax": 693,
+        "width": 999,
+        "height": 263,
+        "xyxy": [
+          205,
+          430,
+          1204,
+          693
+        ],
+        "xywh": [
+          205,
+          430,
+          999,
+          263
+        ],
+        "bbox_area_pixels": 262737
+      },
+      "confidence_stats": {
+        "mean": 0.94,
+        "min": 0.94,
+        "max": 0.94,
+        "median": 0.94,
+        "std": 0.0
+      },
+      "shape_features": {
+        "perimeter_pixels": 2585.3,
+        "circularity": 0.3277,
+        "aspect_ratio": 3.9654,
+        "solidity": 0.8313,
+        "extent": 0.6633,
+        "orientation_deg": 1.66,
+        "is_linear_defect": true,
+        "skeleton_length_pixels": 938,
+        "estimated_avg_width_pixels": 185.8
+      },
+      "visual_evidence": "Detected Graffiti component of 174283 px (14.1832% of image). Spatial centroid at (705.183879093199, 560.1386939632666) within bounding box [205, 430, 1204, 693]. Model confidence: mean=0.94, min=0.94, max=0.94. Centerline skeleton length: 938 px, estimated width: 185.8 px, aspect ratio: 4.0.",
+      "explanation": "Surface aesthetic paint or marker application on concrete or steel face. Does NOT impair structural load capacity or element durability.",
+      "literature_reference": "FHWA BIRM (2012) Section 2.1 (Aesthetic / Appurtenance condition).",
+      "inspector_action_items": [
+        "Verify that surface paint does not conceal active structural cracks or spalls.",
+        "Note for municipal aesthetic cleanup (non-structural priority)."
+      ],
+      "triggered_review_flags": [
+        "NON_STRUCTURAL_SURFACE_COVERAGE"
+      ]
+    }
+  ],
+  "stage_4_prioritization_contract": {
+    "ready_for_automated_prioritization": false,
+    "abstention_reason": "Automated maintenance priority and repair scheduling cannot be assigned from visual features alone. Required data: structural component identity, element importance, physical metric dimensions, and internal depth.",
+    "candidate_review_flags": [
+      "NON_STRUCTURAL_SURFACE_COVERAGE"
+    ],
+    "primary_visual_concerns": [],
+    "structural_union_coverage_pct": 0.0,
+    "non_structural_union_coverage_pct": 14.183186848958334,
+    "actionable_observations_count": 1
+  },
+  "literature_grounding": [
+    "AASHTO Manual for Bridge Element Inspection (MBEI, 2019)",
+    "FHWA Bridge Inspection Reference Manual (BIRM, 2012)",
+    "DIN 1076 / RI-EBW-PR\u00dcF: Bridge Evaluation Guidelines",
+    "FIB Model Code 2010 (Concrete Durability and Service Life Design)"
+  ],
+  "disclaimer": "ENGINEERING SEVERITY DISCLAIMER: This severity assessment is an uncalibrated research prototype grounded in literature principles (AASHTO MBEI, FHWA BIRM, DIN 1076, FIB Model Code). It provides visual evidence categorization and review flagging only and does NOT constitute a certified structural safety rating, official AASHTO element condition state (CS1-CS4), remaining service life prediction, or replacement for certified structural bridge engineer inspection."
+}

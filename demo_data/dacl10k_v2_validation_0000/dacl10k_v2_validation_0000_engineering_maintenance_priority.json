@@ -1,0 +1,26 @@
+{
+  "image_id": "dacl10k_v2_validation_0000",
+  "timestamp_utc": "2026-11-23T09:00:01.767210+00:00",
+  "priority_decision": {
+    "status": "NOT_ASSESSED",
+    "official_repair_priority": "NOT_ASSESSED",
+    "official_repair_deadline": null,
+    "official_structural_safety_rating": null,
+    "official_aashto_condition_state": null,
+    "abstention_reason": "ENGINEERING MAINTENANCE PRIORITY ABSTENTION: Actionable bridge maintenance priority, repair work orders, and statutory condition states CANNOT be determined from 2D optical computer vision detections alone. Official engineering prioritization strictly requires: (1) verified structural component identity and load path criticality, (2) physical metric dimensions and internal defect depth from calibrated NDT tools, (3) documented historical progression rates, and (4) formal approval by a licensed Professional Engineer (PE/SE) under agency-adopted maintenance decision criteria. Consequently, official maintenance priority is marked NOT_ASSESSED."
+  },
+  "governance_and_compliance": {
+    "decision_criteria_approved_by_agency": false,
+    "is_pe_certified": false,
+    "missing_engineering_prerequisites": [
+      "Verified structural component identity (BIM or inspection plan)",
+      "Element load path criticality (AASHTO / NBI element classification)",
+      "Physical metric defect dimensions (calibrated optical/laser measurement)",
+      "Internal defect depth & delamination plane (NDT sounding, GPR, or UPV)",
+      "Formal validation and sign-off by a licensed Professional Engineer (PE/SE)",
+      "Formally adopted Department of Transportation (DOT) maintenance decision policy"
+    ],
+    "contradiction_warnings": []
+  },
+  "disclaimer": "ENGINEERING MAINTENANCE PRIORITY ABSTENTION: Actionable bridge maintenance priority, repair work orders, and statutory condition states CANNOT be determined from 2D optical computer vision detections alone. Official engineering prioritization strictly requires: (1) verified structural component identity and load path criticality, (2) physical metric dimensions and internal defect depth from calibrated NDT tools, (3) documented historical progression rates, and (4) formal approval by a licensed Professional Engineer (PE/SE) under agency-adopted maintenance decision criteria. Consequently, official maintenance priority is marked NOT_ASSESSED."
+}

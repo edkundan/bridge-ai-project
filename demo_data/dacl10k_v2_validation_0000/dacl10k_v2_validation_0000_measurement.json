@@ -1,0 +1,341 @@
+{
+  "metadata": {
+    "image_id": "dacl10k_v2_validation_0000",
+    "image_dimensions": {
+      "height": 960,
+      "width": 1280,
+      "total_pixels": 1228800
+    },
+    "timestamp_utc": "2026-11-23T09:00:01.748669+00:00",
+    "threshold": 0.5,
+    "min_component_area_pixels": 10,
+    "roi": {
+      "present": false,
+      "roi_pixel_area": null,
+      "roi_relative_area_pct": null
+    },
+    "disclaimer": "OPTICAL MEASUREMENT NOTICE: All lengths, widths, perimeters, and areas are reported strictly in pixel-domain units (px, px^2) or image/ROI-relative dimensionless percentages (%). Physical metric measurements (mm, cm, m) cannot be claimed without metric camera calibration, sensor distance measurements, or physical reference scale markers in the image plane."
+  },
+  "summary": {
+    "total_detected_classes": 1,
+    "detected_class_names": [
+      "Graffiti"
+    ],
+    "detected_structural_classes": [],
+    "detected_non_structural_classes": [
+      "Graffiti"
+    ],
+    "total_components_count": 1,
+    "total_defect_pixel_area": 174283,
+    "total_defect_image_area_pct": 14.18319,
+    "total_defect_roi_area_pct": null,
+    "coverage_metrics": {
+      "summed_class_pixel_area": 174283,
+      "summed_class_image_area_pct": 14.18319,
+      "union_defect_pixel_area": 174283,
+      "union_defect_image_area_pct": 14.18319,
+      "structural_union_pixel_area": 0,
+      "structural_union_image_area_pct": 0.0,
+      "non_structural_union_pixel_area": 174283,
+      "non_structural_union_image_area_pct": 14.18319,
+      "overlapping_defect_pixel_area": 0,
+      "overlapping_defect_image_area_pct": 0.0,
+      "roi_coverage": {
+        "roi_available": false,
+        "summed_class_roi_pixels": null,
+        "union_defect_roi_area_pct": null,
+        "structural_union_roi_area_pct": null,
+        "non_structural_union_roi_area_pct": null
+      }
+    }
+  },
+  "class_measurements": {
+    "ACrack": {
+      "class_id": 0,
+      "class_name": "ACrack",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Bearing": {
+      "class_id": 1,
+      "class_name": "Bearing",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Cavity": {
+      "class_id": 2,
+      "class_name": "Cavity",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Crack": {
+      "class_id": 3,
+      "class_name": "Crack",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Drainage": {
+      "class_id": 4,
+      "class_name": "Drainage",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "EJoint": {
+      "class_id": 5,
+      "class_name": "EJoint",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Efflorescence": {
+      "class_id": 6,
+      "class_name": "Efflorescence",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "ExposedRebars": {
+      "class_id": 7,
+      "class_name": "ExposedRebars",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Graffiti": {
+      "class_id": 8,
+      "class_name": "Graffiti",
+      "detected": true,
+      "component_count": 1,
+      "total_pixel_area": 174283,
+      "image_relative_area_pct": 14.18319,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": {
+        "mean": 0.94,
+        "min": 0.94,
+        "max": 0.94,
+        "median": 0.94,
+        "std": 0.0
+      },
+      "components": [
+        {
+          "component_id": 1,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 174283,
+          "image_relative_area_pct": 14.18319,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            705.18,
+            560.14
+          ],
+          "bbox": {
+            "xmin": 205,
+            "ymin": 430,
+            "xmax": 1204,
+            "ymax": 693,
+            "width": 999,
+            "height": 263,
+            "xyxy": [
+              205,
+              430,
+              1204,
+              693
+            ],
+            "xywh": [
+              205,
+              430,
+              999,
+              263
+            ],
+            "bbox_area_pixels": 262737
+          },
+          "confidence": {
+            "mean": 0.94,
+            "min": 0.94,
+            "max": 0.94,
+            "median": 0.94,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 2585.3,
+            "circularity": 0.3277,
+            "aspect_ratio": 3.9654,
+            "solidity": 0.8313,
+            "extent": 0.6633,
+            "orientation_deg": 1.66,
+            "is_linear_defect": true,
+            "skeleton_length_pixels": 938,
+            "estimated_avg_width_pixels": 185.8
+          }
+        }
+      ]
+    },
+    "Hollowareas": {
+      "class_id": 9,
+      "class_name": "Hollowareas",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "JTape": {
+      "class_id": 10,
+      "class_name": "JTape",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "PEquipment": {
+      "class_id": 11,
+      "class_name": "PEquipment",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Restformwork": {
+      "class_id": 12,
+      "class_name": "Restformwork",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Rockpocket": {
+      "class_id": 13,
+      "class_name": "Rockpocket",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Rust": {
+      "class_id": 14,
+      "class_name": "Rust",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Spalling": {
+      "class_id": 15,
+      "class_name": "Spalling",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "WConccor": {
+      "class_id": 16,
+      "class_name": "WConccor",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Weathering": {
+      "class_id": 17,
+      "class_name": "Weathering",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Wetspot": {
+      "class_id": 18,
+      "class_name": "Wetspot",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    }
+  }
+}

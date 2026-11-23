@@ -1,0 +1,1287 @@
+{
+  "metadata": {
+    "image_id": "dacl10k_v2_train_0722",
+    "image_dimensions": {
+      "height": 768,
+      "width": 1024,
+      "total_pixels": 786432
+    },
+    "timestamp_utc": "2026-11-23T09:00:00.402303+00:00",
+    "threshold": 0.5,
+    "min_component_area_pixels": 10,
+    "roi": {
+      "present": false,
+      "roi_pixel_area": null,
+      "roi_relative_area_pct": null
+    },
+    "disclaimer": "OPTICAL MEASUREMENT NOTICE: All lengths, widths, perimeters, and areas are reported strictly in pixel-domain units (px, px^2) or image/ROI-relative dimensionless percentages (%). Physical metric measurements (mm, cm, m) cannot be claimed without metric camera calibration, sensor distance measurements, or physical reference scale markers in the image plane."
+  },
+  "summary": {
+    "total_detected_classes": 2,
+    "detected_class_names": [
+      "Graffiti",
+      "Rust"
+    ],
+    "detected_structural_classes": [
+      "Rust"
+    ],
+    "detected_non_structural_classes": [
+      "Graffiti"
+    ],
+    "total_components_count": 19,
+    "total_defect_pixel_area": 22960,
+    "total_defect_image_area_pct": 2.91951,
+    "total_defect_roi_area_pct": null,
+    "coverage_metrics": {
+      "summed_class_pixel_area": 22960,
+      "summed_class_image_area_pct": 2.91951,
+      "union_defect_pixel_area": 22552,
+      "union_defect_image_area_pct": 2.86764,
+      "structural_union_pixel_area": 4270,
+      "structural_union_image_area_pct": 0.54296,
+      "non_structural_union_pixel_area": 18690,
+      "non_structural_union_image_area_pct": 2.37656,
+      "overlapping_defect_pixel_area": 408,
+      "overlapping_defect_image_area_pct": 0.05188,
+      "roi_coverage": {
+        "roi_available": false,
+        "summed_class_roi_pixels": null,
+        "union_defect_roi_area_pct": null,
+        "structural_union_roi_area_pct": null,
+        "non_structural_union_roi_area_pct": null
+      }
+    }
+  },
+  "class_measurements": {
+    "ACrack": {
+      "class_id": 0,
+      "class_name": "ACrack",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Bearing": {
+      "class_id": 1,
+      "class_name": "Bearing",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Cavity": {
+      "class_id": 2,
+      "class_name": "Cavity",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Crack": {
+      "class_id": 3,
+      "class_name": "Crack",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Drainage": {
+      "class_id": 4,
+      "class_name": "Drainage",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "EJoint": {
+      "class_id": 5,
+      "class_name": "EJoint",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Efflorescence": {
+      "class_id": 6,
+      "class_name": "Efflorescence",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "ExposedRebars": {
+      "class_id": 7,
+      "class_name": "ExposedRebars",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Graffiti": {
+      "class_id": 8,
+      "class_name": "Graffiti",
+      "detected": true,
+      "component_count": 12,
+      "total_pixel_area": 18690,
+      "image_relative_area_pct": 2.37656,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "median": 0.95,
+        "std": 0.0
+      },
+      "components": [
+        {
+          "component_id": 1,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 563,
+          "image_relative_area_pct": 0.07159,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            913.81,
+            58.09
+          ],
+          "bbox": {
+            "xmin": 901,
+            "ymin": 39,
+            "xmax": 925,
+            "ymax": 81,
+            "width": 24,
+            "height": 42,
+            "xyxy": [
+              901,
+              39,
+              925,
+              81
+            ],
+            "xywh": [
+              901,
+              39,
+              24,
+              42
+            ],
+            "bbox_area_pixels": 1008
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 114.53,
+            "circularity": 0.5394,
+            "aspect_ratio": 2.5294,
+            "solidity": 1.0,
+            "extent": 0.5585,
+            "orientation_deg": 80.54,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 2,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 1524,
+          "image_relative_area_pct": 0.19379,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            780.89,
+            65.79
+          ],
+          "bbox": {
+            "xmin": 762,
+            "ymin": 43,
+            "xmax": 800,
+            "ymax": 94,
+            "width": 38,
+            "height": 51,
+            "xyxy": [
+              762,
+              43,
+              800,
+              94
+            ],
+            "xywh": [
+              762,
+              43,
+              38,
+              51
+            ],
+            "bbox_area_pixels": 1938
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 161.11,
+            "circularity": 0.7378,
+            "aspect_ratio": 1.3462,
+            "solidity": 1.0,
+            "extent": 0.7864,
+            "orientation_deg": 82.87,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 3,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 2547,
+          "image_relative_area_pct": 0.32387,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            358.37,
+            82.22
+          ],
+          "bbox": {
+            "xmin": 330,
+            "ymin": 49,
+            "xmax": 388,
+            "ymax": 128,
+            "width": 58,
+            "height": 79,
+            "xyxy": [
+              330,
+              49,
+              388,
+              128
+            ],
+            "xywh": [
+              330,
+              49,
+              58,
+              79
+            ],
+            "bbox_area_pixels": 4582
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 231.92,
+            "circularity": 0.595,
+            "aspect_ratio": 1.0839,
+            "solidity": 0.8981,
+            "extent": 0.5559,
+            "orientation_deg": 22.62,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 4,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 2798,
+          "image_relative_area_pct": 0.35578,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            727.31,
+            265.65
+          ],
+          "bbox": {
+            "xmin": 698,
+            "ymin": 201,
+            "xmax": 751,
+            "ymax": 308,
+            "width": 53,
+            "height": 107,
+            "xyxy": [
+              698,
+              201,
+              751,
+              308
+            ],
+            "xywh": [
+              698,
+              201,
+              53,
+              107
+            ],
+            "bbox_area_pixels": 5671
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 286.02,
+            "circularity": 0.4298,
+            "aspect_ratio": 2.0356,
+            "solidity": 0.8046,
+            "extent": 0.4934,
+            "orientation_deg": 82.23,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 5,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 2156,
+          "image_relative_area_pct": 0.27415,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            366.04,
+            276.16
+          ],
+          "bbox": {
+            "xmin": 349,
+            "ymin": 238,
+            "xmax": 388,
+            "ymax": 325,
+            "width": 39,
+            "height": 87,
+            "xyxy": [
+              349,
+              238,
+              388,
+              325
+            ],
+            "xywh": [
+              349,
+              238,
+              39,
+              87
+            ],
+            "bbox_area_pixels": 3393
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 224.27,
+            "circularity": 0.5387,
+            "aspect_ratio": 2.3579,
+            "solidity": 0.9165,
+            "extent": 0.6354,
+            "orientation_deg": 85.6,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 6,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 1334,
+          "image_relative_area_pct": 0.16963,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            803.97,
+            266.6
+          ],
+          "bbox": {
+            "xmin": 784,
+            "ymin": 247,
+            "xmax": 824,
+            "ymax": 287,
+            "width": 40,
+            "height": 40,
+            "xyxy": [
+              784,
+              247,
+              824,
+              287
+            ],
+            "xywh": [
+              784,
+              247,
+              40,
+              40
+            ],
+            "bbox_area_pixels": 1600
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 147.8,
+            "circularity": 0.7674,
+            "aspect_ratio": 1.1922,
+            "solidity": 1.0,
+            "extent": 0.8337,
+            "orientation_deg": 82.87,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 7,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 483,
+          "image_relative_area_pct": 0.06142,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            987.53,
+            263.33
+          ],
+          "bbox": {
+            "xmin": 968,
+            "ymin": 246,
+            "xmax": 999,
+            "ymax": 289,
+            "width": 31,
+            "height": 43,
+            "xyxy": [
+              968,
+              246,
+              999,
+              289
+            ],
+            "xywh": [
+              968,
+              246,
+              31,
+              43
+            ],
+            "bbox_area_pixels": 1333
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 126.43,
+            "circularity": 0.3797,
+            "aspect_ratio": 2.3034,
+            "solidity": 0.7204,
+            "extent": 0.3623,
+            "orientation_deg": 62.88,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 8,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 1935,
+          "image_relative_area_pct": 0.24605,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            741.08,
+            464.49
+          ],
+          "bbox": {
+            "xmin": 719,
+            "ymin": 427,
+            "xmax": 759,
+            "ymax": 517,
+            "width": 40,
+            "height": 90,
+            "xyxy": [
+              719,
+              427,
+              759,
+              517
+            ],
+            "xywh": [
+              719,
+              427,
+              40,
+              90
+            ],
+            "bbox_area_pixels": 3600
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 226.12,
+            "circularity": 0.4755,
+            "aspect_ratio": 2.5248,
+            "solidity": 0.9319,
+            "extent": 0.5375,
+            "orientation_deg": 75.96,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 9,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 2360,
+          "image_relative_area_pct": 0.30009,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            381.9,
+            470.22
+          ],
+          "bbox": {
+            "xmin": 357,
+            "ymin": 430,
+            "xmax": 409,
+            "ymax": 507,
+            "width": 52,
+            "height": 77,
+            "xyxy": [
+              357,
+              430,
+              409,
+              507
+            ],
+            "xywh": [
+              357,
+              430,
+              52,
+              77
+            ],
+            "bbox_area_pixels": 4004
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 218.51,
+            "circularity": 0.6211,
+            "aspect_ratio": 1.5167,
+            "solidity": 0.9001,
+            "extent": 0.5894,
+            "orientation_deg": 76.61,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 10,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 347,
+          "image_relative_area_pct": 0.04412,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            995.97,
+            468.58
+          ],
+          "bbox": {
+            "xmin": 991,
+            "ymin": 451,
+            "xmax": 1002,
+            "ymax": 490,
+            "width": 11,
+            "height": 39,
+            "xyxy": [
+              991,
+              451,
+              1002,
+              490
+            ],
+            "xywh": [
+              991,
+              451,
+              11,
+              39
+            ],
+            "bbox_area_pixels": 429
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 93.07,
+            "circularity": 0.5034,
+            "aspect_ratio": 3.8,
+            "solidity": 1.0,
+            "extent": 0.8089,
+            "orientation_deg": 90.0,
+            "is_linear_defect": true,
+            "skeleton_length_pixels": 41,
+            "estimated_avg_width_pixels": 8.46
+          }
+        },
+        {
+          "component_id": 11,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 2322,
+          "image_relative_area_pct": 0.29526,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            398.69,
+            643.6
+          ],
+          "bbox": {
+            "xmin": 379,
+            "ymin": 605,
+            "xmax": 430,
+            "ymax": 679,
+            "width": 51,
+            "height": 74,
+            "xyxy": [
+              379,
+              605,
+              430,
+              679
+            ],
+            "xywh": [
+              379,
+              605,
+              51,
+              74
+            ],
+            "bbox_area_pixels": 3774
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 216.71,
+            "circularity": 0.6213,
+            "aspect_ratio": 1.5544,
+            "solidity": 0.9196,
+            "extent": 0.6153,
+            "orientation_deg": 5.71,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 12,
+          "class_id": 8,
+          "class_name": "Graffiti",
+          "pixel_area": 321,
+          "image_relative_area_pct": 0.04082,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            986.91,
+            668.76
+          ],
+          "bbox": {
+            "xmin": 982,
+            "ymin": 652,
+            "xmax": 993,
+            "ymax": 689,
+            "width": 11,
+            "height": 37,
+            "xyxy": [
+              982,
+              652,
+              993,
+              689
+            ],
+            "xywh": [
+              982,
+              652,
+              11,
+              37
+            ],
+            "bbox_area_pixels": 407
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 87.9,
+            "circularity": 0.5221,
+            "aspect_ratio": 3.6,
+            "solidity": 1.0,
+            "extent": 0.7887,
+            "orientation_deg": 90.0,
+            "is_linear_defect": true,
+            "skeleton_length_pixels": 39,
+            "estimated_avg_width_pixels": 8.23
+          }
+        }
+      ]
+    },
+    "Hollowareas": {
+      "class_id": 9,
+      "class_name": "Hollowareas",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "JTape": {
+      "class_id": 10,
+      "class_name": "JTape",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "PEquipment": {
+      "class_id": 11,
+      "class_name": "PEquipment",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Restformwork": {
+      "class_id": 12,
+      "class_name": "Restformwork",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Rockpocket": {
+      "class_id": 13,
+      "class_name": "Rockpocket",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Rust": {
+      "class_id": 14,
+      "class_name": "Rust",
+      "detected": true,
+      "component_count": 7,
+      "total_pixel_area": 4270,
+      "image_relative_area_pct": 0.54296,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "median": 0.95,
+        "std": 0.0
+      },
+      "components": [
+        {
+          "component_id": 1,
+          "class_id": 14,
+          "class_name": "Rust",
+          "pixel_area": 843,
+          "image_relative_area_pct": 0.10719,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            861.6,
+            78.78
+          ],
+          "bbox": {
+            "xmin": 817,
+            "ymin": 74,
+            "xmax": 909,
+            "ymax": 86,
+            "width": 92,
+            "height": 12,
+            "xyxy": [
+              817,
+              74,
+              909,
+              86
+            ],
+            "xywh": [
+              817,
+              74,
+              92,
+              12
+            ],
+            "bbox_area_pixels": 1104
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 195.8,
+            "circularity": 0.2763,
+            "aspect_ratio": 8.758,
+            "solidity": 1.0,
+            "extent": 0.7636,
+            "orientation_deg": 88.73,
+            "is_linear_defect": true,
+            "skeleton_length_pixels": 132,
+            "estimated_avg_width_pixels": 6.39
+          }
+        },
+        {
+          "component_id": 2,
+          "class_id": 14,
+          "class_name": "Rust",
+          "pixel_area": 187,
+          "image_relative_area_pct": 0.02378,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            678.76,
+            82.06
+          ],
+          "bbox": {
+            "xmin": 671,
+            "ymin": 76,
+            "xmax": 688,
+            "ymax": 89,
+            "width": 17,
+            "height": 13,
+            "xyxy": [
+              671,
+              76,
+              688,
+              89
+            ],
+            "xywh": [
+              671,
+              76,
+              17,
+              13
+            ],
+            "bbox_area_pixels": 221
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 53.07,
+            "circularity": 0.8343,
+            "aspect_ratio": 1.3021,
+            "solidity": 1.0,
+            "extent": 0.8462,
+            "orientation_deg": 82.87,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 3,
+          "class_id": 14,
+          "class_name": "Rust",
+          "pixel_area": 1845,
+          "image_relative_area_pct": 0.2346,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            664.44,
+            268.23
+          ],
+          "bbox": {
+            "xmin": 642,
+            "ymin": 249,
+            "xmax": 691,
+            "ymax": 290,
+            "width": 49,
+            "height": 41,
+            "xyxy": [
+              642,
+              249,
+              691,
+              290
+            ],
+            "xywh": [
+              642,
+              249,
+              49,
+              41
+            ],
+            "bbox_area_pixels": 2009
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 171.31,
+            "circularity": 0.79,
+            "aspect_ratio": 1.2,
+            "solidity": 1.0,
+            "extent": 0.9184,
+            "orientation_deg": 90.0,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 4,
+          "class_id": 14,
+          "class_name": "Rust",
+          "pixel_area": 369,
+          "image_relative_area_pct": 0.04692,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            510.28,
+            254.95
+          ],
+          "bbox": {
+            "xmin": 477,
+            "ymin": 252,
+            "xmax": 541,
+            "ymax": 259,
+            "width": 64,
+            "height": 7,
+            "xyxy": [
+              477,
+              252,
+              541,
+              259
+            ],
+            "xywh": [
+              477,
+              252,
+              64,
+              7
+            ],
+            "bbox_area_pixels": 448
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 133.9,
+            "circularity": 0.2586,
+            "aspect_ratio": 10.5,
+            "solidity": 1.0,
+            "extent": 0.8237,
+            "orientation_deg": 90.0,
+            "is_linear_defect": true,
+            "skeleton_length_pixels": 62,
+            "estimated_avg_width_pixels": 5.95
+          }
+        },
+        {
+          "component_id": 5,
+          "class_id": 14,
+          "class_name": "Rust",
+          "pixel_area": 408,
+          "image_relative_area_pct": 0.05188,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            723.62,
+            277.42
+          ],
+          "bbox": {
+            "xmin": 714,
+            "ymin": 267,
+            "xmax": 735,
+            "ymax": 289,
+            "width": 21,
+            "height": 22,
+            "xyxy": [
+              714,
+              267,
+              735,
+              289
+            ],
+            "xywh": [
+              714,
+              267,
+              21,
+              22
+            ],
+            "bbox_area_pixels": 462
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 79.07,
+            "circularity": 0.82,
+            "aspect_ratio": 1.05,
+            "solidity": 1.0,
+            "extent": 0.8831,
+            "orientation_deg": 90.0,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 6,
+          "class_id": 14,
+          "class_name": "Rust",
+          "pixel_area": 152,
+          "image_relative_area_pct": 0.01933,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            532.49,
+            277.99
+          ],
+          "bbox": {
+            "xmin": 525,
+            "ymin": 271,
+            "xmax": 541,
+            "ymax": 285,
+            "width": 16,
+            "height": 14,
+            "xyxy": [
+              525,
+              271,
+              541,
+              285
+            ],
+            "xywh": [
+              525,
+              271,
+              16,
+              14
+            ],
+            "bbox_area_pixels": 224
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 49.56,
+            "circularity": 0.7778,
+            "aspect_ratio": 1.4091,
+            "solidity": 1.0,
+            "extent": 0.6786,
+            "orientation_deg": 75.96,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        },
+        {
+          "component_id": 7,
+          "class_id": 14,
+          "class_name": "Rust",
+          "pixel_area": 466,
+          "image_relative_area_pct": 0.05925,
+          "roi_relative_area_pct": null,
+          "pixels_inside_roi": null,
+          "centroid_xy": [
+            660.04,
+            300.96
+          ],
+          "bbox": {
+            "xmin": 646,
+            "ymin": 292,
+            "xmax": 674,
+            "ymax": 312,
+            "width": 28,
+            "height": 20,
+            "xyxy": [
+              646,
+              292,
+              674,
+              312
+            ],
+            "xywh": [
+              646,
+              292,
+              28,
+              20
+            ],
+            "bbox_area_pixels": 560
+          },
+          "confidence": {
+            "mean": 0.95,
+            "min": 0.95,
+            "max": 0.95,
+            "median": 0.95,
+            "std": 0.0
+          },
+          "shape_features": {
+            "perimeter_pixels": 87.9,
+            "circularity": 0.7579,
+            "aspect_ratio": 1.6008,
+            "solidity": 1.0,
+            "extent": 0.8321,
+            "orientation_deg": 4.09,
+            "is_linear_defect": false,
+            "skeleton_length_pixels": null,
+            "estimated_avg_width_pixels": null
+          }
+        }
+      ]
+    },
+    "Spalling": {
+      "class_id": 15,
+      "class_name": "Spalling",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "WConccor": {
+      "class_id": 16,
+      "class_name": "WConccor",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Weathering": {
+      "class_id": 17,
+      "class_name": "Weathering",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    },
+    "Wetspot": {
+      "class_id": 18,
+      "class_name": "Wetspot",
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
+      "roi_relative_area_pct": null,
+      "total_pixels_inside_roi": null,
+      "confidence": null,
+      "components": []
+    }
+  }
+}

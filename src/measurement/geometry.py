@@ -27,13 +27,17 @@ from src.measurement.schema import (
 )
 
 
-def compute_morphological_skeleton(binary_mask: np.ndarray) -> np.ndarray:
+def compute_morphological_skeleton(
+    binary_mask: np.ndarray,
+    max_iterations: int = 100,
+) -> np.ndarray:
     """
     Computes a 1-pixel-wide topological centerline (skeleton) of a binary mask
     using standard iterative morphological erosion and opening with a cross structuring element.
 
     Args:
         binary_mask: 2D uint8 binary array where defect pixels are > 0.
+        max_iterations: Maximum thinning iterations (default 100) to prevent runaway on large blobs.
 
     Returns:
         2D uint8 binary array containing only the skeleton pixels (values in {0, 255}).
@@ -50,7 +54,9 @@ def compute_morphological_skeleton(binary_mask: np.ndarray) -> np.ndarray:
     element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
     temp = img.copy()
 
-    while True:
+    iters = 0
+    while iters < max_iterations:
+        iters += 1
         eroded = cv2.erode(temp, element)
         opened = cv2.morphologyEx(eroded, cv2.MORPH_OPEN, element)
         subset = cv2.subtract(eroded, opened)

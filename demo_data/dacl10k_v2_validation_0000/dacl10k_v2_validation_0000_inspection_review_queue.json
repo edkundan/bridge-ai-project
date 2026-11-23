@@ -1,0 +1,42 @@
+{
+  "image_id": "dacl10k_v2_validation_0000",
+  "timestamp_utc": "2026-11-23T09:00:01.767142+00:00",
+  "queue_summary": {
+    "total_findings_count": 1,
+    "structural_findings_count": 0,
+    "non_structural_findings_count": 1,
+    "highest_queue_urgency": "INFORMATIONAL_NON_STRUCTURAL"
+  },
+  "ranked_queue_items": [
+    {
+      "rank": 1,
+      "finding_id": "FINDING-GRAFF-001",
+      "class_name": "Graffiti",
+      "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
+      "composite_verification_score": 0.0485,
+      "is_structural": false,
+      "visual_evidence_summary": "Detected Graffiti component of 174283 px (14.1832% of image). Spatial centroid at (705.183879093199, 560.1386939632666) within bounding box [205, 430, 1204, 693]. Model confidence: mean=0.94, min=0.94, max=0.94. Centerline skeleton length: 938 px, estimated width: 185.8 px, aspect ratio: 4.0.",
+      "image_relative_extent_pct": 14.18319,
+      "roi_relative_extent_pct": null,
+      "model_confidence": 0.94,
+      "optical_uncertainty_level": "MODERATE",
+      "uncertainty_factors": [
+        "Non-structural category; zero direct load capacity impact"
+      ],
+      "triggered_policy_rules": [
+        "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
+      ],
+      "recommended_inspector_action": [
+        "Verify that surface paint does not conceal active structural cracks or spalls.",
+        "Note for municipal aesthetic cleanup (non-structural priority)."
+      ],
+      "decision_limitations": [
+        "Optical 2D estimation only; subsurface defect depth is unobserved.",
+        "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+        "Physical metric dimensions require calibrated optical rangefinder."
+      ],
+      "human_override": null
+    }
+  ],
+  "disclaimer": "STAGE 4 RESEARCH DISCLAIMER: The Inspection Review Queue provides an evidence-weighted ranking of visual defect findings strictly to prioritize human inspector site visits and verification. It does NOT assert official structural risk, repair deadlines, maintenance work orders, structural failure probabilities, or certified AASHTO bridge element condition ratings."
+}

@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "image_id": "dacl10k_v2_validation_0000",
+    "timestamp_utc": "2026-11-23T09:00:01.767125+00:00",
+    "policy_name": "ProductionAbstentionPolicy",
+    "policy_version": "1.0.0",
+    "policy_type": "PRODUCTION_ABSTENTION"
+  },
+  "output_a_inspection_review_queue": {
+    "image_id": "dacl10k_v2_validation_0000",
+    "timestamp_utc": "2026-11-23T09:00:01.767142+00:00",
+    "queue_summary": {
+      "total_findings_count": 1,
+      "structural_findings_count": 0,
+      "non_structural_findings_count": 1,
+      "highest_queue_urgency": "INFORMATIONAL_NON_STRUCTURAL"
+    },
+    "ranked_queue_items": [
+      {
+        "rank": 1,
+        "finding_id": "FINDING-GRAFF-001",
+        "class_name": "Graffiti",
+        "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
+        "composite_verification_score": 0.0485,
+        "is_structural": false,
+        "visual_evidence_summary": "Detected Graffiti component of 174283 px (14.1832% of image). Spatial centroid at (705.183879093199, 560.1386939632666) within bounding box [205, 430, 1204, 693]. Model confidence: mean=0.94, min=0.94, max=0.94. Centerline skeleton length: 938 px, estimated width: 185.8 px, aspect ratio: 4.0.",
+        "image_relative_extent_pct": 14.18319,
+        "roi_relative_extent_pct": null,
+        "model_confidence": 0.94,
+        "optical_uncertainty_level": "MODERATE",
+        "uncertainty_factors": [
+          "Non-structural category; zero direct load capacity impact"
+        ],
+        "triggered_policy_rules": [
+          "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
+        ],
+        "recommended_inspector_action": [
+          "Verify that surface paint does not conceal active structural cracks or spalls.",
+          "Note for municipal aesthetic cleanup (non-structural priority)."
+        ],
+        "decision_limitations": [
+          "Optical 2D estimation only; subsurface defect depth is unobserved.",
+          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+          "Physical metric dimensions require calibrated optical rangefinder."
+        ],
+        "human_override": null
+      }
+    ],
+    "disclaimer": "STAGE 4 RESEARCH DISCLAIMER: The Inspection Review Queue provides an evidence-weighted ranking of visual defect findings strictly to prioritize human inspector site visits and verification. It does NOT assert official structural risk, repair deadlines, maintenance work orders, structural failure probabilities, or certified AASHTO bridge element condition ratings."
+  },
+  "output_b_engineering_maintenance_priority": {
+    "image_id": "dacl10k_v2_validation_0000",
+    "timestamp_utc": "2026-11-23T09:00:01.767210+00:00",
+    "priority_decision": {
+      "status": "NOT_ASSESSED",
+      "official_repair_priority": "NOT_ASSESSED",
+      "official_repair_deadline": null,
+      "official_structural_safety_rating": null,
+      "official_aashto_condition_state": null,
+      "abstention_reason": "ENGINEERING MAINTENANCE PRIORITY ABSTENTION: Actionable bridge maintenance priority, repair work orders, and statutory condition states CANNOT be determined from 2D optical computer vision detections alone. Official engineering prioritization strictly requires: (1) verified structural component identity and load path criticality, (2) physical metric dimensions and internal defect depth from calibrated NDT tools, (3) documented historical progression rates, and (4) formal approval by a licensed Professional Engineer (PE/SE) under agency-adopted maintenance decision criteria. Consequently, official maintenance priority is marked NOT_ASSESSED."
+    },
+    "governance_and_compliance": {
+      "decision_criteria_approved_by_agency": false,
+      "is_pe_certified": false,
+      "missing_engineering_prerequisites": [
+        "Verified structural component identity (BIM or inspection plan)",
+        "Element load path criticality (AASHTO / NBI element classification)",
+        "Physical metric defect dimensions (calibrated optical/laser measurement)",
+        "Internal defect depth & delamination plane (NDT sounding, GPR, or UPV)",
+        "Formal validation and sign-off by a licensed Professional Engineer (PE/SE)",
+        "Formally adopted Department of Transportation (DOT) maintenance decision policy"
+      ],
+      "contradiction_warnings": []
+    },
+    "disclaimer": "ENGINEERING MAINTENANCE PRIORITY ABSTENTION: Actionable bridge maintenance priority, repair work orders, and statutory condition states CANNOT be determined from 2D optical computer vision detections alone. Official engineering prioritization strictly requires: (1) verified structural component identity and load path criticality, (2) physical metric dimensions and internal defect depth from calibrated NDT tools, (3) documented historical progression rates, and (4) formal approval by a licensed Professional Engineer (PE/SE) under agency-adopted maintenance decision criteria. Consequently, official maintenance priority is marked NOT_ASSESSED."
+  },
+  "verified_engineering_context": null,
+  "audit_trail": {
+    "policy_name": "ProductionAbstentionPolicy",
+    "policy_version": "1.0.0",
+    "policy_type": "PRODUCTION_ABSTENTION",
+    "evaluated_at_utc": "2026-11-23T09:00:01.767125+00:00",
+    "stage3_image_id": "dacl10k_v2_validation_0000",
+    "stage3_visual_concern": "NEGLIGIBLE_NON_STRUCTURAL",
+    "stage3_review_flags": [
+      "NON_STRUCTURAL_SURFACE_COVERAGE"
+    ],
+    "input_observations_count": 1,
+    "engineering_context_supplied": false,
+    "human_overrides_applied_count": 0,
+    "abstention_enforced": true
+  }
+}

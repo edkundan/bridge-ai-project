@@ -1,0 +1,341 @@
+{
+  "image_id": "synthetic_demo_image",
+  "provisional_criticality_tier": "TIER_1_CRITICAL",
+  "detected_tiers": [
+    "TIER_2_PROGRESSIVE",
+    "TIER_1_CRITICAL"
+  ],
+  "tier_summary": {
+    "TIER_1_CRITICAL": {
+      "classes_detected": [
+        "ExposedRebars",
+        "Spalling"
+      ],
+      "component_count": 2,
+      "total_pixel_area": 4153,
+      "image_relative_area_pct": 1.58424
+    },
+    "TIER_2_PROGRESSIVE": {
+      "classes_detected": [
+        "Crack"
+      ],
+      "component_count": 1,
+      "total_pixel_area": 600,
+      "image_relative_area_pct": 0.22888
+    },
+    "TIER_3_SUPERFICIAL": {
+      "classes_detected": [],
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0
+    },
+    "TIER_4_NON_STRUCTURAL": {
+      "classes_detected": [],
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0
+    }
+  },
+  "total_defect_image_area_pct": 1.6986846923828125,
+  "total_defect_roi_area_pct": null,
+  "validation_status": {
+    "is_calibrated": false,
+    "requires_expert_validation": true,
+    "missing_engineering_parameters": [
+      "structural_component_identity",
+      "element_importance",
+      "physical_defect_dimensions",
+      "internal_defect_depth",
+      "reinforcement_section_loss",
+      "inspection_history",
+      "engineering_assessment"
+    ],
+    "literature_grounding": [
+      "AASHTO Manual for Bridge Element Inspection (MBEI, 2019)",
+      "FHWA Bridge Inspection Reference Manual (BIRM, 2012)",
+      "DIN 1076 / RI-EBW-PR\u00dcF: Bridge Evaluation Guidelines",
+      "FIB Model Code 2010 (Concrete Durability and Service Life Design)"
+    ]
+  },
+  "visual_severity_assessment": {
+    "visual_concern_level": "HIGH_VISUAL_CONCERN",
+    "official_structural_condition_state": "NOT_ASSESSED",
+    "abstention_reason": "OFFICIAL CONDITION STATE ABSTENTION: An official bridge condition state (e.g. AASHTO MBEI CS1-CS4 or NBIS Item 58-60 ratings) CANNOT be established from 2D optical imagery alone. Grounded structural assessment requires unobservable parameters: structural component identity, primary/secondary load path importance, defect depth, rebar section loss, and physical metric calibration. Consequently, the official structural condition state is marked NOT_ASSESSED.",
+    "review_flags": [
+      "CRACK_DELAMINATION_REVIEW",
+      "REBAR_EXPOSURE_REVIEW",
+      "POSSIBLE_SPALLING_REVIEW"
+    ]
+  },
+  "coverage_breakdown": {
+    "summed_class_pixel_area": 4753,
+    "summed_class_image_area_pct": 1.8131256103515625,
+    "union_pixel_area": 4453,
+    "union_defect_pixel_area": 4453,
+    "union_defect_image_area_pct": 1.6986846923828125,
+    "structural_union_pixel_area": 4453,
+    "structural_union_image_area_pct": 1.6986846923828125,
+    "non_structural_union_pixel_area": 0,
+    "non_structural_union_image_area_pct": 0.0,
+    "overlapping_defect_pixel_area": 300,
+    "overlapping_defect_image_area_pct": 0.11444091796875,
+    "roi_coverage": {
+      "roi_available": false,
+      "summed_class_roi_pixels": null,
+      "union_defect_roi_area_pct": null,
+      "structural_union_roi_area_pct": null,
+      "non_structural_union_roi_area_pct": null
+    }
+  },
+  "confidence_contract": {
+    "segmentation_model_confidence_mean": 0.9167,
+    "calibrated_structural_severity_confidence": null,
+    "confidence_distinction_notice": "CONFIDENCE CONTRACT: The reported confidence score is the mean pixel-level classification probability produced by the neural network segmentation model. This indicates optical pattern clarity, NOT calibrated engineering confidence in structural severity or safety risk."
+  },
+  "missing_data_checklist": {
+    "structural_component_identity": {
+      "status": "MISSING",
+      "required_source": "Bridge BIM, element segmentation, or engineering inspection plan.",
+      "description": "Specific structural element (e.g. pier column, fracture-critical girder, deck slab)."
+    },
+    "element_importance": {
+      "status": "MISSING",
+      "required_source": "National Bridge Inventory (NBI) / AASHTO Element records.",
+      "description": "Primary load-bearing vs. secondary vs. non-structural appurtenance."
+    },
+    "physical_defect_dimensions": {
+      "status": "MISSING",
+      "required_source": "Optical rangefinder, calibrated stereo rig, or fiducial scale.",
+      "description": "Metric crack width (mm), spall surface area (m^2), or rebar span (m)."
+    },
+    "internal_defect_depth": {
+      "status": "MISSING",
+      "required_source": "Non-destructive testing (GPR, ultrasonic pulse velocity, impact echo).",
+      "description": "Subsurface void depth, delamination plane, or crack penetration depth."
+    },
+    "reinforcement_section_loss": {
+      "status": "MISSING",
+      "required_source": "Physical caliper measurement, ultrasonic thickness gauge, or electrochemistry.",
+      "description": "Residual rebar diameter, percentage cross-sectional area loss."
+    },
+    "inspection_history": {
+      "status": "MISSING",
+      "required_source": "Historical bridge inspection agency database (e.g. AASHTO BrM).",
+      "description": "Defect progression rate, date of first observation, active vs dormant status."
+    },
+    "engineering_assessment": {
+      "status": "MISSING",
+      "required_source": "Licensed Professional Engineer (PE / SE) field evaluation.",
+      "description": "Certified structural capacity determination and maintenance work order sign-off."
+    }
+  },
+  "observations": [
+    {
+      "finding_id": "FINDING-CRACK-001",
+      "class_name": "Crack",
+      "class_id": 3,
+      "component_id": 1,
+      "visual_concern_level": "MODERATE_VISUAL_CONCERN",
+      "is_structural": true,
+      "pixel_area": 600,
+      "image_relative_extent_pct": 0.22888,
+      "roi_relative_extent_pct": null,
+      "bbox": {
+        "xmin": 129,
+        "ymin": 100,
+        "xmax": 171,
+        "ymax": 300,
+        "width": 42,
+        "height": 200,
+        "xyxy": [
+          129,
+          100,
+          171,
+          300
+        ],
+        "xywh": [
+          129,
+          100,
+          42,
+          200
+        ],
+        "bbox_area_pixels": 8400
+      },
+      "confidence_stats": {
+        "mean": 0.88,
+        "min": 0.88,
+        "max": 0.88,
+        "median": 0.88,
+        "std": 0.0
+      },
+      "shape_features": {
+        "perimeter_pixels": 503.9,
+        "circularity": 0.0297,
+        "aspect_ratio": 4.8537,
+        "solidity": 0.0998,
+        "extent": 0.0714,
+        "orientation_deg": 90.0,
+        "is_linear_defect": true,
+        "skeleton_length_pixels": 198,
+        "estimated_avg_width_pixels": 3.03
+      },
+      "visual_evidence": "Detected Crack component of 600 px (0.2289% of image). Spatial centroid at (151.495, 199.5) within bounding box [129, 100, 171, 300]. Model confidence: mean=0.88, min=0.88, max=0.88. Centerline skeleton length: 198 px, estimated width: 3.0 px, aspect ratio: 4.9.",
+      "explanation": "Discrete linear fracture in concrete indicating tensile stress exceeding tensile capacity. Cracks create preferential pathways for water, oxygen, and deicing salt penetration into the reinforcing cage, accelerating rebar depassivation.",
+      "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1130 - Cracking); FIB Model Code 2010 Section 7.7.3 (durability crack limit w_lim = 0.2-0.3 mm); Eurocode 2 (EN 1992-1-1 Section 7.3).",
+      "inspector_action_items": [
+        "Measure physical crack width using an optical crack comparator card or gauge.",
+        "Determine whether crack pattern reflects flexure, shear, torsion, or plastic shrinkage.",
+        "Verify whether crack is active (dynamic thermal/live load movement) or dormant."
+      ],
+      "triggered_review_flags": [
+        "CRACK_DELAMINATION_REVIEW"
+      ]
+    },
+    {
+      "finding_id": "FINDING-EXPOS-002",
+      "class_name": "ExposedRebars",
+      "class_id": 7,
+      "component_id": 1,
+      "visual_concern_level": "HIGH_VISUAL_CONCERN",
+      "is_structural": true,
+      "pixel_area": 300,
+      "image_relative_extent_pct": 0.11444,
+      "roi_relative_extent_pct": null,
+      "bbox": {
+        "xmin": 345,
+        "ymin": 235,
+        "xmax": 355,
+        "ymax": 265,
+        "width": 10,
+        "height": 30,
+        "xyxy": [
+          345,
+          235,
+          355,
+          265
+        ],
+        "xywh": [
+          345,
+          235,
+          10,
+          30
+        ],
+        "bbox_area_pixels": 300
+      },
+      "confidence_stats": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "median": 0.95,
+        "std": 0.0
+      },
+      "shape_features": {
+        "perimeter_pixels": 76.0,
+        "circularity": 0.6527,
+        "aspect_ratio": 3.0,
+        "solidity": 1.0,
+        "extent": 1.0,
+        "orientation_deg": 0.0,
+        "is_linear_defect": true,
+        "skeleton_length_pixels": 56,
+        "estimated_avg_width_pixels": 5.36
+      },
+      "visual_evidence": "Detected ExposedRebars component of 300 px (0.1144% of image). Spatial centroid at (349.5, 249.5) within bounding box [345, 235, 355, 265]. Model confidence: mean=0.95, min=0.95, max=0.95. Centerline skeleton length: 56 px, estimated width: 5.4 px, aspect ratio: 3.0.",
+      "explanation": "Reinforcing steel visible through breached concrete cover. Indicates that passivation alkalinity has been lost and active oxidation is occurring. Ongoing corrosion reduces cross-sectional steel area, weakens bond strength, and can lead to brittle reinforcement fracture under dynamic cyclic loads.",
+      "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1090 - Exposed Rebar); FHWA BIRM (2012) Section 7.2.3; Eurocode 2 (EN 1992-1-1 Section 4).",
+      "inspector_action_items": [
+        "Measure residual bar diameter with vernier caliper to calculate percentage cross-sectional loss.",
+        "Determine corrosion pitting severity and length of debonded bar length.",
+        "Check adjacent concrete elements for rust staining and impending spalls."
+      ],
+      "triggered_review_flags": [
+        "REBAR_EXPOSURE_REVIEW"
+      ]
+    },
+    {
+      "finding_id": "FINDING-SPALL-003",
+      "class_name": "Spalling",
+      "class_id": 15,
+      "component_id": 1,
+      "visual_concern_level": "HIGH_VISUAL_CONCERN",
+      "is_structural": true,
+      "pixel_area": 3853,
+      "image_relative_extent_pct": 1.4698,
+      "roi_relative_extent_pct": null,
+      "bbox": {
+        "xmin": 315,
+        "ymin": 215,
+        "xmax": 386,
+        "ymax": 286,
+        "width": 71,
+        "height": 71,
+        "xyxy": [
+          315,
+          215,
+          386,
+          286
+        ],
+        "xywh": [
+          315,
+          215,
+          71,
+          71
+        ],
+        "bbox_area_pixels": 5041
+      },
+      "confidence_stats": {
+        "mean": 0.92,
+        "min": 0.92,
+        "max": 0.92,
+        "median": 0.92,
+        "std": 0.0
+      },
+      "shape_features": {
+        "perimeter_pixels": 230.79,
+        "circularity": 0.909,
+        "aspect_ratio": 1.0,
+        "solidity": 1.0,
+        "extent": 0.7643,
+        "orientation_deg": 45.0,
+        "is_linear_defect": false,
+        "skeleton_length_pixels": null,
+        "estimated_avg_width_pixels": null
+      },
+      "visual_evidence": "Detected Spalling component of 3853 px (1.4698% of image). Spatial centroid at (350.0, 250.0) within bounding box [315, 215, 386, 286]. Model confidence: mean=0.92, min=0.92, max=0.92. Shape descriptors: circularity=0.909, solidity=1.000, aspect_ratio=1.0.",
+      "explanation": "Spalling represents the physical loss of surface concrete cover, often driven by internal expansion pressure from corroding reinforcing steel, freeze-thaw cycles, or localized impact. When cover concrete breaks away, the underlying reinforcement or deeper matrix becomes directly exposed to atmospheric chlorides.",
+      "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1080 - Delamination/Spall/Patched Area); FHWA BIRM (2012) Section 7.2.2; DIN 1076 Section 5.3 (Schadensgruppe Beton).",
+      "inspector_action_items": [
+        "Perform acoustic hammer sounding around defect boundaries to map unseparated delaminations.",
+        "Inspect the base of the cavity for exposed or corroding reinforcing steel bars.",
+        "Measure physical cavity depth and surface area with calibrated field gauges."
+      ],
+      "triggered_review_flags": [
+        "POSSIBLE_SPALLING_REVIEW"
+      ]
+    }
+  ],
+  "stage_4_prioritization_contract": {
+    "ready_for_automated_prioritization": false,
+    "abstention_reason": "Automated maintenance priority and repair scheduling cannot be assigned from visual features alone. Required data: structural component identity, element importance, physical metric dimensions, and internal depth.",
+    "candidate_review_flags": [
+      "CRACK_DELAMINATION_REVIEW",
+      "REBAR_EXPOSURE_REVIEW",
+      "POSSIBLE_SPALLING_REVIEW"
+    ],
+    "primary_visual_concerns": [
+      "Crack",
+      "ExposedRebars",
+      "Spalling"
+    ],
+    "structural_union_coverage_pct": 1.6986846923828125,
+    "non_structural_union_coverage_pct": 0.0,
+    "actionable_observations_count": 3
+  },
+  "literature_grounding": [
+    "AASHTO Manual for Bridge Element Inspection (MBEI, 2019)",
+    "FHWA Bridge Inspection Reference Manual (BIRM, 2012)",
+    "DIN 1076 / RI-EBW-PR\u00dcF: Bridge Evaluation Guidelines",
+    "FIB Model Code 2010 (Concrete Durability and Service Life Design)"
+  ],
+  "disclaimer": "ENGINEERING SEVERITY DISCLAIMER: This severity assessment is an uncalibrated research prototype grounded in literature principles (AASHTO MBEI, FHWA BIRM, DIN 1076, FIB Model Code). It provides visual evidence categorization and review flagging only and does NOT constitute a certified structural safety rating, official AASHTO element condition state (CS1-CS4), remaining service life prediction, or replacement for certified structural bridge engineer inspection."
+}

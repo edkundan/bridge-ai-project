@@ -320,6 +320,16 @@ class EngineeringMaintenancePriority:
         return {
             "image_id": self.image_id,
             "timestamp_utc": self.timestamp_utc,
+            # Top-level direct keys for backward compatibility
+            "status": self.status.value,
+            "official_repair_priority": self.official_repair_priority,
+            "official_repair_deadline": self.official_repair_deadline,
+            "official_structural_safety_rating": self.official_structural_safety_rating,
+            "official_aashto_condition_state": self.official_aashto_condition_state,
+            "abstention_reason": self.abstention_reason,
+            "missing_engineering_prerequisites": self.missing_engineering_prerequisites,
+            "contradiction_warnings": self.contradiction_warnings,
+            # Grouped dictionaries
             "priority_decision": {
                 "status": self.status.value,
                 "official_repair_priority": self.official_repair_priority,
