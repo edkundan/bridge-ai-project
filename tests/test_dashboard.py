@@ -175,22 +175,22 @@ class TestDashboardIntegration(unittest.TestCase):
         self.assertIsNotNone(maint.disclaimer)
 
     def test_safe_render_dataframe_and_fallback(self):
-        """Verify safe_render_dataframe uses st.dataframe and falls back gracefully to st.table."""
+        """Verify safe_render_dataframe uses st.dataframe and falls back gracefully to HTML rendering."""
         import streamlit as st
         from src.dashboard.components import safe_render_dataframe
 
         df = pd.DataFrame({"col_a": [1, 2], "col_b": ["x", "y"]})
 
         # Test normal path
-        with patch.object(st, "dataframe") as mock_df, patch.object(st, "table") as mock_table:
+        with patch.object(st, "dataframe") as mock_df, patch.object(st, "markdown") as mock_md:
             safe_render_dataframe(df)
             mock_df.assert_called_once()
-            mock_table.assert_not_called()
+            mock_md.assert_not_called()
 
-        # Test fallback path when pyarrow/dataframe serialization fails
-        with patch.object(st, "dataframe", side_effect=ImportError("pyarrow requires NumPy 2.0 or newer")), patch.object(st, "table") as mock_table:
+        # Test fallback path when pyarrow/dataframe serialization fails (must NOT call st.table)
+        with patch.object(st, "dataframe", side_effect=ImportError("pyarrow requires NumPy 2.0 or newer")), patch.object(st, "markdown") as mock_md:
             safe_render_dataframe(df)
-            mock_table.assert_called_once()
+            mock_md.assert_called_once()
 
 
 if __name__ == "__main__":

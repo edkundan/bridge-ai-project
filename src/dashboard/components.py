@@ -36,7 +36,7 @@ def safe_render_dataframe(
     """
     Safely render a pandas DataFrame in Streamlit.
     Attempts st.dataframe (with PyArrow engine), and seamlessly falls back
-    to st.table if PyArrow or binary serialization encounters an environment issue.
+    to a pure HTML table if PyArrow or binary serialization encounters an environment issue.
     """
     try:
         try:
@@ -45,7 +45,14 @@ def safe_render_dataframe(
             st.dataframe(df, use_container_width=True, hide_index=hide_index)
     except Exception as exc:
         st.caption(f"ℹ️ Rendering standard table view (backend fallback: {type(exc).__name__})")
-        st.table(df)
+        # Pure HTML fallback does not call st.table() and has ZERO dependency on pyarrow
+        html_table = df.to_html(index=not hide_index, classes="dataframe", border=0)
+        styled_html = f"""
+        <div style="overflow-x: auto; max-height: 480px; border: 1px solid #334155; border-radius: 6px; padding: 8px; margin-bottom: 1rem;">
+            {html_table}
+        </div>
+        """
+        st.markdown(styled_html, unsafe_allow_html=True)
 
 
 def render_header_and_disclaimers():
