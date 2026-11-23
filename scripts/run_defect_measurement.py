@@ -36,6 +36,7 @@ from src.data.dataset import DACL10K_CLASSES
 from src.measurement import (
     DefectMeasurementPipeline,
     DefectVisualizer,
+    ExplainableVisualSeverityEvaluator,
     LiteratureGroundedSeverityEvaluator,
 )
 from src.segmentation.predict import BridgeDefectPredictor
@@ -116,7 +117,7 @@ def main():
         min_component_area_pixels=args.min_area,
     )
     visualizer = DefectVisualizer()
-    severity_evaluator = LiteratureGroundedSeverityEvaluator()
+    severity_evaluator = ExplainableVisualSeverityEvaluator()
 
     # Determine image list
     image_paths: List[Path] = []
@@ -220,10 +221,15 @@ def main():
 
         logger.info(
             f"Image {img_path.name}: Detected {measurement.total_detected_classes} classes "
-            f"({measurement.get_detected_classes()}) | Total defect area: {measurement.total_defect_image_area_pct:.2f}% | "
-            f"Highest Criticality Tier: {severity.highest_criticality_tier}"
+            f"({measurement.get_detected_classes()}) | "
+            f"Structural Union Area: {measurement.structural_union_image_area_pct:.2f}% | "
+            f"Non-Structural Area: {measurement.non_structural_union_image_area_pct:.2f}% | "
+            f"Visual Concern: {severity.visual_concern_level} | "
+            f"Official Condition State: {severity.official_structural_condition_state} (Abstention) | "
+            f"Review Flags: {severity.review_flags}"
         )
         logger.info(f"Saved JSON: {json_path}")
+        logger.info(f"Saved Severity Report: {severity_json_path}")
         logger.info(f"Saved Overlay: {overlay_path}")
         total_processed += 1
 

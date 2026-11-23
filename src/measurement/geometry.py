@@ -13,7 +13,7 @@ Description:
 """
 
 import math
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Union
 
 import cv2
 import numpy as np
@@ -231,7 +231,11 @@ def analyze_connected_components(
     roi_mask: Optional[np.ndarray] = None,
     min_area_pixels: int = 10,
     is_linear_class: bool = False,
-) -> Tuple[List[DefectComponentMeasurement], ClassMeasurementSummary]:
+    return_retained_mask: bool = False,
+) -> Union[
+    Tuple[List[DefectComponentMeasurement], ClassMeasurementSummary],
+    Tuple[List[DefectComponentMeasurement], ClassMeasurementSummary, np.ndarray],
+]:
     """
     Performs 8-connectivity connected component analysis on a binary class mask.
     Filters out noise regions smaller than min_area_pixels.
@@ -246,9 +250,11 @@ def analyze_connected_components(
         roi_mask: Optional 2D boolean/uint8 ROI mask.
         min_area_pixels: Minimum pixel area to retain as a valid defect component.
         is_linear_class: Whether this class is inherently linear (Crack, ACrack, etc.).
+        return_retained_mask: If True, also returns the 2D boolean mask of retained pixels.
 
     Returns:
-        Tuple of (List[DefectComponentMeasurement], ClassMeasurementSummary).
+        Tuple of (List[DefectComponentMeasurement], ClassMeasurementSummary)
+        or (List[DefectComponentMeasurement], ClassMeasurementSummary, np.ndarray) if return_retained_mask=True.
     """
     total_image_pixels = image_shape[0] * image_shape[1]
     roi_pixels = int(np.sum(roi_mask > 0)) if roi_mask is not None else None
@@ -268,6 +274,8 @@ def analyze_connected_components(
             total_pixels_inside_roi=0 if roi_mask is not None else None,
             components=[],
         )
+        if return_retained_mask:
+            return [], empty_summary, np.zeros(image_shape, dtype=bool)
         return [], empty_summary
 
     # Ensure mask is uint8 {0, 255} for OpenCV
@@ -367,6 +375,7 @@ def analyze_connected_components(
         )
         class_conf = compute_confidence_stats(probability_map, retained_mask)
     else:
+        retained_mask = np.zeros(image_shape, dtype=bool)
         class_conf = None
 
     class_summary = ClassMeasurementSummary(
@@ -382,4 +391,6 @@ def analyze_connected_components(
         components=component_measurements,
     )
 
+    if return_retained_mask:
+        return component_measurements, class_summary, retained_mask
     return component_measurements, class_summary

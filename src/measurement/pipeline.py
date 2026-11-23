@@ -21,6 +21,7 @@ from src.data.mask_converter import DACL10K_CLASSES
 from src.measurement.geometry import analyze_connected_components
 from src.measurement.schema import (
     CALIBRATION_DISCLAIMER,
+    NON_STRUCTURAL_CLASSES,
     ClassMeasurementSummary,
     ImageMeasurementResult,
 )
@@ -158,11 +159,12 @@ class DefectMeasurementPipeline:
             roi_pixel_area = int(np.sum(processed_roi))
             roi_rel_pct = (roi_pixel_area / float(total_image_pixels)) * 100.0
 
-        # Apply thresholds per class to produce binary masks
+        # Apply thresholds per class to produce binary masks and track retained masks
         class_measurements: Dict[str, ClassMeasurementSummary] = {}
+        retained_masks = np.zeros((self.num_classes, h, w), dtype=bool)
         total_components_count = 0
-        total_defect_pixel_area = 0
-        total_defect_roi_pixels = 0
+        summed_class_pixel_area = 0
+        summed_class_roi_pixels = 0 if processed_roi is not None else None
         detected_classes_count = 0
 
         # Process each class channel independently (supports overlapping classes)
@@ -173,7 +175,7 @@ class DefectMeasurementPipeline:
 
             is_linear = class_name in self.linear_classes
 
-            comp_measurements, class_summary = analyze_connected_components(
+            comp_measurements, class_summary, c_retained_mask = analyze_connected_components(
                 binary_mask=channel_binary,
                 probability_map=channel_probs,
                 class_id=class_idx,
@@ -182,24 +184,73 @@ class DefectMeasurementPipeline:
                 roi_mask=processed_roi,
                 min_area_pixels=self.min_component_area_pixels,
                 is_linear_class=is_linear,
+                return_retained_mask=True,
             )
 
             class_measurements[class_name] = class_summary
+            retained_masks[class_idx] = c_retained_mask
 
             if class_summary.detected:
                 detected_classes_count += 1
                 total_components_count += class_summary.component_count
-                total_defect_pixel_area += class_summary.total_pixel_area
+                summed_class_pixel_area += class_summary.total_pixel_area
                 if processed_roi is not None and class_summary.total_pixels_inside_roi is not None:
-                    total_defect_roi_pixels += class_summary.total_pixels_inside_roi
+                    summed_class_roi_pixels += class_summary.total_pixels_inside_roi
 
-        # Whole-image summary metrics
-        total_defect_img_pct = (total_defect_pixel_area / float(total_image_pixels)) * 100.0
-        total_defect_roi_pct = None
+        # -------------------------------------------------------------------------
+        # Area quantification: Summed vs Union vs Structural vs Non-structural
+        # -------------------------------------------------------------------------
+        summed_class_img_pct = (summed_class_pixel_area / float(total_image_pixels)) * 100.0
+
+        # Overall union mask (pixels with >= 1 detected class)
+        union_mask = np.any(retained_masks, axis=0)
+        union_pixel_area = int(np.sum(union_mask))
+        union_img_pct = (union_pixel_area / float(total_image_pixels)) * 100.0
+
+        # Structural vs non-structural partition
+        structural_indices = [
+            i for i, name in enumerate(self.class_names)
+            if name not in NON_STRUCTURAL_CLASSES
+        ]
+        non_structural_indices = [
+            i for i, name in enumerate(self.class_names)
+            if name in NON_STRUCTURAL_CLASSES
+        ]
+
+        if structural_indices:
+            structural_mask = np.any(retained_masks[structural_indices], axis=0)
+            structural_union_pixel_area = int(np.sum(structural_mask))
+        else:
+            structural_mask = np.zeros((h, w), dtype=bool)
+            structural_union_pixel_area = 0
+        structural_union_img_pct = (structural_union_pixel_area / float(total_image_pixels)) * 100.0
+
+        if non_structural_indices:
+            non_structural_mask = np.any(retained_masks[non_structural_indices], axis=0)
+            non_structural_union_pixel_area = int(np.sum(non_structural_mask))
+        else:
+            non_structural_mask = np.zeros((h, w), dtype=bool)
+            non_structural_union_pixel_area = 0
+        non_structural_union_img_pct = (non_structural_union_pixel_area / float(total_image_pixels)) * 100.0
+
+        # Overlap mask (pixels with >= 2 classes active simultaneously)
+        overlap_mask = np.sum(retained_masks, axis=0) >= 2
+        overlap_pixel_area = int(np.sum(overlap_mask))
+        overlap_img_pct = (overlap_pixel_area / float(total_image_pixels)) * 100.0
+
+        # ROI relative union calculations
+        union_roi_pct = None
+        structural_roi_pct = None
+        non_structural_roi_pct = None
         if processed_roi is not None and roi_pixel_area is not None and roi_pixel_area > 0:
-            total_defect_roi_pct = (total_defect_roi_pixels / float(roi_pixel_area)) * 100.0
+            roi_bool = processed_roi > 0
+            union_roi_pct = (float(np.sum(union_mask & roi_bool)) / float(roi_pixel_area)) * 100.0
+            structural_roi_pct = (float(np.sum(structural_mask & roi_bool)) / float(roi_pixel_area)) * 100.0
+            non_structural_roi_pct = (float(np.sum(non_structural_mask & roi_bool)) / float(roi_pixel_area)) * 100.0
         elif processed_roi is not None:
-            total_defect_roi_pct = 0.0
+            union_roi_pct = 0.0
+            structural_roi_pct = 0.0
+            non_structural_roi_pct = 0.0
 
         return ImageMeasurementResult(
             image_id=str(image_id),
@@ -212,9 +263,20 @@ class DefectMeasurementPipeline:
             roi_relative_area_pct=roi_rel_pct,
             total_detected_classes=detected_classes_count,
             total_components_count=total_components_count,
-            total_defect_pixel_area=total_defect_pixel_area,
-            total_defect_image_area_pct=total_defect_img_pct,
-            total_defect_roi_area_pct=total_defect_roi_pct,
+            summed_class_pixel_area=summed_class_pixel_area,
+            summed_class_image_area_pct=summed_class_img_pct,
+            union_defect_pixel_area=union_pixel_area,
+            union_defect_image_area_pct=union_img_pct,
+            structural_union_pixel_area=structural_union_pixel_area,
+            structural_union_image_area_pct=structural_union_img_pct,
+            non_structural_union_pixel_area=non_structural_union_pixel_area,
+            non_structural_union_image_area_pct=non_structural_union_img_pct,
+            overlapping_defect_pixel_area=overlap_pixel_area,
+            overlapping_defect_image_area_pct=overlap_img_pct,
+            summed_class_roi_pixels=summed_class_roi_pixels,
+            union_defect_roi_area_pct=union_roi_pct,
+            structural_union_roi_area_pct=structural_roi_pct,
+            non_structural_union_roi_area_pct=non_structural_roi_pct,
             class_measurements=class_measurements,
             timestamp=datetime.now(timezone.utc).isoformat(),
             disclaimer=CALIBRATION_DISCLAIMER,

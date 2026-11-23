@@ -1,7 +1,8 @@
 """
 Package: src.measurement
 Description:
-    Stage 2: Defect Measurement and Severity Assessment Foundation.
+    Stage 2: Defect Measurement Foundation
+    Stage 3: Explainable Visual Severity Assessment Foundation
 """
 
 from src.measurement.geometry import (
@@ -12,40 +13,67 @@ from src.measurement.geometry import (
 )
 from src.measurement.pipeline import DefectMeasurementPipeline
 from src.measurement.schema import (
+    ABSTENTION_JUSTIFICATION,
     CALIBRATION_DISCLAIMER,
+    CONFIDENCE_DISTINCTION_NOTICE,
+    NON_STRUCTURAL_CLASSES,
     SEVERITY_VALIDATION_DISCLAIMER,
     BoundingBox,
     ClassMeasurementSummary,
     ConfidenceStats,
     DefectComponentMeasurement,
+    DefectVisualObservation,
+    ExplainableSeverityReport,
     ImageMeasurementResult,
+    MissingDataChecklist,
+    ReviewFlag,
     ShapeFeatures,
+    StructuralCriticalityTier,
+    VisualConcernLevel,
 )
 from src.measurement.severity import (
+    CLASS_VISUAL_CONCERN_MAPPING,
     DACL10K_TIER_MAPPING,
+    DEFECT_KNOWLEDGE_BASE,
     BaseSeverityEvaluator,
+    ExplainableVisualSeverityEvaluator,
     LiteratureGroundedSeverityEvaluator,
     SeverityAssessmentResult,
-    StructuralCriticalityTier,
 )
 from src.measurement.visualization import DefectVisualizer
 
 __all__ = [
+    # Pipelines & Evaluators
     "DefectMeasurementPipeline",
     "DefectVisualizer",
     "BaseSeverityEvaluator",
+    "ExplainableVisualSeverityEvaluator",
     "LiteratureGroundedSeverityEvaluator",
-    "StructuralCriticalityTier",
-    "DACL10K_TIER_MAPPING",
     "SeverityAssessmentResult",
+    # Enums
+    "VisualConcernLevel",
+    "StructuralCriticalityTier",
+    "ReviewFlag",
+    # Constants & Mappings
+    "NON_STRUCTURAL_CLASSES",
+    "CLASS_VISUAL_CONCERN_MAPPING",
+    "DACL10K_TIER_MAPPING",
+    "DEFECT_KNOWLEDGE_BASE",
+    "CALIBRATION_DISCLAIMER",
+    "SEVERITY_VALIDATION_DISCLAIMER",
+    "ABSTENTION_JUSTIFICATION",
+    "CONFIDENCE_DISTINCTION_NOTICE",
+    # Schemas & Dataclasses
     "BoundingBox",
     "ConfidenceStats",
     "ShapeFeatures",
     "DefectComponentMeasurement",
     "ClassMeasurementSummary",
     "ImageMeasurementResult",
-    "CALIBRATION_DISCLAIMER",
-    "SEVERITY_VALIDATION_DISCLAIMER",
+    "MissingDataChecklist",
+    "DefectVisualObservation",
+    "ExplainableSeverityReport",
+    # Geometric Functions
     "compute_morphological_skeleton",
     "compute_confidence_stats",
     "extract_shape_features",

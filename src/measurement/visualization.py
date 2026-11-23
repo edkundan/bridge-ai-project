@@ -183,22 +183,37 @@ class DefectVisualizer:
 
         # 4. Top header summary banner
         if show_banner:
-            banner_h = max(32, int(h * 0.045))
+            banner_h = max(36, int(h * 0.05))
             banner = np.zeros((banner_h, w, 3), dtype=np.uint8)
-            banner[:] = (30, 30, 30)  # Dark gray
+            banner[:] = (25, 25, 25)  # Dark charcoal
 
             det_classes = measurement.get_detected_classes()
-            classes_str = ", ".join(det_classes) if det_classes else "None (No defects detected)"
+            det_struct = measurement.get_detected_structural_classes()
+            det_non_struct = measurement.get_detected_non_structural_classes()
 
-            roi_str = f" | ROI Defect: {measurement.total_defect_roi_area_pct:.2f}%" if measurement.roi_present else ""
-            summary_text = (
-                f"Defects: {len(det_classes)} classes | "
-                f"Area: {measurement.total_defect_image_area_pct:.2f}% img{roi_str} | "
-                f"Classes: [{classes_str}]"
-            )
+            classes_str = ", ".join(det_classes) if det_classes else "None"
+
+            roi_str = f" | ROI: {measurement.union_defect_roi_area_pct:.2f}%" if measurement.roi_present and measurement.union_defect_roi_area_pct is not None else ""
+            
+            # Show structural vs non-structural breakdown
+            if det_non_struct and det_struct:
+                summary_text = (
+                    f"Structural: {measurement.structural_union_image_area_pct:.2f}% {det_struct} | "
+                    f"Non-Struct: {measurement.non_structural_union_image_area_pct:.2f}% {det_non_struct}{roi_str}"
+                )
+            elif det_struct:
+                summary_text = (
+                    f"Structural: {measurement.structural_union_image_area_pct:.2f}% {det_struct}{roi_str}"
+                )
+            elif det_non_struct:
+                summary_text = (
+                    f"Non-Structural: {measurement.non_structural_union_image_area_pct:.2f}% {det_non_struct} (No structural defects)"
+                )
+            else:
+                summary_text = "No defect patterns detected above threshold (Clean Inspection Scan)"
 
             font = cv2.FONT_HERSHEY_SIMPLEX
-            banner_font_scale = min(0.6, max(0.4, w / 1600.0))
+            banner_font_scale = min(0.55, max(0.38, w / 1400.0))
             cv2.putText(
                 banner,
                 summary_text,
