@@ -90,7 +90,11 @@ class VisualConcernLevel(str, Enum):
 
 class StructuralCriticalityTier(str, Enum):
     """
-    Backward-compatible tier classification preserved from Stage 2.
+    [DEPRECATED - UNVALIDATED HEURISTIC]
+    Legacy Stage 2 tier classification preserved solely for backward-compatible deserialization.
+    These heuristic tiers (such as TIER_1_CRITICAL) assign criticality based solely on pixel presence
+    without physical depth or load path verification, and must NOT be exposed as a validated
+    structural condition rating or maintenance priority.
     """
     TIER_1_CRITICAL = "TIER_1_CRITICAL"
     TIER_2_PROGRESSIVE = "TIER_2_PROGRESSIVE"
@@ -715,10 +719,15 @@ class ExplainableSeverityReport:
     def to_dict(self) -> Dict[str, Any]:
         return {
             "image_id": self.image_id,
-            # Top-level backward compatibility fields for Stage 2 consumers
+            # Top-level backward compatibility fields for Stage 2 consumers (Explicitly Deprecated)
             "provisional_criticality_tier": self.highest_criticality_tier,
             "detected_tiers": self.detected_tiers,
             "tier_summary": self.tier_summary,
+            "legacy_tier_deprecation": {
+                "is_deprecated": True,
+                "warning": "TIER_1_CRITICAL and legacy tier heuristics are deprecated and unvalidated. Do not use for engineering work orders or structural ratings.",
+                "provisional_criticality_tier": self.highest_criticality_tier,
+            },
             "total_defect_image_area_pct": self.total_defect_image_area_pct,
             "total_defect_roi_area_pct": self.total_defect_roi_area_pct,
             "validation_status": {

@@ -6,9 +6,9 @@
       "width": 640,
       "total_pixels": 307200
     },
-    "timestamp_utc": "2026-11-24T05:28:29.107751+00:00",
+    "timestamp_utc": "2026-11-24T05:52:07.321472+00:00",
     "threshold": 0.5,
-    "min_component_area_pixels": 10,
+    "min_component_area_pixels": 150,
     "roi": {
       "present": false,
       "roi_pixel_area": null,
@@ -17,10 +17,9 @@
     "disclaimer": "OPTICAL MEASUREMENT NOTICE: All lengths, widths, perimeters, and areas are reported strictly in pixel-domain units (px, px^2) or image/ROI-relative dimensionless percentages (%). Physical metric measurements (mm, cm, m) cannot be claimed without metric camera calibration, sensor distance measurements, or physical reference scale markers in the image plane."
   },
   "summary": {
-    "total_detected_classes": 10,
+    "total_detected_classes": 9,
     "detected_class_names": [
       "Bearing",
-      "Cavity",
       "Crack",
       "EJoint",
       "Efflorescence",
@@ -32,7 +31,6 @@
     ],
     "detected_structural_classes": [
       "Bearing",
-      "Cavity",
       "Crack",
       "EJoint",
       "Efflorescence",
@@ -44,21 +42,21 @@
     "detected_non_structural_classes": [
       "PEquipment"
     ],
-    "total_components_count": 32,
-    "total_defect_pixel_area": 165043,
-    "total_defect_image_area_pct": 53.72493,
+    "total_components_count": 20,
+    "total_defect_pixel_area": 164317,
+    "total_defect_image_area_pct": 53.48861,
     "total_defect_roi_area_pct": null,
     "coverage_metrics": {
-      "summed_class_pixel_area": 165043,
-      "summed_class_image_area_pct": 53.72493,
-      "union_defect_pixel_area": 131738,
-      "union_defect_image_area_pct": 42.88346,
-      "structural_union_pixel_area": 127149,
-      "structural_union_image_area_pct": 41.38965,
-      "non_structural_union_pixel_area": 4589,
-      "non_structural_union_image_area_pct": 1.49382,
-      "overlapping_defect_pixel_area": 30775,
-      "overlapping_defect_image_area_pct": 10.0179,
+      "summed_class_pixel_area": 164317,
+      "summed_class_image_area_pct": 53.48861,
+      "union_defect_pixel_area": 131288,
+      "union_defect_image_area_pct": 42.73698,
+      "structural_union_pixel_area": 126973,
+      "structural_union_image_area_pct": 41.33236,
+      "non_structural_union_pixel_area": 4315,
+      "non_structural_union_image_area_pct": 1.40462,
+      "overlapping_defect_pixel_area": 30516,
+      "overlapping_defect_image_area_pct": 9.93359,
       "roi_coverage": {
         "roi_available": false,
         "summed_class_roi_pixels": null,
@@ -85,17 +83,17 @@
       "class_id": 1,
       "class_name": "Bearing",
       "detected": true,
-      "component_count": 2,
-      "total_pixel_area": 1298,
-      "image_relative_area_pct": 0.42253,
+      "component_count": 1,
+      "total_pixel_area": 1273,
+      "image_relative_area_pct": 0.41439,
       "roi_relative_area_pct": null,
       "total_pixels_inside_roi": null,
       "confidence": {
-        "mean": 0.7589,
-        "min": 0.5001,
+        "mean": 0.7638,
+        "min": 0.5003,
         "max": 0.9437,
-        "median": 0.7886,
-        "std": 0.1388
+        "median": 0.7954,
+        "std": 0.1357
       },
       "components": [
         {
@@ -149,183 +147,20 @@
             "skeleton_length_pixels": null,
             "estimated_avg_width_pixels": null
           }
-        },
-        {
-          "component_id": 2,
-          "class_id": 1,
-          "class_name": "Bearing",
-          "pixel_area": 25,
-          "image_relative_area_pct": 0.00814,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            223.92,
-            155.24
-          ],
-          "bbox": {
-            "xmin": 220,
-            "ymin": 152,
-            "xmax": 228,
-            "ymax": 158,
-            "width": 8,
-            "height": 6,
-            "xyxy": [
-              220,
-              152,
-              228,
-              158
-            ],
-            "xywh": [
-              220,
-              152,
-              8,
-              6
-            ],
-            "bbox_area_pixels": 48
-          },
-          "confidence": {
-            "mean": 0.5125,
-            "min": 0.5001,
-            "max": 0.5371,
-            "median": 0.5109,
-            "std": 0.0095
-          },
-          "shape_features": {
-            "perimeter_pixels": 19.9,
-            "circularity": 0.7934,
-            "aspect_ratio": 1.8261,
-            "solidity": 1.0,
-            "extent": 0.5208,
-            "orientation_deg": 59.04,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
-          }
         }
       ]
     },
     "Cavity": {
       "class_id": 2,
       "class_name": "Cavity",
-      "detected": true,
-      "component_count": 2,
-      "total_pixel_area": 33,
-      "image_relative_area_pct": 0.01074,
+      "detected": false,
+      "component_count": 0,
+      "total_pixel_area": 0,
+      "image_relative_area_pct": 0.0,
       "roi_relative_area_pct": null,
       "total_pixels_inside_roi": null,
-      "confidence": {
-        "mean": 0.6037,
-        "min": 0.5031,
-        "max": 0.7424,
-        "median": 0.5961,
-        "std": 0.0667
-      },
-      "components": [
-        {
-          "component_id": 1,
-          "class_id": 2,
-          "class_name": "Cavity",
-          "pixel_area": 17,
-          "image_relative_area_pct": 0.00553,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            302.0,
-            291.0
-          ],
-          "bbox": {
-            "xmin": 301,
-            "ymin": 288,
-            "xmax": 304,
-            "ymax": 295,
-            "width": 3,
-            "height": 7,
-            "xyxy": [
-              301,
-              288,
-              304,
-              295
-            ],
-            "xywh": [
-              301,
-              288,
-              3,
-              7
-            ],
-            "bbox_area_pixels": 21
-          },
-          "confidence": {
-            "mean": 0.616,
-            "min": 0.509,
-            "max": 0.7424,
-            "median": 0.6249,
-            "std": 0.0702
-          },
-          "shape_features": {
-            "perimeter_pixels": 13.66,
-            "circularity": 1.0,
-            "aspect_ratio": 3.0,
-            "solidity": 1.0,
-            "extent": 0.8095,
-            "orientation_deg": 0.0,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
-          }
-        },
-        {
-          "component_id": 2,
-          "class_id": 2,
-          "class_name": "Cavity",
-          "pixel_area": 16,
-          "image_relative_area_pct": 0.00521,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            418.62,
-            392.88
-          ],
-          "bbox": {
-            "xmin": 417,
-            "ymin": 391,
-            "xmax": 422,
-            "ymax": 396,
-            "width": 5,
-            "height": 5,
-            "xyxy": [
-              417,
-              391,
-              422,
-              396
-            ],
-            "xywh": [
-              417,
-              391,
-              5,
-              5
-            ],
-            "bbox_area_pixels": 25
-          },
-          "confidence": {
-            "mean": 0.5906,
-            "min": 0.5031,
-            "max": 0.7153,
-            "median": 0.5896,
-            "std": 0.0601
-          },
-          "shape_features": {
-            "perimeter_pixels": 12.49,
-            "circularity": 1.0,
-            "aspect_ratio": 1.0,
-            "solidity": 1.0,
-            "extent": 0.64,
-            "orientation_deg": 45.0,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
-          }
-        }
-      ]
+      "confidence": null,
+      "components": []
     },
     "Crack": {
       "class_id": 3,
@@ -760,17 +595,17 @@
       "class_id": 11,
       "class_name": "PEquipment",
       "detected": true,
-      "component_count": 8,
-      "total_pixel_area": 4589,
-      "image_relative_area_pct": 1.49382,
+      "component_count": 4,
+      "total_pixel_area": 4315,
+      "image_relative_area_pct": 1.40462,
       "roi_relative_area_pct": null,
       "total_pixels_inside_roi": null,
       "confidence": {
-        "mean": 0.7468,
+        "mean": 0.7592,
         "min": 0.5002,
         "max": 0.9927,
-        "median": 0.734,
-        "std": 0.1577
+        "median": 0.7526,
+        "std": 0.1543
       },
       "components": [
         {
@@ -881,58 +716,6 @@
           "component_id": 3,
           "class_id": 11,
           "class_name": "PEquipment",
-          "pixel_area": 16,
-          "image_relative_area_pct": 0.00521,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            277.0,
-            458.5
-          ],
-          "bbox": {
-            "xmin": 275,
-            "ymin": 457,
-            "xmax": 280,
-            "ymax": 461,
-            "width": 5,
-            "height": 4,
-            "xyxy": [
-              275,
-              457,
-              280,
-              461
-            ],
-            "xywh": [
-              275,
-              457,
-              5,
-              4
-            ],
-            "bbox_area_pixels": 20
-          },
-          "confidence": {
-            "mean": 0.5425,
-            "min": 0.5045,
-            "max": 0.5967,
-            "median": 0.5323,
-            "std": 0.0309
-          },
-          "shape_features": {
-            "perimeter_pixels": 11.66,
-            "circularity": 1.0,
-            "aspect_ratio": 1.3333,
-            "solidity": 1.0,
-            "extent": 0.8,
-            "orientation_deg": 90.0,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
-          }
-        },
-        {
-          "component_id": 4,
-          "class_id": 11,
-          "class_name": "PEquipment",
           "pixel_area": 1320,
           "image_relative_area_pct": 0.42969,
           "roi_relative_area_pct": null,
@@ -982,59 +765,7 @@
           }
         },
         {
-          "component_id": 5,
-          "class_id": 11,
-          "class_name": "PEquipment",
-          "pixel_area": 73,
-          "image_relative_area_pct": 0.02376,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            276.58,
-            469.52
-          ],
-          "bbox": {
-            "xmin": 269,
-            "ymin": 466,
-            "xmax": 284,
-            "ymax": 474,
-            "width": 15,
-            "height": 8,
-            "xyxy": [
-              269,
-              466,
-              284,
-              474
-            ],
-            "xywh": [
-              269,
-              466,
-              15,
-              8
-            ],
-            "bbox_area_pixels": 120
-          },
-          "confidence": {
-            "mean": 0.5442,
-            "min": 0.5009,
-            "max": 0.608,
-            "median": 0.5398,
-            "std": 0.0288
-          },
-          "shape_features": {
-            "perimeter_pixels": 36.38,
-            "circularity": 0.6929,
-            "aspect_ratio": 2.1923,
-            "solidity": 1.0,
-            "extent": 0.6083,
-            "orientation_deg": 7.13,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
-          }
-        },
-        {
-          "component_id": 6,
+          "component_id": 4,
           "class_id": 11,
           "class_name": "PEquipment",
           "pixel_area": 174,
@@ -1084,110 +815,6 @@
             "skeleton_length_pixels": null,
             "estimated_avg_width_pixels": null
           }
-        },
-        {
-          "component_id": 7,
-          "class_id": 11,
-          "class_name": "PEquipment",
-          "pixel_area": 39,
-          "image_relative_area_pct": 0.0127,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            296.69,
-            473.0
-          ],
-          "bbox": {
-            "xmin": 293,
-            "ymin": 470,
-            "xmax": 301,
-            "ymax": 477,
-            "width": 8,
-            "height": 7,
-            "xyxy": [
-              293,
-              470,
-              301,
-              477
-            ],
-            "xywh": [
-              293,
-              470,
-              8,
-              7
-            ],
-            "bbox_area_pixels": 56
-          },
-          "confidence": {
-            "mean": 0.5368,
-            "min": 0.5003,
-            "max": 0.5912,
-            "median": 0.532,
-            "std": 0.0272
-          },
-          "shape_features": {
-            "perimeter_pixels": 20.73,
-            "circularity": 1.0,
-            "aspect_ratio": 1.125,
-            "solidity": 1.0,
-            "extent": 0.6964,
-            "orientation_deg": 45.0,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
-          }
-        },
-        {
-          "component_id": 8,
-          "class_id": 11,
-          "class_name": "PEquipment",
-          "pixel_area": 146,
-          "image_relative_area_pct": 0.04753,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            158.82,
-            474.19
-          ],
-          "bbox": {
-            "xmin": 140,
-            "ymin": 472,
-            "xmax": 176,
-            "ymax": 479,
-            "width": 36,
-            "height": 7,
-            "xyxy": [
-              140,
-              472,
-              176,
-              479
-            ],
-            "xywh": [
-              140,
-              472,
-              36,
-              7
-            ],
-            "bbox_area_pixels": 252
-          },
-          "confidence": {
-            "mean": 0.5596,
-            "min": 0.5003,
-            "max": 0.627,
-            "median": 0.5616,
-            "std": 0.0336
-          },
-          "shape_features": {
-            "perimeter_pixels": 75.8,
-            "circularity": 0.3193,
-            "aspect_ratio": 5.8333,
-            "solidity": 1.0,
-            "extent": 0.5794,
-            "orientation_deg": 90.0,
-            "is_linear_defect": true,
-            "skeleton_length_pixels": 42,
-            "estimated_avg_width_pixels": 3.48
-          }
         }
       ]
     },
@@ -1219,17 +846,17 @@
       "class_id": 14,
       "class_name": "Rust",
       "detected": true,
-      "component_count": 8,
-      "total_pixel_area": 6037,
-      "image_relative_area_pct": 1.96517,
+      "component_count": 4,
+      "total_pixel_area": 5764,
+      "image_relative_area_pct": 1.8763,
       "roi_relative_area_pct": null,
       "total_pixels_inside_roi": null,
       "confidence": {
-        "mean": 0.7985,
+        "mean": 0.8074,
         "min": 0.5,
         "max": 0.9977,
-        "median": 0.8345,
-        "std": 0.1598
+        "median": 0.849,
+        "std": 0.1571
       },
       "components": [
         {
@@ -1392,110 +1019,6 @@
           "component_id": 4,
           "class_id": 14,
           "class_name": "Rust",
-          "pixel_area": 17,
-          "image_relative_area_pct": 0.00553,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            281.88,
-            86.06
-          ],
-          "bbox": {
-            "xmin": 281,
-            "ymin": 83,
-            "xmax": 284,
-            "ymax": 90,
-            "width": 3,
-            "height": 7,
-            "xyxy": [
-              281,
-              83,
-              284,
-              90
-            ],
-            "xywh": [
-              281,
-              83,
-              3,
-              7
-            ],
-            "bbox_area_pixels": 21
-          },
-          "confidence": {
-            "mean": 0.5293,
-            "min": 0.5003,
-            "max": 0.5651,
-            "median": 0.5256,
-            "std": 0.0197
-          },
-          "shape_features": {
-            "perimeter_pixels": 14.24,
-            "circularity": 1.0,
-            "aspect_ratio": 3.0,
-            "solidity": 1.0,
-            "extent": 0.8095,
-            "orientation_deg": 0.0,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
-          }
-        },
-        {
-          "component_id": 5,
-          "class_id": 14,
-          "class_name": "Rust",
-          "pixel_area": 116,
-          "image_relative_area_pct": 0.03776,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            439.79,
-            158.85
-          ],
-          "bbox": {
-            "xmin": 430,
-            "ymin": 155,
-            "xmax": 448,
-            "ymax": 164,
-            "width": 18,
-            "height": 9,
-            "xyxy": [
-              430,
-              155,
-              448,
-              164
-            ],
-            "xywh": [
-              430,
-              155,
-              18,
-              9
-            ],
-            "bbox_area_pixels": 162
-          },
-          "confidence": {
-            "mean": 0.6507,
-            "min": 0.5008,
-            "max": 0.8064,
-            "median": 0.6658,
-            "std": 0.0843
-          },
-          "shape_features": {
-            "perimeter_pixels": 44.14,
-            "circularity": 0.7481,
-            "aspect_ratio": 2.125,
-            "solidity": 1.0,
-            "extent": 0.716,
-            "orientation_deg": 90.0,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
-          }
-        },
-        {
-          "component_id": 6,
-          "class_id": 14,
-          "class_name": "Rust",
           "pixel_area": 1621,
           "image_relative_area_pct": 0.52767,
           "roi_relative_area_pct": null,
@@ -1542,110 +1065,6 @@
             "is_linear_defect": true,
             "skeleton_length_pixels": 141,
             "estimated_avg_width_pixels": 11.5
-          }
-        },
-        {
-          "component_id": 7,
-          "class_id": 14,
-          "class_name": "Rust",
-          "pixel_area": 22,
-          "image_relative_area_pct": 0.00716,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            469.59,
-            311.18
-          ],
-          "bbox": {
-            "xmin": 466,
-            "ymin": 310,
-            "xmax": 475,
-            "ymax": 313,
-            "width": 9,
-            "height": 3,
-            "xyxy": [
-              466,
-              310,
-              475,
-              313
-            ],
-            "xywh": [
-              466,
-              310,
-              9,
-              3
-            ],
-            "bbox_area_pixels": 27
-          },
-          "confidence": {
-            "mean": 0.5412,
-            "min": 0.502,
-            "max": 0.5731,
-            "median": 0.5474,
-            "std": 0.0243
-          },
-          "shape_features": {
-            "perimeter_pixels": 18.24,
-            "circularity": 0.8307,
-            "aspect_ratio": 4.0,
-            "solidity": 1.0,
-            "extent": 0.8148,
-            "orientation_deg": 90.0,
-            "is_linear_defect": true,
-            "skeleton_length_pixels": 5,
-            "estimated_avg_width_pixels": 4.4
-          }
-        },
-        {
-          "component_id": 8,
-          "class_id": 14,
-          "class_name": "Rust",
-          "pixel_area": 118,
-          "image_relative_area_pct": 0.03841,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            500.63,
-            320.31
-          ],
-          "bbox": {
-            "xmin": 492,
-            "ymin": 314,
-            "xmax": 510,
-            "ymax": 328,
-            "width": 18,
-            "height": 14,
-            "xyxy": [
-              492,
-              314,
-              510,
-              328
-            ],
-            "xywh": [
-              492,
-              314,
-              18,
-              14
-            ],
-            "bbox_area_pixels": 252
-          },
-          "confidence": {
-            "mean": 0.5937,
-            "min": 0.5015,
-            "max": 0.7036,
-            "median": 0.5995,
-            "std": 0.0541
-          },
-          "shape_features": {
-            "perimeter_pixels": 48.87,
-            "circularity": 0.6209,
-            "aspect_ratio": 2.75,
-            "solidity": 1.0,
-            "extent": 0.4683,
-            "orientation_deg": 26.57,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
           }
         }
       ]
@@ -1737,17 +1156,17 @@
       "class_id": 17,
       "class_name": "Weathering",
       "detected": true,
-      "component_count": 4,
-      "total_pixel_area": 102225,
-      "image_relative_area_pct": 33.27637,
+      "component_count": 3,
+      "total_pixel_area": 102104,
+      "image_relative_area_pct": 33.23698,
       "roi_relative_area_pct": null,
       "total_pixels_inside_roi": null,
       "confidence": {
-        "mean": 0.8948,
+        "mean": 0.8953,
         "min": 0.5,
         "max": 0.9975,
-        "median": 0.9504,
-        "std": 0.1257
+        "median": 0.9505,
+        "std": 0.1251
       },
       "components": [
         {
@@ -1905,58 +1324,6 @@
             "skeleton_length_pixels": null,
             "estimated_avg_width_pixels": null
           }
-        },
-        {
-          "component_id": 4,
-          "class_id": 17,
-          "class_name": "Weathering",
-          "pixel_area": 121,
-          "image_relative_area_pct": 0.03939,
-          "roi_relative_area_pct": null,
-          "pixels_inside_roi": null,
-          "centroid_xy": [
-            130.21,
-            448.81
-          ],
-          "bbox": {
-            "xmin": 124,
-            "ymin": 443,
-            "xmax": 138,
-            "ymax": 455,
-            "width": 14,
-            "height": 12,
-            "xyxy": [
-              124,
-              443,
-              138,
-              455
-            ],
-            "xywh": [
-              124,
-              443,
-              14,
-              12
-            ],
-            "bbox_area_pixels": 168
-          },
-          "confidence": {
-            "mean": 0.5167,
-            "min": 0.5003,
-            "max": 0.5516,
-            "median": 0.5134,
-            "std": 0.0126
-          },
-          "shape_features": {
-            "perimeter_pixels": 42.38,
-            "circularity": 0.8464,
-            "aspect_ratio": 1.1818,
-            "solidity": 1.0,
-            "extent": 0.7202,
-            "orientation_deg": 0.0,
-            "is_linear_defect": false,
-            "skeleton_length_pixels": null,
-            "estimated_avg_width_pixels": null
-          }
         }
       ]
     },
@@ -2032,16 +1399,16 @@
       ]
     }
   },
-  "total_detected_classes": 10,
-  "total_components_count": 32,
-  "summed_class_pixel_area": 165043,
-  "summed_class_image_area_pct": 53.72493,
-  "union_defect_pixel_area": 131738,
-  "union_defect_image_area_pct": 42.88346,
-  "structural_union_pixel_area": 127149,
-  "structural_union_image_area_pct": 41.38965,
-  "non_structural_union_pixel_area": 4589,
-  "non_structural_union_image_area_pct": 1.49382,
-  "overlapping_defect_pixel_area": 30775,
-  "overlapping_defect_image_area_pct": 10.0179
+  "total_detected_classes": 9,
+  "total_components_count": 20,
+  "summed_class_pixel_area": 164317,
+  "summed_class_image_area_pct": 53.48861,
+  "union_defect_pixel_area": 131288,
+  "union_defect_image_area_pct": 42.73698,
+  "structural_union_pixel_area": 126973,
+  "structural_union_image_area_pct": 41.33236,
+  "non_structural_union_pixel_area": 4315,
+  "non_structural_union_image_area_pct": 1.40462,
+  "overlapping_defect_pixel_area": 30516,
+  "overlapping_defect_image_area_pct": 9.93359
 }

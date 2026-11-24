@@ -90,6 +90,12 @@ def extract_measurement_summary(
         }
 
     # Dictionary parsing with defensive nesting and fallback
+    if isinstance(measurement, dict):
+        if "stage_2_measurements" in measurement and isinstance(measurement["stage_2_measurements"], dict):
+            measurement = measurement["stage_2_measurements"]
+        elif "measurement_dict" in measurement and isinstance(measurement["measurement_dict"], dict):
+            measurement = measurement["measurement_dict"]
+
     measurement_dict = measurement
     summary = measurement_dict.get("summary") if isinstance(measurement_dict.get("summary"), dict) else {}
     cov = summary.get("coverage_metrics") if isinstance(summary.get("coverage_metrics"), dict) else {}
@@ -172,7 +178,7 @@ def extract_measurement_summary(
         total_union_pct = cov.get("union_defect_image_area_pct")
     if total_union_pct is None:
         total_union_pct = summary.get("union_defect_image_area_pct")
-    if (total_union_pct is None or total_union_pct == 0.0) and (struct_pct > 0 or non_struct_pct > 0):
+    if (total_union_pct is None or total_union_pct == 0.0) and ((struct_pct or 0.0) > 0 or (non_struct_pct or 0.0) > 0):
         total_union_pct = (struct_pct or 0.0) + (non_struct_pct or 0.0)
 
     total_union_px = measurement_dict.get("union_defect_pixel_area")
@@ -180,7 +186,7 @@ def extract_measurement_summary(
         total_union_px = cov.get("union_defect_pixel_area")
     if total_union_px is None:
         total_union_px = summary.get("union_defect_pixel_area")
-    if (total_union_px is None or total_union_px == 0) and (struct_px > 0 or non_struct_px > 0):
+    if (total_union_px is None or total_union_px == 0) and ((struct_px or 0) > 0 or (non_struct_px or 0) > 0):
         total_union_px = (struct_px or 0) + (non_struct_px or 0)
 
     return {
@@ -250,6 +256,9 @@ def render_header_and_disclaimers():
                 **4. Statutory Maintenance Abstention:**  
                 Official bridge condition states and maintenance work orders strictly require **load path hierarchy, defect depth, and licensed PE sign-off**.  
                 *The system explicitly abstains (`NOT_ASSESSED`) when physical engineering context is missing.*
+
+                **5. Deprecation of Legacy Severity Tiers:**  
+                Legacy Stage 2 heuristics (`TIER_1_CRITICAL`) are **strictly deprecated and unvalidated**. Merely detecting visual spalling or crack pixels does not certify critical bridge structural failure. Certified ratings mandate non-destructive sounding, depth measurements, and Professional Engineer validation.
                 """
             )
 
@@ -474,6 +483,13 @@ def render_measurements_panel(
     if not meas:
         st.info("No measurement data available.")
         return
+
+    # Unwrap full export JSON or pipeline bundles if passed
+    if isinstance(meas, dict):
+        if "stage_2_measurements" in meas and isinstance(meas["stage_2_measurements"], dict):
+            meas = meas["stage_2_measurements"]
+        elif "measurement_dict" in meas and isinstance(meas["measurement_dict"], dict):
+            meas = meas["measurement_dict"]
 
     # Extract metrics defensively across top-level, live dataclass, or nested summary/coverage_metrics
     metrics = extract_measurement_summary(meas)

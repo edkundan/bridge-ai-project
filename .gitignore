@@ -33,6 +33,7 @@ outputs/*
 .vscode/
 .idea/
 *.swp
+.agents/
 
 # Environment
 .env

@@ -1,0 +1,3436 @@
+{
+  "image_id": "images",
+  "exported_at_utc": "2026-11-24T05:39:28.540964+00:00",
+  "stage_2_measurements": {
+    "metadata": {
+      "image_id": "images",
+      "image_dimensions": {
+        "height": 480,
+        "width": 640,
+        "total_pixels": 307200
+      },
+      "timestamp_utc": "2026-11-24T05:39:28.472191+00:00",
+      "threshold": 0.5,
+      "min_component_area_pixels": 150,
+      "roi": {
+        "present": false,
+        "roi_pixel_area": null,
+        "roi_relative_area_pct": null
+      },
+      "disclaimer": "OPTICAL MEASUREMENT NOTICE: All lengths, widths, perimeters, and areas are reported strictly in pixel-domain units (px, px^2) or image/ROI-relative dimensionless percentages (%). Physical metric measurements (mm, cm, m) cannot be claimed without metric camera calibration, sensor distance measurements, or physical reference scale markers in the image plane."
+    },
+    "summary": {
+      "total_detected_classes": 9,
+      "detected_class_names": [
+        "Bearing",
+        "Crack",
+        "EJoint",
+        "Efflorescence",
+        "PEquipment",
+        "Rust",
+        "Spalling",
+        "Weathering",
+        "Wetspot"
+      ],
+      "detected_structural_classes": [
+        "Bearing",
+        "Crack",
+        "EJoint",
+        "Efflorescence",
+        "Rust",
+        "Spalling",
+        "Weathering",
+        "Wetspot"
+      ],
+      "detected_non_structural_classes": [
+        "PEquipment"
+      ],
+      "total_components_count": 20,
+      "total_defect_pixel_area": 164317,
+      "total_defect_image_area_pct": 53.48861,
+      "total_defect_roi_area_pct": null,
+      "coverage_metrics": {
+        "summed_class_pixel_area": 164317,
+        "summed_class_image_area_pct": 53.48861,
+        "union_defect_pixel_area": 131288,
+        "union_defect_image_area_pct": 42.73698,
+        "structural_union_pixel_area": 126973,
+        "structural_union_image_area_pct": 41.33236,
+        "non_structural_union_pixel_area": 4315,
+        "non_structural_union_image_area_pct": 1.40462,
+        "overlapping_defect_pixel_area": 30516,
+        "overlapping_defect_image_area_pct": 9.93359,
+        "roi_coverage": {
+          "roi_available": false,
+          "summed_class_roi_pixels": null,
+          "union_defect_roi_area_pct": null,
+          "structural_union_roi_area_pct": null,
+          "non_structural_union_roi_area_pct": null
+        }
+      }
+    },
+    "class_measurements": {
+      "ACrack": {
+        "class_id": 0,
+        "class_name": "ACrack",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "Bearing": {
+        "class_id": 1,
+        "class_name": "Bearing",
+        "detected": true,
+        "component_count": 1,
+        "total_pixel_area": 1273,
+        "image_relative_area_pct": 0.41439,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": {
+          "mean": 0.7638,
+          "min": 0.5003,
+          "max": 0.9437,
+          "median": 0.7954,
+          "std": 0.1357
+        },
+        "components": [
+          {
+            "component_id": 1,
+            "class_id": 1,
+            "class_name": "Bearing",
+            "pixel_area": 1273,
+            "image_relative_area_pct": 0.41439,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              476.4,
+              150.07
+            ],
+            "bbox": {
+              "xmin": 441,
+              "ymin": 137,
+              "xmax": 508,
+              "ymax": 163,
+              "width": 67,
+              "height": 26,
+              "xyxy": [
+                441,
+                137,
+                508,
+                163
+              ],
+              "xywh": [
+                441,
+                137,
+                67,
+                26
+              ],
+              "bbox_area_pixels": 1742
+            },
+            "confidence": {
+              "mean": 0.7638,
+              "min": 0.5003,
+              "max": 0.9437,
+              "median": 0.7954,
+              "std": 0.1357
+            },
+            "shape_features": {
+              "perimeter_pixels": 168.33,
+              "circularity": 0.5646,
+              "aspect_ratio": 2.64,
+              "solidity": 0.9482,
+              "extent": 0.7308,
+              "orientation_deg": 90.0,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          }
+        ]
+      },
+      "Cavity": {
+        "class_id": 2,
+        "class_name": "Cavity",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "Crack": {
+        "class_id": 3,
+        "class_name": "Crack",
+        "detected": true,
+        "component_count": 1,
+        "total_pixel_area": 1428,
+        "image_relative_area_pct": 0.46484,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": {
+          "mean": 0.8329,
+          "min": 0.5003,
+          "max": 1.0,
+          "median": 0.8735,
+          "std": 0.1549
+        },
+        "components": [
+          {
+            "component_id": 1,
+            "class_id": 3,
+            "class_name": "Crack",
+            "pixel_area": 1428,
+            "image_relative_area_pct": 0.46484,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              302.0,
+              216.86
+            ],
+            "bbox": {
+              "xmin": 289,
+              "ymin": 154,
+              "xmax": 319,
+              "ymax": 309,
+              "width": 30,
+              "height": 155,
+              "xyxy": [
+                289,
+                154,
+                319,
+                309
+              ],
+              "xywh": [
+                289,
+                154,
+                30,
+                155
+              ],
+              "bbox_area_pixels": 4650
+            },
+            "confidence": {
+              "mean": 0.8329,
+              "min": 0.5003,
+              "max": 1.0,
+              "median": 0.8735,
+              "std": 0.1549
+            },
+            "shape_features": {
+              "perimeter_pixels": 356.89,
+              "circularity": 0.1409,
+              "aspect_ratio": 5.5904,
+              "solidity": 0.4971,
+              "extent": 0.3071,
+              "orientation_deg": 5.58,
+              "is_linear_defect": true,
+              "skeleton_length_pixels": 204,
+              "estimated_avg_width_pixels": 7.0
+            }
+          }
+        ]
+      },
+      "Drainage": {
+        "class_id": 4,
+        "class_name": "Drainage",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "EJoint": {
+        "class_id": 5,
+        "class_name": "EJoint",
+        "detected": true,
+        "component_count": 3,
+        "total_pixel_area": 20726,
+        "image_relative_area_pct": 6.74674,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": {
+          "mean": 0.7239,
+          "min": 0.5,
+          "max": 0.9637,
+          "median": 0.7303,
+          "std": 0.1392
+        },
+        "components": [
+          {
+            "component_id": 1,
+            "class_id": 5,
+            "class_name": "EJoint",
+            "pixel_area": 13773,
+            "image_relative_area_pct": 4.4834,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              121.23,
+              48.11
+            ],
+            "bbox": {
+              "xmin": 4,
+              "ymin": 0,
+              "xmax": 220,
+              "ymax": 103,
+              "width": 216,
+              "height": 103,
+              "xyxy": [
+                4,
+                0,
+                220,
+                103
+              ],
+              "xywh": [
+                4,
+                0,
+                216,
+                103
+              ],
+              "bbox_area_pixels": 22248
+            },
+            "confidence": {
+              "mean": 0.7458,
+              "min": 0.5,
+              "max": 0.9478,
+              "median": 0.7695,
+              "std": 0.1331
+            },
+            "shape_features": {
+              "perimeter_pixels": 749.09,
+              "circularity": 0.3084,
+              "aspect_ratio": 2.1321,
+              "solidity": 0.816,
+              "extent": 0.6191,
+              "orientation_deg": 88.53,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          },
+          {
+            "component_id": 2,
+            "class_id": 5,
+            "class_name": "EJoint",
+            "pixel_area": 4200,
+            "image_relative_area_pct": 1.36719,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              272.74,
+              30.16
+            ],
+            "bbox": {
+              "xmin": 231,
+              "ymin": 0,
+              "xmax": 317,
+              "ymax": 75,
+              "width": 86,
+              "height": 75,
+              "xyxy": [
+                231,
+                0,
+                317,
+                75
+              ],
+              "xywh": [
+                231,
+                0,
+                86,
+                75
+              ],
+              "bbox_area_pixels": 6450
+            },
+            "confidence": {
+              "mean": 0.7463,
+              "min": 0.5,
+              "max": 0.9637,
+              "median": 0.7487,
+              "std": 0.1432
+            },
+            "shape_features": {
+              "perimeter_pixels": 352.49,
+              "circularity": 0.4248,
+              "aspect_ratio": 1.2761,
+              "solidity": 0.8934,
+              "extent": 0.6512,
+              "orientation_deg": 62.82,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          },
+          {
+            "component_id": 3,
+            "class_id": 5,
+            "class_name": "EJoint",
+            "pixel_area": 2753,
+            "image_relative_area_pct": 0.89616,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              345.25,
+              43.9
+            ],
+            "bbox": {
+              "xmin": 297,
+              "ymin": 4,
+              "xmax": 380,
+              "ymax": 83,
+              "width": 83,
+              "height": 79,
+              "xyxy": [
+                297,
+                4,
+                380,
+                83
+              ],
+              "xywh": [
+                297,
+                4,
+                83,
+                79
+              ],
+              "bbox_area_pixels": 6557
+            },
+            "confidence": {
+              "mean": 0.5799,
+              "min": 0.5001,
+              "max": 0.6769,
+              "median": 0.5786,
+              "std": 0.0442
+            },
+            "shape_features": {
+              "perimeter_pixels": 302.69,
+              "circularity": 0.3776,
+              "aspect_ratio": 2.1133,
+              "solidity": 0.7532,
+              "extent": 0.4199,
+              "orientation_deg": 34.51,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          }
+        ]
+      },
+      "Efflorescence": {
+        "class_id": 6,
+        "class_name": "Efflorescence",
+        "detected": true,
+        "component_count": 2,
+        "total_pixel_area": 7531,
+        "image_relative_area_pct": 2.4515,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": {
+          "mean": 0.7922,
+          "min": 0.5002,
+          "max": 0.9895,
+          "median": 0.8078,
+          "std": 0.1373
+        },
+        "components": [
+          {
+            "component_id": 1,
+            "class_id": 6,
+            "class_name": "Efflorescence",
+            "pixel_area": 1221,
+            "image_relative_area_pct": 0.39746,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              443.35,
+              185.6
+            ],
+            "bbox": {
+              "xmin": 422,
+              "ymin": 167,
+              "xmax": 461,
+              "ymax": 210,
+              "width": 39,
+              "height": 43,
+              "xyxy": [
+                422,
+                167,
+                461,
+                210
+              ],
+              "xywh": [
+                422,
+                167,
+                39,
+                43
+              ],
+              "bbox_area_pixels": 1677
+            },
+            "confidence": {
+              "mean": 0.6865,
+              "min": 0.5002,
+              "max": 0.844,
+              "median": 0.7065,
+              "std": 0.0994
+            },
+            "shape_features": {
+              "perimeter_pixels": 149.64,
+              "circularity": 0.6852,
+              "aspect_ratio": 1.1053,
+              "solidity": 0.976,
+              "extent": 0.7281,
+              "orientation_deg": 90.0,
+              "is_linear_defect": true,
+              "skeleton_length_pixels": 55,
+              "estimated_avg_width_pixels": 22.2
+            }
+          },
+          {
+            "component_id": 2,
+            "class_id": 6,
+            "class_name": "Efflorescence",
+            "pixel_area": 6310,
+            "image_relative_area_pct": 2.05404,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              521.39,
+              240.41
+            ],
+            "bbox": {
+              "xmin": 483,
+              "ymin": 171,
+              "xmax": 550,
+              "ymax": 311,
+              "width": 67,
+              "height": 140,
+              "xyxy": [
+                483,
+                171,
+                550,
+                311
+              ],
+              "xywh": [
+                483,
+                171,
+                67,
+                140
+              ],
+              "bbox_area_pixels": 9380
+            },
+            "confidence": {
+              "mean": 0.8126,
+              "min": 0.5004,
+              "max": 0.9895,
+              "median": 0.8355,
+              "std": 0.1342
+            },
+            "shape_features": {
+              "perimeter_pixels": 392.35,
+              "circularity": 0.5151,
+              "aspect_ratio": 2.2217,
+              "solidity": 0.8579,
+              "extent": 0.6727,
+              "orientation_deg": 81.09,
+              "is_linear_defect": true,
+              "skeleton_length_pixels": 227,
+              "estimated_avg_width_pixels": 27.8
+            }
+          }
+        ]
+      },
+      "ExposedRebars": {
+        "class_id": 7,
+        "class_name": "ExposedRebars",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "Graffiti": {
+        "class_id": 8,
+        "class_name": "Graffiti",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "Hollowareas": {
+        "class_id": 9,
+        "class_name": "Hollowareas",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "JTape": {
+        "class_id": 10,
+        "class_name": "JTape",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "PEquipment": {
+        "class_id": 11,
+        "class_name": "PEquipment",
+        "detected": true,
+        "component_count": 4,
+        "total_pixel_area": 4315,
+        "image_relative_area_pct": 1.40462,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": {
+          "mean": 0.7592,
+          "min": 0.5002,
+          "max": 0.9927,
+          "median": 0.7526,
+          "std": 0.1543
+        },
+        "components": [
+          {
+            "component_id": 1,
+            "class_id": 11,
+            "class_name": "PEquipment",
+            "pixel_area": 1860,
+            "image_relative_area_pct": 0.60547,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              624.76,
+              449.71
+            ],
+            "bbox": {
+              "xmin": 601,
+              "ymin": 409,
+              "xmax": 640,
+              "ymax": 480,
+              "width": 39,
+              "height": 71,
+              "xyxy": [
+                601,
+                409,
+                640,
+                480
+              ],
+              "xywh": [
+                601,
+                409,
+                39,
+                71
+              ],
+              "bbox_area_pixels": 2769
+            },
+            "confidence": {
+              "mean": 0.858,
+              "min": 0.5004,
+              "max": 0.9927,
+              "median": 0.913,
+              "std": 0.1335
+            },
+            "shape_features": {
+              "perimeter_pixels": 202.71,
+              "circularity": 0.5688,
+              "aspect_ratio": 1.8421,
+              "solidity": 0.9502,
+              "extent": 0.6717,
+              "orientation_deg": 90.0,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          },
+          {
+            "component_id": 2,
+            "class_id": 11,
+            "class_name": "PEquipment",
+            "pixel_area": 961,
+            "image_relative_area_pct": 0.31283,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              312.42,
+              446.64
+            ],
+            "bbox": {
+              "xmin": 290,
+              "ymin": 429,
+              "xmax": 345,
+              "ymax": 465,
+              "width": 55,
+              "height": 36,
+              "xyxy": [
+                290,
+                429,
+                345,
+                465
+              ],
+              "xywh": [
+                290,
+                429,
+                55,
+                36
+              ],
+              "bbox_area_pixels": 1980
+            },
+            "confidence": {
+              "mean": 0.6031,
+              "min": 0.5002,
+              "max": 0.7764,
+              "median": 0.59,
+              "std": 0.0693
+            },
+            "shape_features": {
+              "perimeter_pixels": 171.78,
+              "circularity": 0.4092,
+              "aspect_ratio": 1.505,
+              "solidity": 0.7744,
+              "extent": 0.4854,
+              "orientation_deg": 19.8,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          },
+          {
+            "component_id": 3,
+            "class_id": 11,
+            "class_name": "PEquipment",
+            "pixel_area": 1320,
+            "image_relative_area_pct": 0.42969,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              53.78,
+              473.42
+            ],
+            "bbox": {
+              "xmin": 0,
+              "ymin": 464,
+              "xmax": 123,
+              "ymax": 480,
+              "width": 123,
+              "height": 16,
+              "xyxy": [
+                0,
+                464,
+                123,
+                480
+              ],
+              "xywh": [
+                0,
+                464,
+                123,
+                16
+              ],
+              "bbox_area_pixels": 1968
+            },
+            "confidence": {
+              "mean": 0.7518,
+              "min": 0.5004,
+              "max": 0.9211,
+              "median": 0.7646,
+              "std": 0.1209
+            },
+            "shape_features": {
+              "perimeter_pixels": 267.5,
+              "circularity": 0.2318,
+              "aspect_ratio": 8.1333,
+              "solidity": 0.906,
+              "extent": 0.6707,
+              "orientation_deg": 0.0,
+              "is_linear_defect": true,
+              "skeleton_length_pixels": 109,
+              "estimated_avg_width_pixels": 12.11
+            }
+          },
+          {
+            "component_id": 4,
+            "class_id": 11,
+            "class_name": "PEquipment",
+            "pixel_area": 174,
+            "image_relative_area_pct": 0.05664,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              325.65,
+              471.99
+            ],
+            "bbox": {
+              "xmin": 319,
+              "ymin": 466,
+              "xmax": 335,
+              "ymax": 479,
+              "width": 16,
+              "height": 13,
+              "xyxy": [
+                319,
+                466,
+                335,
+                479
+              ],
+              "xywh": [
+                319,
+                466,
+                16,
+                13
+              ],
+              "bbox_area_pixels": 208
+            },
+            "confidence": {
+              "mean": 0.6216,
+              "min": 0.5039,
+              "max": 0.7185,
+              "median": 0.6279,
+              "std": 0.0667
+            },
+            "shape_features": {
+              "perimeter_pixels": 48.73,
+              "circularity": 0.9209,
+              "aspect_ratio": 1.25,
+              "solidity": 1.0,
+              "extent": 0.8365,
+              "orientation_deg": 90.0,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          }
+        ]
+      },
+      "Restformwork": {
+        "class_id": 12,
+        "class_name": "Restformwork",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "Rockpocket": {
+        "class_id": 13,
+        "class_name": "Rockpocket",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "Rust": {
+        "class_id": 14,
+        "class_name": "Rust",
+        "detected": true,
+        "component_count": 4,
+        "total_pixel_area": 5764,
+        "image_relative_area_pct": 1.8763,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": {
+          "mean": 0.8074,
+          "min": 0.5,
+          "max": 0.9977,
+          "median": 0.849,
+          "std": 0.1571
+        },
+        "components": [
+          {
+            "component_id": 1,
+            "class_id": 14,
+            "class_name": "Rust",
+            "pixel_area": 2015,
+            "image_relative_area_pct": 0.65592,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              234.34,
+              50.28
+            ],
+            "bbox": {
+              "xmin": 215,
+              "ymin": 3,
+              "xmax": 257,
+              "ymax": 103,
+              "width": 42,
+              "height": 100,
+              "xyxy": [
+                215,
+                3,
+                257,
+                103
+              ],
+              "xywh": [
+                215,
+                3,
+                42,
+                100
+              ],
+              "bbox_area_pixels": 4200
+            },
+            "confidence": {
+              "mean": 0.8755,
+              "min": 0.5003,
+              "max": 0.9977,
+              "median": 0.9482,
+              "std": 0.1426
+            },
+            "shape_features": {
+              "perimeter_pixels": 244.17,
+              "circularity": 0.4247,
+              "aspect_ratio": 3.7324,
+              "solidity": 0.912,
+              "extent": 0.4798,
+              "orientation_deg": 21.37,
+              "is_linear_defect": true,
+              "skeleton_length_pixels": 119,
+              "estimated_avg_width_pixels": 16.93
+            }
+          },
+          {
+            "component_id": 2,
+            "class_id": 14,
+            "class_name": "Rust",
+            "pixel_area": 1937,
+            "image_relative_area_pct": 0.63053,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              295.88,
+              41.89
+            ],
+            "bbox": {
+              "xmin": 266,
+              "ymin": 5,
+              "xmax": 322,
+              "ymax": 75,
+              "width": 56,
+              "height": 70,
+              "xyxy": [
+                266,
+                5,
+                322,
+                75
+              ],
+              "xywh": [
+                266,
+                5,
+                56,
+                70
+              ],
+              "bbox_area_pixels": 3920
+            },
+            "confidence": {
+              "mean": 0.7122,
+              "min": 0.5,
+              "max": 0.9674,
+              "median": 0.6865,
+              "std": 0.137
+            },
+            "shape_features": {
+              "perimeter_pixels": 252.11,
+              "circularity": 0.383,
+              "aspect_ratio": 1.303,
+              "solidity": 0.7641,
+              "extent": 0.4941,
+              "orientation_deg": 64.0,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          },
+          {
+            "component_id": 3,
+            "class_id": 14,
+            "class_name": "Rust",
+            "pixel_area": 191,
+            "image_relative_area_pct": 0.06217,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              410.94,
+              57.64
+            ],
+            "bbox": {
+              "xmin": 404,
+              "ymin": 50,
+              "xmax": 420,
+              "ymax": 67,
+              "width": 16,
+              "height": 17,
+              "xyxy": [
+                404,
+                50,
+                420,
+                67
+              ],
+              "xywh": [
+                404,
+                50,
+                16,
+                17
+              ],
+              "bbox_area_pixels": 272
+            },
+            "confidence": {
+              "mean": 0.7567,
+              "min": 0.5004,
+              "max": 0.9616,
+              "median": 0.7752,
+              "std": 0.1435
+            },
+            "shape_features": {
+              "perimeter_pixels": 52.63,
+              "circularity": 0.8666,
+              "aspect_ratio": 1.0667,
+              "solidity": 1.0,
+              "extent": 0.7022,
+              "orientation_deg": 90.0,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          },
+          {
+            "component_id": 4,
+            "class_id": 14,
+            "class_name": "Rust",
+            "pixel_area": 1621,
+            "image_relative_area_pct": 0.52767,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              530.75,
+              220.34
+            ],
+            "bbox": {
+              "xmin": 521,
+              "ymin": 171,
+              "xmax": 542,
+              "ymax": 274,
+              "width": 21,
+              "height": 103,
+              "xyxy": [
+                521,
+                171,
+                542,
+                274
+              ],
+              "xywh": [
+                521,
+                171,
+                21,
+                103
+              ],
+              "bbox_area_pixels": 2163
+            },
+            "confidence": {
+              "mean": 0.8425,
+              "min": 0.5016,
+              "max": 0.9939,
+              "median": 0.8915,
+              "std": 0.1395
+            },
+            "shape_features": {
+              "perimeter_pixels": 226.33,
+              "circularity": 0.3977,
+              "aspect_ratio": 5.1,
+              "solidity": 0.9771,
+              "extent": 0.7494,
+              "orientation_deg": 90.0,
+              "is_linear_defect": true,
+              "skeleton_length_pixels": 141,
+              "estimated_avg_width_pixels": 11.5
+            }
+          }
+        ]
+      },
+      "Spalling": {
+        "class_id": 15,
+        "class_name": "Spalling",
+        "detected": true,
+        "component_count": 1,
+        "total_pixel_area": 4815,
+        "image_relative_area_pct": 1.56738,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": {
+          "mean": 0.8924,
+          "min": 0.5001,
+          "max": 0.999,
+          "median": 0.963,
+          "std": 0.1381
+        },
+        "components": [
+          {
+            "component_id": 1,
+            "class_id": 15,
+            "class_name": "Spalling",
+            "pixel_area": 4815,
+            "image_relative_area_pct": 1.56738,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              292.56,
+              245.53
+            ],
+            "bbox": {
+              "xmin": 273,
+              "ymin": 166,
+              "xmax": 316,
+              "ymax": 324,
+              "width": 43,
+              "height": 158,
+              "xyxy": [
+                273,
+                166,
+                316,
+                324
+              ],
+              "xywh": [
+                273,
+                166,
+                43,
+                158
+              ],
+              "bbox_area_pixels": 6794
+            },
+            "confidence": {
+              "mean": 0.8924,
+              "min": 0.5001,
+              "max": 0.999,
+              "median": 0.963,
+              "std": 0.1381
+            },
+            "shape_features": {
+              "perimeter_pixels": 393.08,
+              "circularity": 0.3916,
+              "aspect_ratio": 3.871,
+              "solidity": 0.8475,
+              "extent": 0.7087,
+              "orientation_deg": 88.3,
+              "is_linear_defect": true,
+              "skeleton_length_pixels": 198,
+              "estimated_avg_width_pixels": 24.32
+            }
+          }
+        ]
+      },
+      "WConccor": {
+        "class_id": 16,
+        "class_name": "WConccor",
+        "detected": false,
+        "component_count": 0,
+        "total_pixel_area": 0,
+        "image_relative_area_pct": 0.0,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": null,
+        "components": []
+      },
+      "Weathering": {
+        "class_id": 17,
+        "class_name": "Weathering",
+        "detected": true,
+        "component_count": 3,
+        "total_pixel_area": 102104,
+        "image_relative_area_pct": 33.23698,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": {
+          "mean": 0.8953,
+          "min": 0.5,
+          "max": 0.9975,
+          "median": 0.9505,
+          "std": 0.1251
+        },
+        "components": [
+          {
+            "component_id": 1,
+            "class_id": 17,
+            "class_name": "Weathering",
+            "pixel_area": 99657,
+            "image_relative_area_pct": 32.44043,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              273.51,
+              247.4
+            ],
+            "bbox": {
+              "xmin": 0,
+              "ymin": 153,
+              "xmax": 579,
+              "ymax": 363,
+              "width": 579,
+              "height": 210,
+              "xyxy": [
+                0,
+                153,
+                579,
+                363
+              ],
+              "xywh": [
+                0,
+                153,
+                579,
+                210
+              ],
+              "bbox_area_pixels": 121590
+            },
+            "confidence": {
+              "mean": 0.9026,
+              "min": 0.5,
+              "max": 0.9975,
+              "median": 0.953,
+              "std": 0.1171
+            },
+            "shape_features": {
+              "perimeter_pixels": 1634.51,
+              "circularity": 0.4688,
+              "aspect_ratio": 2.8073,
+              "solidity": 0.9195,
+              "extent": 0.8196,
+              "orientation_deg": 89.24,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          },
+          {
+            "component_id": 2,
+            "class_id": 17,
+            "class_name": "Weathering",
+            "pixel_area": 2119,
+            "image_relative_area_pct": 0.68978,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              217.22,
+              428.59
+            ],
+            "bbox": {
+              "xmin": 179,
+              "ymin": 412,
+              "xmax": 258,
+              "ymax": 448,
+              "width": 79,
+              "height": 36,
+              "xyxy": [
+                179,
+                412,
+                258,
+                448
+              ],
+              "xywh": [
+                179,
+                412,
+                79,
+                36
+              ],
+              "bbox_area_pixels": 2844
+            },
+            "confidence": {
+              "mean": 0.6054,
+              "min": 0.5,
+              "max": 0.7472,
+              "median": 0.5983,
+              "std": 0.0628
+            },
+            "shape_features": {
+              "perimeter_pixels": 226.61,
+              "circularity": 0.5185,
+              "aspect_ratio": 2.3242,
+              "solidity": 0.9223,
+              "extent": 0.7451,
+              "orientation_deg": 85.91,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          },
+          {
+            "component_id": 3,
+            "class_id": 17,
+            "class_name": "Weathering",
+            "pixel_area": 328,
+            "image_relative_area_pct": 0.10677,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              19.16,
+              442.88
+            ],
+            "bbox": {
+              "xmin": 11,
+              "ymin": 428,
+              "xmax": 27,
+              "ymax": 459,
+              "width": 16,
+              "height": 31,
+              "xyxy": [
+                11,
+                428,
+                27,
+                459
+              ],
+              "xywh": [
+                11,
+                428,
+                16,
+                31
+              ],
+              "bbox_area_pixels": 496
+            },
+            "confidence": {
+              "mean": 0.555,
+              "min": 0.5002,
+              "max": 0.6238,
+              "median": 0.5563,
+              "std": 0.0318
+            },
+            "shape_features": {
+              "perimeter_pixels": 74.77,
+              "circularity": 0.7373,
+              "aspect_ratio": 2.0,
+              "solidity": 1.0,
+              "extent": 0.6613,
+              "orientation_deg": 75.07,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          }
+        ]
+      },
+      "Wetspot": {
+        "class_id": 18,
+        "class_name": "Wetspot",
+        "detected": true,
+        "component_count": 1,
+        "total_pixel_area": 16361,
+        "image_relative_area_pct": 5.32585,
+        "roi_relative_area_pct": null,
+        "total_pixels_inside_roi": null,
+        "confidence": {
+          "mean": 0.6971,
+          "min": 0.5,
+          "max": 0.8692,
+          "median": 0.7009,
+          "std": 0.0941
+        },
+        "components": [
+          {
+            "component_id": 1,
+            "class_id": 18,
+            "class_name": "Wetspot",
+            "pixel_area": 16361,
+            "image_relative_area_pct": 5.32585,
+            "roi_relative_area_pct": null,
+            "pixels_inside_roi": null,
+            "centroid_xy": [
+              124.59,
+              247.7
+            ],
+            "bbox": {
+              "xmin": 64,
+              "ymin": 172,
+              "xmax": 187,
+              "ymax": 331,
+              "width": 123,
+              "height": 159,
+              "xyxy": [
+                64,
+                172,
+                187,
+                331
+              ],
+              "xywh": [
+                64,
+                172,
+                123,
+                159
+              ],
+              "bbox_area_pixels": 19557
+            },
+            "confidence": {
+              "mean": 0.6971,
+              "min": 0.5,
+              "max": 0.8692,
+              "median": 0.7009,
+              "std": 0.0941
+            },
+            "shape_features": {
+              "perimeter_pixels": 556.37,
+              "circularity": 0.6642,
+              "aspect_ratio": 1.2951,
+              "solidity": 0.9301,
+              "extent": 0.8366,
+              "orientation_deg": 90.0,
+              "is_linear_defect": false,
+              "skeleton_length_pixels": null,
+              "estimated_avg_width_pixels": null
+            }
+          }
+        ]
+      }
+    }
+  },
+  "stage_3_visual_severity": {
+    "image_id": "images",
+    "provisional_criticality_tier": "TIER_1_CRITICAL",
+    "detected_tiers": [
+      "TIER_1_CRITICAL",
+      "TIER_2_PROGRESSIVE",
+      "TIER_3_SUPERFICIAL",
+      "TIER_4_NON_STRUCTURAL"
+    ],
+    "tier_summary": {
+      "TIER_1_CRITICAL": {
+        "classes_detected": [
+          "Bearing",
+          "EJoint",
+          "Spalling"
+        ],
+        "component_count": 5,
+        "total_pixel_area": 26814,
+        "image_relative_area_pct": 8.72852
+      },
+      "TIER_2_PROGRESSIVE": {
+        "classes_detected": [
+          "Crack"
+        ],
+        "component_count": 1,
+        "total_pixel_area": 1428,
+        "image_relative_area_pct": 0.46484
+      },
+      "TIER_3_SUPERFICIAL": {
+        "classes_detected": [
+          "Efflorescence",
+          "Rust",
+          "Weathering",
+          "Wetspot"
+        ],
+        "component_count": 10,
+        "total_pixel_area": 131760,
+        "image_relative_area_pct": 42.89062
+      },
+      "TIER_4_NON_STRUCTURAL": {
+        "classes_detected": [
+          "PEquipment"
+        ],
+        "component_count": 4,
+        "total_pixel_area": 4315,
+        "image_relative_area_pct": 1.40462
+      }
+    },
+    "total_defect_image_area_pct": 42.736979166666664,
+    "total_defect_roi_area_pct": null,
+    "validation_status": {
+      "is_calibrated": false,
+      "requires_expert_validation": true,
+      "missing_engineering_parameters": [
+        "structural_component_identity",
+        "element_importance",
+        "physical_defect_dimensions",
+        "internal_defect_depth",
+        "reinforcement_section_loss",
+        "inspection_history",
+        "engineering_assessment"
+      ],
+      "literature_grounding": [
+        "AASHTO Manual for Bridge Element Inspection (MBEI, 2019)",
+        "FHWA Bridge Inspection Reference Manual (BIRM, 2012)",
+        "DIN 1076 / RI-EBW-PR\u00dcF: Bridge Evaluation Guidelines",
+        "FIB Model Code 2010 (Concrete Durability and Service Life Design)"
+      ]
+    },
+    "visual_severity_assessment": {
+      "visual_concern_level": "HIGH_VISUAL_CONCERN",
+      "official_structural_condition_state": "NOT_ASSESSED",
+      "abstention_reason": "OFFICIAL CONDITION STATE ABSTENTION: An official bridge condition state (e.g. AASHTO MBEI CS1-CS4 or NBIS Item 58-60 ratings) CANNOT be established from 2D optical imagery alone. Grounded structural assessment requires unobservable parameters: structural component identity, primary/secondary load path importance, defect depth, rebar section loss, and physical metric calibration. Consequently, the official structural condition state is marked NOT_ASSESSED.",
+      "review_flags": [
+        "BEARING_ARTICULATION_REVIEW",
+        "CRACK_DELAMINATION_REVIEW",
+        "EXPANSION_JOINT_REVIEW",
+        "SURFACE_MOISTURE_LEACHING_REVIEW",
+        "POSSIBLE_SPALLING_REVIEW",
+        "NON_STRUCTURAL_SURFACE_COVERAGE"
+      ]
+    },
+    "coverage_breakdown": {
+      "summed_class_pixel_area": 164317,
+      "summed_class_image_area_pct": 53.488606770833336,
+      "union_pixel_area": 131288,
+      "union_defect_pixel_area": 131288,
+      "union_defect_image_area_pct": 42.736979166666664,
+      "structural_union_pixel_area": 126973,
+      "structural_union_image_area_pct": 41.332356770833336,
+      "non_structural_union_pixel_area": 4315,
+      "non_structural_union_image_area_pct": 1.4046223958333333,
+      "overlapping_defect_pixel_area": 30516,
+      "overlapping_defect_image_area_pct": 9.93359375,
+      "roi_coverage": {
+        "roi_available": false,
+        "summed_class_roi_pixels": null,
+        "union_defect_roi_area_pct": null,
+        "structural_union_roi_area_pct": null,
+        "non_structural_union_roi_area_pct": null
+      }
+    },
+    "confidence_contract": {
+      "segmentation_model_confidence_mean": 0.7421,
+      "calibrated_structural_severity_confidence": null,
+      "confidence_distinction_notice": "CONFIDENCE CONTRACT: The reported confidence score is the mean pixel-level classification probability produced by the neural network segmentation model. This indicates optical pattern clarity, NOT calibrated engineering confidence in structural severity or safety risk."
+    },
+    "missing_data_checklist": {
+      "structural_component_identity": {
+        "status": "MISSING",
+        "required_source": "Bridge BIM, element segmentation, or engineering inspection plan.",
+        "description": "Specific structural element (e.g. pier column, fracture-critical girder, deck slab)."
+      },
+      "element_importance": {
+        "status": "MISSING",
+        "required_source": "National Bridge Inventory (NBI) / AASHTO Element records.",
+        "description": "Primary load-bearing vs. secondary vs. non-structural appurtenance."
+      },
+      "physical_defect_dimensions": {
+        "status": "MISSING",
+        "required_source": "Optical rangefinder, calibrated stereo rig, or fiducial scale.",
+        "description": "Metric crack width (mm), spall surface area (m^2), or rebar span (m)."
+      },
+      "internal_defect_depth": {
+        "status": "MISSING",
+        "required_source": "Non-destructive testing (GPR, ultrasonic pulse velocity, impact echo).",
+        "description": "Subsurface void depth, delamination plane, or crack penetration depth."
+      },
+      "reinforcement_section_loss": {
+        "status": "MISSING",
+        "required_source": "Physical caliper measurement, ultrasonic thickness gauge, or electrochemistry.",
+        "description": "Residual rebar diameter, percentage cross-sectional area loss."
+      },
+      "inspection_history": {
+        "status": "MISSING",
+        "required_source": "Historical bridge inspection agency database (e.g. AASHTO BrM).",
+        "description": "Defect progression rate, date of first observation, active vs dormant status."
+      },
+      "engineering_assessment": {
+        "status": "MISSING",
+        "required_source": "Licensed Professional Engineer (PE / SE) field evaluation.",
+        "description": "Certified structural capacity determination and maintenance work order sign-off."
+      }
+    },
+    "observations": [
+      {
+        "finding_id": "FINDING-BEARI-001",
+        "class_name": "Bearing",
+        "class_id": 1,
+        "component_id": 1,
+        "visual_concern_level": "HIGH_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 1273,
+        "image_relative_extent_pct": 0.41439,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 441,
+          "ymin": 137,
+          "xmax": 508,
+          "ymax": 163,
+          "width": 67,
+          "height": 26,
+          "xyxy": [
+            441,
+            137,
+            508,
+            163
+          ],
+          "xywh": [
+            441,
+            137,
+            67,
+            26
+          ],
+          "bbox_area_pixels": 1742
+        },
+        "confidence_stats": {
+          "mean": 0.7638,
+          "min": 0.5003,
+          "max": 0.9437,
+          "median": 0.7954,
+          "std": 0.1357
+        },
+        "shape_features": {
+          "perimeter_pixels": 168.33,
+          "circularity": 0.5646,
+          "aspect_ratio": 2.64,
+          "solidity": 0.9482,
+          "extent": 0.7308,
+          "orientation_deg": 90.0,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected Bearing component of 1273 px (0.4144% of image). Spatial centroid at (476.40455616653577, 150.0738413197172) within bounding box [441, 137, 508, 163]. Model confidence: mean=0.76, min=0.50, max=0.94. Shape descriptors: circularity=0.565, solidity=0.948, aspect_ratio=2.6.",
+        "explanation": "Bridge bearing assembly transmitting superstructure loads to the substructure while permitting thermal translation and rotation. Bearing distress (corrosion, elastomeric shear bulging, frozen rockers) induces unintended moments and restrained forces.",
+        "literature_reference": "AASHTO MBEI (2019) Element Category: Bearings (Elements 310-316); FHWA BIRM (2012) Chapter 10 (Bridge Bearings).",
+        "inspector_action_items": [
+          "Check alignment, tilt, and expansion movement clearance against temperature curves.",
+          "Examine elastomeric pads for bulging, debonding, or cracking.",
+          "Verify anchor bolt tightness and clear debris/grit accumulation from bearing seat."
+        ],
+        "triggered_review_flags": [
+          "BEARING_ARTICULATION_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-CRACK-002",
+        "class_name": "Crack",
+        "class_id": 3,
+        "component_id": 1,
+        "visual_concern_level": "MODERATE_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 1428,
+        "image_relative_extent_pct": 0.46484,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 289,
+          "ymin": 154,
+          "xmax": 319,
+          "ymax": 309,
+          "width": 30,
+          "height": 155,
+          "xyxy": [
+            289,
+            154,
+            319,
+            309
+          ],
+          "xywh": [
+            289,
+            154,
+            30,
+            155
+          ],
+          "bbox_area_pixels": 4650
+        },
+        "confidence_stats": {
+          "mean": 0.8329,
+          "min": 0.5003,
+          "max": 1.0,
+          "median": 0.8735,
+          "std": 0.1549
+        },
+        "shape_features": {
+          "perimeter_pixels": 356.89,
+          "circularity": 0.1409,
+          "aspect_ratio": 5.5904,
+          "solidity": 0.4971,
+          "extent": 0.3071,
+          "orientation_deg": 5.58,
+          "is_linear_defect": true,
+          "skeleton_length_pixels": 204,
+          "estimated_avg_width_pixels": 7.0
+        },
+        "visual_evidence": "Detected Crack component of 1428 px (0.4648% of image). Spatial centroid at (302.0035014005602, 216.8564425770308) within bounding box [289, 154, 319, 309]. Model confidence: mean=0.83, min=0.50, max=1.00. Centerline skeleton length: 204 px, estimated width: 7.0 px, aspect ratio: 5.6.",
+        "explanation": "Discrete linear fracture in concrete indicating tensile stress exceeding tensile capacity. Cracks create preferential pathways for water, oxygen, and deicing salt penetration into the reinforcing cage, accelerating rebar depassivation.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1130 - Cracking); FIB Model Code 2010 Section 7.7.3 (durability crack limit w_lim = 0.2-0.3 mm); Eurocode 2 (EN 1992-1-1 Section 7.3).",
+        "inspector_action_items": [
+          "Measure physical crack width using an optical crack comparator card or gauge.",
+          "Determine whether crack pattern reflects flexure, shear, torsion, or plastic shrinkage.",
+          "Verify whether crack is active (dynamic thermal/live load movement) or dormant."
+        ],
+        "triggered_review_flags": [
+          "CRACK_DELAMINATION_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-EJOIN-003",
+        "class_name": "EJoint",
+        "class_id": 5,
+        "component_id": 1,
+        "visual_concern_level": "HIGH_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 13773,
+        "image_relative_extent_pct": 4.4834,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 4,
+          "ymin": 0,
+          "xmax": 220,
+          "ymax": 103,
+          "width": 216,
+          "height": 103,
+          "xyxy": [
+            4,
+            0,
+            220,
+            103
+          ],
+          "xywh": [
+            4,
+            0,
+            216,
+            103
+          ],
+          "bbox_area_pixels": 22248
+        },
+        "confidence_stats": {
+          "mean": 0.7458,
+          "min": 0.5,
+          "max": 0.9478,
+          "median": 0.7695,
+          "std": 0.1331
+        },
+        "shape_features": {
+          "perimeter_pixels": 749.09,
+          "circularity": 0.3084,
+          "aspect_ratio": 2.1321,
+          "solidity": 0.816,
+          "extent": 0.6191,
+          "orientation_deg": 88.53,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected EJoint component of 13773 px (4.4834% of image). Spatial centroid at (121.23139475785958, 48.11079648587817) within bounding box [4, 0, 220, 103]. Model confidence: mean=0.75, min=0.50, max=0.95. Shape descriptors: circularity=0.308, solidity=0.816, aspect_ratio=2.1.",
+        "explanation": "Superstructure expansion joint. Joint failure allows runoff water, road salts, and grit to leak onto underlying pier caps, bearings, and beam ends, triggering accelerated substructure decay.",
+        "literature_reference": "AASHTO MBEI (2019) Element Category: Joints (Elements 300-305); FHWA BIRM (2012) Chapter 9 (Expansion Joints).",
+        "inspector_action_items": [
+          "Inspect joint seal watertightness and examine substructure directly below for leakage.",
+          "Measure physical joint gap against design ambient temperature range.",
+          "Check nosing concrete/steel for impact fractures, loose armor, or debris impaction."
+        ],
+        "triggered_review_flags": [
+          "EXPANSION_JOINT_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-EJOIN-004",
+        "class_name": "EJoint",
+        "class_id": 5,
+        "component_id": 2,
+        "visual_concern_level": "HIGH_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 4200,
+        "image_relative_extent_pct": 1.36719,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 231,
+          "ymin": 0,
+          "xmax": 317,
+          "ymax": 75,
+          "width": 86,
+          "height": 75,
+          "xyxy": [
+            231,
+            0,
+            317,
+            75
+          ],
+          "xywh": [
+            231,
+            0,
+            86,
+            75
+          ],
+          "bbox_area_pixels": 6450
+        },
+        "confidence_stats": {
+          "mean": 0.7463,
+          "min": 0.5,
+          "max": 0.9637,
+          "median": 0.7487,
+          "std": 0.1432
+        },
+        "shape_features": {
+          "perimeter_pixels": 352.49,
+          "circularity": 0.4248,
+          "aspect_ratio": 1.2761,
+          "solidity": 0.8934,
+          "extent": 0.6512,
+          "orientation_deg": 62.82,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected EJoint component of 4200 px (1.3672% of image). Spatial centroid at (272.73857142857145, 30.161428571428573) within bounding box [231, 0, 317, 75]. Model confidence: mean=0.75, min=0.50, max=0.96. Shape descriptors: circularity=0.425, solidity=0.893, aspect_ratio=1.3.",
+        "explanation": "Superstructure expansion joint. Joint failure allows runoff water, road salts, and grit to leak onto underlying pier caps, bearings, and beam ends, triggering accelerated substructure decay.",
+        "literature_reference": "AASHTO MBEI (2019) Element Category: Joints (Elements 300-305); FHWA BIRM (2012) Chapter 9 (Expansion Joints).",
+        "inspector_action_items": [
+          "Inspect joint seal watertightness and examine substructure directly below for leakage.",
+          "Measure physical joint gap against design ambient temperature range.",
+          "Check nosing concrete/steel for impact fractures, loose armor, or debris impaction."
+        ],
+        "triggered_review_flags": [
+          "EXPANSION_JOINT_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-EJOIN-005",
+        "class_name": "EJoint",
+        "class_id": 5,
+        "component_id": 3,
+        "visual_concern_level": "HIGH_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 2753,
+        "image_relative_extent_pct": 0.89616,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 297,
+          "ymin": 4,
+          "xmax": 380,
+          "ymax": 83,
+          "width": 83,
+          "height": 79,
+          "xyxy": [
+            297,
+            4,
+            380,
+            83
+          ],
+          "xywh": [
+            297,
+            4,
+            83,
+            79
+          ],
+          "bbox_area_pixels": 6557
+        },
+        "confidence_stats": {
+          "mean": 0.5799,
+          "min": 0.5001,
+          "max": 0.6769,
+          "median": 0.5786,
+          "std": 0.0442
+        },
+        "shape_features": {
+          "perimeter_pixels": 302.69,
+          "circularity": 0.3776,
+          "aspect_ratio": 2.1133,
+          "solidity": 0.7532,
+          "extent": 0.4199,
+          "orientation_deg": 34.51,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected EJoint component of 2753 px (0.8962% of image). Spatial centroid at (345.25499455139845, 43.89683981111515) within bounding box [297, 4, 380, 83]. Model confidence: mean=0.58, min=0.50, max=0.68. Shape descriptors: circularity=0.378, solidity=0.753, aspect_ratio=2.1.",
+        "explanation": "Superstructure expansion joint. Joint failure allows runoff water, road salts, and grit to leak onto underlying pier caps, bearings, and beam ends, triggering accelerated substructure decay.",
+        "literature_reference": "AASHTO MBEI (2019) Element Category: Joints (Elements 300-305); FHWA BIRM (2012) Chapter 9 (Expansion Joints).",
+        "inspector_action_items": [
+          "Inspect joint seal watertightness and examine substructure directly below for leakage.",
+          "Measure physical joint gap against design ambient temperature range.",
+          "Check nosing concrete/steel for impact fractures, loose armor, or debris impaction."
+        ],
+        "triggered_review_flags": [
+          "EXPANSION_JOINT_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-EFFLO-006",
+        "class_name": "Efflorescence",
+        "class_id": 6,
+        "component_id": 1,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 1221,
+        "image_relative_extent_pct": 0.39746,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 422,
+          "ymin": 167,
+          "xmax": 461,
+          "ymax": 210,
+          "width": 39,
+          "height": 43,
+          "xyxy": [
+            422,
+            167,
+            461,
+            210
+          ],
+          "xywh": [
+            422,
+            167,
+            39,
+            43
+          ],
+          "bbox_area_pixels": 1677
+        },
+        "confidence_stats": {
+          "mean": 0.6865,
+          "min": 0.5002,
+          "max": 0.844,
+          "median": 0.7065,
+          "std": 0.0994
+        },
+        "shape_features": {
+          "perimeter_pixels": 149.64,
+          "circularity": 0.6852,
+          "aspect_ratio": 1.1053,
+          "solidity": 0.976,
+          "extent": 0.7281,
+          "orientation_deg": 90.0,
+          "is_linear_defect": true,
+          "skeleton_length_pixels": 55,
+          "estimated_avg_width_pixels": 22.2
+        },
+        "visual_evidence": "Detected Efflorescence component of 1221 px (0.3975% of image). Spatial centroid at (443.35380835380835, 185.6019656019656) within bounding box [422, 167, 461, 210]. Model confidence: mean=0.69, min=0.50, max=0.84. Centerline skeleton length: 55 px, estimated width: 22.2 px, aspect ratio: 1.1.",
+        "explanation": "Crystalline deposit of soluble salts (typically calcium carbonate) leached from concrete paste by percolating water and deposited upon surface evaporation. Confirms active internal water flow through the structural element.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1120 - Efflorescence/Rust Staining); FHWA BIRM (2012) Section 7.2.5.",
+        "inspector_action_items": [
+          "Trace moisture source (deck leakage, clogged drains, or joint failure).",
+          "Check whether efflorescence is accompanied by rust staining or active dripping.",
+          "Inspect underside of deck slab or diaphragm for signs of internal leaching."
+        ],
+        "triggered_review_flags": [
+          "SURFACE_MOISTURE_LEACHING_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-EFFLO-007",
+        "class_name": "Efflorescence",
+        "class_id": 6,
+        "component_id": 2,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 6310,
+        "image_relative_extent_pct": 2.05404,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 483,
+          "ymin": 171,
+          "xmax": 550,
+          "ymax": 311,
+          "width": 67,
+          "height": 140,
+          "xyxy": [
+            483,
+            171,
+            550,
+            311
+          ],
+          "xywh": [
+            483,
+            171,
+            67,
+            140
+          ],
+          "bbox_area_pixels": 9380
+        },
+        "confidence_stats": {
+          "mean": 0.8126,
+          "min": 0.5004,
+          "max": 0.9895,
+          "median": 0.8355,
+          "std": 0.1342
+        },
+        "shape_features": {
+          "perimeter_pixels": 392.35,
+          "circularity": 0.5151,
+          "aspect_ratio": 2.2217,
+          "solidity": 0.8579,
+          "extent": 0.6727,
+          "orientation_deg": 81.09,
+          "is_linear_defect": true,
+          "skeleton_length_pixels": 227,
+          "estimated_avg_width_pixels": 27.8
+        },
+        "visual_evidence": "Detected Efflorescence component of 6310 px (2.0540% of image). Spatial centroid at (521.3857369255151, 240.41014263074484) within bounding box [483, 171, 550, 311]. Model confidence: mean=0.81, min=0.50, max=0.99. Centerline skeleton length: 227 px, estimated width: 27.8 px, aspect ratio: 2.2.",
+        "explanation": "Crystalline deposit of soluble salts (typically calcium carbonate) leached from concrete paste by percolating water and deposited upon surface evaporation. Confirms active internal water flow through the structural element.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1120 - Efflorescence/Rust Staining); FHWA BIRM (2012) Section 7.2.5.",
+        "inspector_action_items": [
+          "Trace moisture source (deck leakage, clogged drains, or joint failure).",
+          "Check whether efflorescence is accompanied by rust staining or active dripping.",
+          "Inspect underside of deck slab or diaphragm for signs of internal leaching."
+        ],
+        "triggered_review_flags": [
+          "SURFACE_MOISTURE_LEACHING_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-PEQUI-008",
+        "class_name": "PEquipment",
+        "class_id": 11,
+        "component_id": 1,
+        "visual_concern_level": "NEGLIGIBLE_NON_STRUCTURAL",
+        "is_structural": false,
+        "pixel_area": 1860,
+        "image_relative_extent_pct": 0.60547,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 601,
+          "ymin": 409,
+          "xmax": 640,
+          "ymax": 480,
+          "width": 39,
+          "height": 71,
+          "xyxy": [
+            601,
+            409,
+            640,
+            480
+          ],
+          "xywh": [
+            601,
+            409,
+            39,
+            71
+          ],
+          "bbox_area_pixels": 2769
+        },
+        "confidence_stats": {
+          "mean": 0.858,
+          "min": 0.5004,
+          "max": 0.9927,
+          "median": 0.913,
+          "std": 0.1335
+        },
+        "shape_features": {
+          "perimeter_pixels": 202.71,
+          "circularity": 0.5688,
+          "aspect_ratio": 1.8421,
+          "solidity": 0.9502,
+          "extent": 0.6717,
+          "orientation_deg": 90.0,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected PEquipment component of 1860 px (0.6055% of image). Spatial centroid at (624.7575268817204, 449.71344086021503) within bounding box [601, 409, 640, 480]. Model confidence: mean=0.86, min=0.50, max=0.99. Shape descriptors: circularity=0.569, solidity=0.950, aspect_ratio=1.8.",
+        "explanation": "Inspection access gear, rigging, temporary sensors, or utility conduits.",
+        "literature_reference": "FHWA BIRM (2012) Chapter 2 (Bridge Utilities and Appurtenances).",
+        "inspector_action_items": [
+          "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
+        ],
+        "triggered_review_flags": []
+      },
+      {
+        "finding_id": "FINDING-PEQUI-009",
+        "class_name": "PEquipment",
+        "class_id": 11,
+        "component_id": 2,
+        "visual_concern_level": "NEGLIGIBLE_NON_STRUCTURAL",
+        "is_structural": false,
+        "pixel_area": 961,
+        "image_relative_extent_pct": 0.31283,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 290,
+          "ymin": 429,
+          "xmax": 345,
+          "ymax": 465,
+          "width": 55,
+          "height": 36,
+          "xyxy": [
+            290,
+            429,
+            345,
+            465
+          ],
+          "xywh": [
+            290,
+            429,
+            55,
+            36
+          ],
+          "bbox_area_pixels": 1980
+        },
+        "confidence_stats": {
+          "mean": 0.6031,
+          "min": 0.5002,
+          "max": 0.7764,
+          "median": 0.59,
+          "std": 0.0693
+        },
+        "shape_features": {
+          "perimeter_pixels": 171.78,
+          "circularity": 0.4092,
+          "aspect_ratio": 1.505,
+          "solidity": 0.7744,
+          "extent": 0.4854,
+          "orientation_deg": 19.8,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected PEquipment component of 961 px (0.3128% of image). Spatial centroid at (312.42247658688865, 446.6420395421436) within bounding box [290, 429, 345, 465]. Model confidence: mean=0.60, min=0.50, max=0.78. Shape descriptors: circularity=0.409, solidity=0.774, aspect_ratio=1.5.",
+        "explanation": "Inspection access gear, rigging, temporary sensors, or utility conduits.",
+        "literature_reference": "FHWA BIRM (2012) Chapter 2 (Bridge Utilities and Appurtenances).",
+        "inspector_action_items": [
+          "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
+        ],
+        "triggered_review_flags": []
+      },
+      {
+        "finding_id": "FINDING-PEQUI-010",
+        "class_name": "PEquipment",
+        "class_id": 11,
+        "component_id": 3,
+        "visual_concern_level": "NEGLIGIBLE_NON_STRUCTURAL",
+        "is_structural": false,
+        "pixel_area": 1320,
+        "image_relative_extent_pct": 0.42969,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 0,
+          "ymin": 464,
+          "xmax": 123,
+          "ymax": 480,
+          "width": 123,
+          "height": 16,
+          "xyxy": [
+            0,
+            464,
+            123,
+            480
+          ],
+          "xywh": [
+            0,
+            464,
+            123,
+            16
+          ],
+          "bbox_area_pixels": 1968
+        },
+        "confidence_stats": {
+          "mean": 0.7518,
+          "min": 0.5004,
+          "max": 0.9211,
+          "median": 0.7646,
+          "std": 0.1209
+        },
+        "shape_features": {
+          "perimeter_pixels": 267.5,
+          "circularity": 0.2318,
+          "aspect_ratio": 8.1333,
+          "solidity": 0.906,
+          "extent": 0.6707,
+          "orientation_deg": 0.0,
+          "is_linear_defect": true,
+          "skeleton_length_pixels": 109,
+          "estimated_avg_width_pixels": 12.11
+        },
+        "visual_evidence": "Detected PEquipment component of 1320 px (0.4297% of image). Spatial centroid at (53.77878787878788, 473.4166666666667) within bounding box [0, 464, 123, 480]. Model confidence: mean=0.75, min=0.50, max=0.92. Centerline skeleton length: 109 px, estimated width: 12.1 px, aspect ratio: 8.1.",
+        "explanation": "Inspection access gear, rigging, temporary sensors, or utility conduits.",
+        "literature_reference": "FHWA BIRM (2012) Chapter 2 (Bridge Utilities and Appurtenances).",
+        "inspector_action_items": [
+          "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
+        ],
+        "triggered_review_flags": []
+      },
+      {
+        "finding_id": "FINDING-PEQUI-011",
+        "class_name": "PEquipment",
+        "class_id": 11,
+        "component_id": 4,
+        "visual_concern_level": "NEGLIGIBLE_NON_STRUCTURAL",
+        "is_structural": false,
+        "pixel_area": 174,
+        "image_relative_extent_pct": 0.05664,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 319,
+          "ymin": 466,
+          "xmax": 335,
+          "ymax": 479,
+          "width": 16,
+          "height": 13,
+          "xyxy": [
+            319,
+            466,
+            335,
+            479
+          ],
+          "xywh": [
+            319,
+            466,
+            16,
+            13
+          ],
+          "bbox_area_pixels": 208
+        },
+        "confidence_stats": {
+          "mean": 0.6216,
+          "min": 0.5039,
+          "max": 0.7185,
+          "median": 0.6279,
+          "std": 0.0667
+        },
+        "shape_features": {
+          "perimeter_pixels": 48.73,
+          "circularity": 0.9209,
+          "aspect_ratio": 1.25,
+          "solidity": 1.0,
+          "extent": 0.8365,
+          "orientation_deg": 90.0,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected PEquipment component of 174 px (0.0566% of image). Spatial centroid at (325.64942528735634, 471.98850574712645) within bounding box [319, 466, 335, 479]. Model confidence: mean=0.62, min=0.50, max=0.72. Shape descriptors: circularity=0.921, solidity=1.000, aspect_ratio=1.2.",
+        "explanation": "Inspection access gear, rigging, temporary sensors, or utility conduits.",
+        "literature_reference": "FHWA BIRM (2012) Chapter 2 (Bridge Utilities and Appurtenances).",
+        "inspector_action_items": [
+          "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
+        ],
+        "triggered_review_flags": []
+      },
+      {
+        "finding_id": "FINDING-RUST-012",
+        "class_name": "Rust",
+        "class_id": 14,
+        "component_id": 1,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 2015,
+        "image_relative_extent_pct": 0.65592,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 215,
+          "ymin": 3,
+          "xmax": 257,
+          "ymax": 103,
+          "width": 42,
+          "height": 100,
+          "xyxy": [
+            215,
+            3,
+            257,
+            103
+          ],
+          "xywh": [
+            215,
+            3,
+            42,
+            100
+          ],
+          "bbox_area_pixels": 4200
+        },
+        "confidence_stats": {
+          "mean": 0.8755,
+          "min": 0.5003,
+          "max": 0.9977,
+          "median": 0.9482,
+          "std": 0.1426
+        },
+        "shape_features": {
+          "perimeter_pixels": 244.17,
+          "circularity": 0.4247,
+          "aspect_ratio": 3.7324,
+          "solidity": 0.912,
+          "extent": 0.4798,
+          "orientation_deg": 21.37,
+          "is_linear_defect": true,
+          "skeleton_length_pixels": 119,
+          "estimated_avg_width_pixels": 16.93
+        },
+        "visual_evidence": "Detected Rust component of 2015 px (0.6559% of image). Spatial centroid at (234.3439205955335, 50.282382133995036) within bounding box [215, 3, 257, 103]. Model confidence: mean=0.88, min=0.50, max=1.00. Centerline skeleton length: 119 px, estimated width: 16.9 px, aspect ratio: 3.7.",
+        "explanation": "Iron oxide discoloration or staining on concrete surface. Frequently indicates subsurface reinforcement corrosion leaching rust outward through concrete pore network.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1120 - Efflorescence/Rust Staining); FHWA BIRM (2012) Section 7.2.3.",
+        "inspector_action_items": [
+          "Probe rust-stained area for hollow-sounding delamination planes.",
+          "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
+          "Measure concrete cover thickness with a magnetic covermeter."
+        ],
+        "triggered_review_flags": [
+          "SURFACE_MOISTURE_LEACHING_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-RUST-013",
+        "class_name": "Rust",
+        "class_id": 14,
+        "component_id": 2,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 1937,
+        "image_relative_extent_pct": 0.63053,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 266,
+          "ymin": 5,
+          "xmax": 322,
+          "ymax": 75,
+          "width": 56,
+          "height": 70,
+          "xyxy": [
+            266,
+            5,
+            322,
+            75
+          ],
+          "xywh": [
+            266,
+            5,
+            56,
+            70
+          ],
+          "bbox_area_pixels": 3920
+        },
+        "confidence_stats": {
+          "mean": 0.7122,
+          "min": 0.5,
+          "max": 0.9674,
+          "median": 0.6865,
+          "std": 0.137
+        },
+        "shape_features": {
+          "perimeter_pixels": 252.11,
+          "circularity": 0.383,
+          "aspect_ratio": 1.303,
+          "solidity": 0.7641,
+          "extent": 0.4941,
+          "orientation_deg": 64.0,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected Rust component of 1937 px (0.6305% of image). Spatial centroid at (295.88022715539495, 41.88538977800723) within bounding box [266, 5, 322, 75]. Model confidence: mean=0.71, min=0.50, max=0.97. Shape descriptors: circularity=0.383, solidity=0.764, aspect_ratio=1.3.",
+        "explanation": "Iron oxide discoloration or staining on concrete surface. Frequently indicates subsurface reinforcement corrosion leaching rust outward through concrete pore network.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1120 - Efflorescence/Rust Staining); FHWA BIRM (2012) Section 7.2.3.",
+        "inspector_action_items": [
+          "Probe rust-stained area for hollow-sounding delamination planes.",
+          "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
+          "Measure concrete cover thickness with a magnetic covermeter."
+        ],
+        "triggered_review_flags": [
+          "SURFACE_MOISTURE_LEACHING_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-RUST-014",
+        "class_name": "Rust",
+        "class_id": 14,
+        "component_id": 3,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 191,
+        "image_relative_extent_pct": 0.06217,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 404,
+          "ymin": 50,
+          "xmax": 420,
+          "ymax": 67,
+          "width": 16,
+          "height": 17,
+          "xyxy": [
+            404,
+            50,
+            420,
+            67
+          ],
+          "xywh": [
+            404,
+            50,
+            16,
+            17
+          ],
+          "bbox_area_pixels": 272
+        },
+        "confidence_stats": {
+          "mean": 0.7567,
+          "min": 0.5004,
+          "max": 0.9616,
+          "median": 0.7752,
+          "std": 0.1435
+        },
+        "shape_features": {
+          "perimeter_pixels": 52.63,
+          "circularity": 0.8666,
+          "aspect_ratio": 1.0667,
+          "solidity": 1.0,
+          "extent": 0.7022,
+          "orientation_deg": 90.0,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected Rust component of 191 px (0.0622% of image). Spatial centroid at (410.9371727748691, 57.64397905759162) within bounding box [404, 50, 420, 67]. Model confidence: mean=0.76, min=0.50, max=0.96. Shape descriptors: circularity=0.867, solidity=1.000, aspect_ratio=1.1.",
+        "explanation": "Iron oxide discoloration or staining on concrete surface. Frequently indicates subsurface reinforcement corrosion leaching rust outward through concrete pore network.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1120 - Efflorescence/Rust Staining); FHWA BIRM (2012) Section 7.2.3.",
+        "inspector_action_items": [
+          "Probe rust-stained area for hollow-sounding delamination planes.",
+          "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
+          "Measure concrete cover thickness with a magnetic covermeter."
+        ],
+        "triggered_review_flags": [
+          "SURFACE_MOISTURE_LEACHING_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-RUST-015",
+        "class_name": "Rust",
+        "class_id": 14,
+        "component_id": 4,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 1621,
+        "image_relative_extent_pct": 0.52767,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 521,
+          "ymin": 171,
+          "xmax": 542,
+          "ymax": 274,
+          "width": 21,
+          "height": 103,
+          "xyxy": [
+            521,
+            171,
+            542,
+            274
+          ],
+          "xywh": [
+            521,
+            171,
+            21,
+            103
+          ],
+          "bbox_area_pixels": 2163
+        },
+        "confidence_stats": {
+          "mean": 0.8425,
+          "min": 0.5016,
+          "max": 0.9939,
+          "median": 0.8915,
+          "std": 0.1395
+        },
+        "shape_features": {
+          "perimeter_pixels": 226.33,
+          "circularity": 0.3977,
+          "aspect_ratio": 5.1,
+          "solidity": 0.9771,
+          "extent": 0.7494,
+          "orientation_deg": 90.0,
+          "is_linear_defect": true,
+          "skeleton_length_pixels": 141,
+          "estimated_avg_width_pixels": 11.5
+        },
+        "visual_evidence": "Detected Rust component of 1621 px (0.5277% of image). Spatial centroid at (530.7470697100555, 220.33929673041334) within bounding box [521, 171, 542, 274]. Model confidence: mean=0.84, min=0.50, max=0.99. Centerline skeleton length: 141 px, estimated width: 11.5 px, aspect ratio: 5.1.",
+        "explanation": "Iron oxide discoloration or staining on concrete surface. Frequently indicates subsurface reinforcement corrosion leaching rust outward through concrete pore network.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1120 - Efflorescence/Rust Staining); FHWA BIRM (2012) Section 7.2.3.",
+        "inspector_action_items": [
+          "Probe rust-stained area for hollow-sounding delamination planes.",
+          "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
+          "Measure concrete cover thickness with a magnetic covermeter."
+        ],
+        "triggered_review_flags": [
+          "SURFACE_MOISTURE_LEACHING_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-SPALL-016",
+        "class_name": "Spalling",
+        "class_id": 15,
+        "component_id": 1,
+        "visual_concern_level": "HIGH_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 4815,
+        "image_relative_extent_pct": 1.56738,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 273,
+          "ymin": 166,
+          "xmax": 316,
+          "ymax": 324,
+          "width": 43,
+          "height": 158,
+          "xyxy": [
+            273,
+            166,
+            316,
+            324
+          ],
+          "xywh": [
+            273,
+            166,
+            43,
+            158
+          ],
+          "bbox_area_pixels": 6794
+        },
+        "confidence_stats": {
+          "mean": 0.8924,
+          "min": 0.5001,
+          "max": 0.999,
+          "median": 0.963,
+          "std": 0.1381
+        },
+        "shape_features": {
+          "perimeter_pixels": 393.08,
+          "circularity": 0.3916,
+          "aspect_ratio": 3.871,
+          "solidity": 0.8475,
+          "extent": 0.7087,
+          "orientation_deg": 88.3,
+          "is_linear_defect": true,
+          "skeleton_length_pixels": 198,
+          "estimated_avg_width_pixels": 24.32
+        },
+        "visual_evidence": "Detected Spalling component of 4815 px (1.5674% of image). Spatial centroid at (292.5632398753894, 245.531256490135) within bounding box [273, 166, 316, 324]. Model confidence: mean=0.89, min=0.50, max=1.00. Centerline skeleton length: 198 px, estimated width: 24.3 px, aspect ratio: 3.9.",
+        "explanation": "Spalling represents the physical loss of surface concrete cover, often driven by internal expansion pressure from corroding reinforcing steel, freeze-thaw cycles, or localized impact. When cover concrete breaks away, the underlying reinforcement or deeper matrix becomes directly exposed to atmospheric chlorides.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1080 - Delamination/Spall/Patched Area); FHWA BIRM (2012) Section 7.2.2; DIN 1076 Section 5.3 (Schadensgruppe Beton).",
+        "inspector_action_items": [
+          "Perform acoustic hammer sounding around defect boundaries to map unseparated delaminations.",
+          "Inspect the base of the cavity for exposed or corroding reinforcing steel bars.",
+          "Measure physical cavity depth and surface area with calibrated field gauges."
+        ],
+        "triggered_review_flags": [
+          "POSSIBLE_SPALLING_REVIEW"
+        ]
+      },
+      {
+        "finding_id": "FINDING-WEATH-017",
+        "class_name": "Weathering",
+        "class_id": 17,
+        "component_id": 1,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 99657,
+        "image_relative_extent_pct": 32.44043,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 0,
+          "ymin": 153,
+          "xmax": 579,
+          "ymax": 363,
+          "width": 579,
+          "height": 210,
+          "xyxy": [
+            0,
+            153,
+            579,
+            363
+          ],
+          "xywh": [
+            0,
+            153,
+            579,
+            210
+          ],
+          "bbox_area_pixels": 121590
+        },
+        "confidence_stats": {
+          "mean": 0.9026,
+          "min": 0.5,
+          "max": 0.9975,
+          "median": 0.953,
+          "std": 0.1171
+        },
+        "shape_features": {
+          "perimeter_pixels": 1634.51,
+          "circularity": 0.4688,
+          "aspect_ratio": 2.8073,
+          "solidity": 0.9195,
+          "extent": 0.8196,
+          "orientation_deg": 89.24,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected Weathering component of 99657 px (32.4404% of image). Spatial centroid at (273.50755089958557, 247.40493894056615) within bounding box [0, 153, 579, 363]. Model confidence: mean=0.90, min=0.50, max=1.00. Shape descriptors: circularity=0.469, solidity=0.919, aspect_ratio=2.8.",
+        "explanation": "Superficial atmospheric erosion, biological growth (moss/lichen), or aggregate exposure from environmental weathering. Generally cosmetic in early stages.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1190 - Abrasion/Wear); FHWA BIRM (2012) Section 7.2.6.",
+        "inspector_action_items": [
+          "Check if aggregate exposure has progressed into active surface paste erosion.",
+          "Confirm absence of cracking or delamination beneath weathered skin."
+        ],
+        "triggered_review_flags": []
+      },
+      {
+        "finding_id": "FINDING-WEATH-018",
+        "class_name": "Weathering",
+        "class_id": 17,
+        "component_id": 2,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 2119,
+        "image_relative_extent_pct": 0.68978,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 179,
+          "ymin": 412,
+          "xmax": 258,
+          "ymax": 448,
+          "width": 79,
+          "height": 36,
+          "xyxy": [
+            179,
+            412,
+            258,
+            448
+          ],
+          "xywh": [
+            179,
+            412,
+            79,
+            36
+          ],
+          "bbox_area_pixels": 2844
+        },
+        "confidence_stats": {
+          "mean": 0.6054,
+          "min": 0.5,
+          "max": 0.7472,
+          "median": 0.5983,
+          "std": 0.0628
+        },
+        "shape_features": {
+          "perimeter_pixels": 226.61,
+          "circularity": 0.5185,
+          "aspect_ratio": 2.3242,
+          "solidity": 0.9223,
+          "extent": 0.7451,
+          "orientation_deg": 85.91,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected Weathering component of 2119 px (0.6898% of image). Spatial centroid at (217.2203869749882, 428.58706937234547) within bounding box [179, 412, 258, 448]. Model confidence: mean=0.61, min=0.50, max=0.75. Shape descriptors: circularity=0.519, solidity=0.922, aspect_ratio=2.3.",
+        "explanation": "Superficial atmospheric erosion, biological growth (moss/lichen), or aggregate exposure from environmental weathering. Generally cosmetic in early stages.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1190 - Abrasion/Wear); FHWA BIRM (2012) Section 7.2.6.",
+        "inspector_action_items": [
+          "Check if aggregate exposure has progressed into active surface paste erosion.",
+          "Confirm absence of cracking or delamination beneath weathered skin."
+        ],
+        "triggered_review_flags": []
+      },
+      {
+        "finding_id": "FINDING-WEATH-019",
+        "class_name": "Weathering",
+        "class_id": 17,
+        "component_id": 3,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 328,
+        "image_relative_extent_pct": 0.10677,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 11,
+          "ymin": 428,
+          "xmax": 27,
+          "ymax": 459,
+          "width": 16,
+          "height": 31,
+          "xyxy": [
+            11,
+            428,
+            27,
+            459
+          ],
+          "xywh": [
+            11,
+            428,
+            16,
+            31
+          ],
+          "bbox_area_pixels": 496
+        },
+        "confidence_stats": {
+          "mean": 0.555,
+          "min": 0.5002,
+          "max": 0.6238,
+          "median": 0.5563,
+          "std": 0.0318
+        },
+        "shape_features": {
+          "perimeter_pixels": 74.77,
+          "circularity": 0.7373,
+          "aspect_ratio": 2.0,
+          "solidity": 1.0,
+          "extent": 0.6613,
+          "orientation_deg": 75.07,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected Weathering component of 328 px (0.1068% of image). Spatial centroid at (19.15548780487805, 442.8841463414634) within bounding box [11, 428, 27, 459]. Model confidence: mean=0.56, min=0.50, max=0.62. Shape descriptors: circularity=0.737, solidity=1.000, aspect_ratio=2.0.",
+        "explanation": "Superficial atmospheric erosion, biological growth (moss/lichen), or aggregate exposure from environmental weathering. Generally cosmetic in early stages.",
+        "literature_reference": "AASHTO MBEI (2019) Table 2.4.3-1 (Defect 1190 - Abrasion/Wear); FHWA BIRM (2012) Section 7.2.6.",
+        "inspector_action_items": [
+          "Check if aggregate exposure has progressed into active surface paste erosion.",
+          "Confirm absence of cracking or delamination beneath weathered skin."
+        ],
+        "triggered_review_flags": []
+      },
+      {
+        "finding_id": "FINDING-WETSP-020",
+        "class_name": "Wetspot",
+        "class_id": 18,
+        "component_id": 1,
+        "visual_concern_level": "LOW_VISUAL_CONCERN",
+        "is_structural": true,
+        "pixel_area": 16361,
+        "image_relative_extent_pct": 5.32585,
+        "roi_relative_extent_pct": null,
+        "bbox": {
+          "xmin": 64,
+          "ymin": 172,
+          "xmax": 187,
+          "ymax": 331,
+          "width": 123,
+          "height": 159,
+          "xyxy": [
+            64,
+            172,
+            187,
+            331
+          ],
+          "xywh": [
+            64,
+            172,
+            123,
+            159
+          ],
+          "bbox_area_pixels": 19557
+        },
+        "confidence_stats": {
+          "mean": 0.6971,
+          "min": 0.5,
+          "max": 0.8692,
+          "median": 0.7009,
+          "std": 0.0941
+        },
+        "shape_features": {
+          "perimeter_pixels": 556.37,
+          "circularity": 0.6642,
+          "aspect_ratio": 1.2951,
+          "solidity": 0.9301,
+          "extent": 0.8366,
+          "orientation_deg": 90.0,
+          "is_linear_defect": false,
+          "skeleton_length_pixels": null,
+          "estimated_avg_width_pixels": null
+        },
+        "visual_evidence": "Detected Wetspot component of 16361 px (5.3258% of image). Spatial centroid at (124.58553878124809, 247.70441904529062) within bounding box [64, 172, 187, 331]. Model confidence: mean=0.70, min=0.50, max=0.87. Shape descriptors: circularity=0.664, solidity=0.930, aspect_ratio=1.3.",
+        "explanation": "Localized surface dampness or standing moisture. Indicates drainage failure, leaking expansion joint, or poor surface grading allowing water ponding.",
+        "literature_reference": "FHWA BIRM (2012) Section 7.2.5 (Moisture Intrusion).",
+        "inspector_action_items": [
+          "Identify origin of moisture (e.g. leaking joint, scupper overflow).",
+          "Verify whether water has freeze-thaw potential during sub-zero operational periods."
+        ],
+        "triggered_review_flags": [
+          "SURFACE_MOISTURE_LEACHING_REVIEW"
+        ]
+      }
+    ],
+    "stage_4_prioritization_contract": {
+      "ready_for_automated_prioritization": false,
+      "abstention_reason": "Automated maintenance priority and repair scheduling cannot be assigned from visual features alone. Required data: structural component identity, element importance, physical metric dimensions, and internal depth.",
+      "candidate_review_flags": [
+        "BEARING_ARTICULATION_REVIEW",
+        "CRACK_DELAMINATION_REVIEW",
+        "EXPANSION_JOINT_REVIEW",
+        "SURFACE_MOISTURE_LEACHING_REVIEW",
+        "POSSIBLE_SPALLING_REVIEW",
+        "NON_STRUCTURAL_SURFACE_COVERAGE"
+      ],
+      "primary_visual_concerns": [
+        "Bearing",
+        "Crack",
+        "EJoint",
+        "Efflorescence",
+        "Rust",
+        "Spalling",
+        "Weathering",
+        "Wetspot"
+      ],
+      "structural_union_coverage_pct": 41.332356770833336,
+      "non_structural_union_coverage_pct": 1.4046223958333333,
+      "actionable_observations_count": 20
+    },
+    "literature_grounding": [
+      "AASHTO Manual for Bridge Element Inspection (MBEI, 2019)",
+      "FHWA Bridge Inspection Reference Manual (BIRM, 2012)",
+      "DIN 1076 / RI-EBW-PR\u00dcF: Bridge Evaluation Guidelines",
+      "FIB Model Code 2010 (Concrete Durability and Service Life Design)"
+    ],
+    "disclaimer": "ENGINEERING SEVERITY DISCLAIMER: This severity assessment is an uncalibrated research prototype grounded in literature principles (AASHTO MBEI, FHWA BIRM, DIN 1076, FIB Model Code). It provides visual evidence categorization and review flagging only and does NOT constitute a certified structural safety rating, official AASHTO element condition state (CS1-CS4), remaining service life prediction, or replacement for certified structural bridge engineer inspection.",
+    "legacy_tier_deprecation": {
+      "is_deprecated": true,
+      "warning": "TIER_1_CRITICAL and legacy tier heuristics are deprecated and unvalidated. Do not use for engineering work orders or structural ratings.",
+      "provisional_criticality_tier": "TIER_1_CRITICAL"
+    }
+  },
+  "stage_4_prioritization": {
+    "metadata": {
+      "image_id": "images",
+      "timestamp_utc": "2026-11-24T05:39:28.479213+00:00",
+      "policy_name": "ProductionAbstentionPolicy",
+      "policy_version": "1.0.0",
+      "policy_type": "PRODUCTION_ABSTENTION"
+    },
+    "output_a_inspection_review_queue": {
+      "image_id": "images",
+      "timestamp_utc": "2026-11-24T05:39:28.479226+00:00",
+      "queue_summary": {
+        "total_findings_count": 20,
+        "structural_findings_count": 16,
+        "non_structural_findings_count": 4,
+        "highest_queue_urgency": "URGENT_INSPECTION_REVIEW"
+      },
+      "ranked_queue_items": [
+        {
+          "rank": 1,
+          "finding_id": "FINDING-EJOIN-003",
+          "class_name": "EJoint",
+          "queue_urgency": "URGENT_INSPECTION_REVIEW",
+          "composite_verification_score": 0.8742,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected EJoint component of 13773 px (4.4834% of image). Spatial centroid at (121.23139475785958, 48.11079648587817) within bounding box [4, 0, 220, 103]. Model confidence: mean=0.75, min=0.50, max=0.95. Shape descriptors: circularity=0.308, solidity=0.816, aspect_ratio=2.1.",
+          "image_relative_extent_pct": 4.4834,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.7458,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_HIGH_CONCERN_RELIABLE: Direct cover breach or articulation distress with reliable confidence."
+          ],
+          "recommended_inspector_action": [
+            "Inspect joint seal watertightness and examine substructure directly below for leakage.",
+            "Measure physical joint gap against design ambient temperature range.",
+            "Check nosing concrete/steel for impact fractures, loose armor, or debris impaction."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 2,
+          "finding_id": "FINDING-SPALL-016",
+          "class_name": "Spalling",
+          "queue_urgency": "URGENT_INSPECTION_REVIEW",
+          "composite_verification_score": 0.8494,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Spalling component of 4815 px (1.5674% of image). Spatial centroid at (292.5632398753894, 245.531256490135) within bounding box [273, 166, 316, 324]. Model confidence: mean=0.89, min=0.50, max=1.00. Centerline skeleton length: 198 px, estimated width: 24.3 px, aspect ratio: 3.9.",
+          "image_relative_extent_pct": 1.56738,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.8924,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_HIGH_CONCERN_RELIABLE: Direct cover breach or articulation distress with reliable confidence."
+          ],
+          "recommended_inspector_action": [
+            "Perform acoustic hammer sounding around defect boundaries to map unseparated delaminations.",
+            "Inspect the base of the cavity for exposed or corroding reinforcing steel bars.",
+            "Measure physical cavity depth and surface area with calibrated field gauges."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 3,
+          "finding_id": "FINDING-EJOIN-004",
+          "class_name": "EJoint",
+          "queue_urgency": "URGENT_INSPECTION_REVIEW",
+          "composite_verification_score": 0.7952,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected EJoint component of 4200 px (1.3672% of image). Spatial centroid at (272.73857142857145, 30.161428571428573) within bounding box [231, 0, 317, 75]. Model confidence: mean=0.75, min=0.50, max=0.96. Shape descriptors: circularity=0.425, solidity=0.893, aspect_ratio=1.3.",
+          "image_relative_extent_pct": 1.36719,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.7463,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_HIGH_CONCERN_RELIABLE: Direct cover breach or articulation distress with reliable confidence."
+          ],
+          "recommended_inspector_action": [
+            "Inspect joint seal watertightness and examine substructure directly below for leakage.",
+            "Measure physical joint gap against design ambient temperature range.",
+            "Check nosing concrete/steel for impact fractures, loose armor, or debris impaction."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 4,
+          "finding_id": "FINDING-BEARI-001",
+          "class_name": "Bearing",
+          "queue_urgency": "URGENT_INSPECTION_REVIEW",
+          "composite_verification_score": 0.6796,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Bearing component of 1273 px (0.4144% of image). Spatial centroid at (476.40455616653577, 150.0738413197172) within bounding box [441, 137, 508, 163]. Model confidence: mean=0.76, min=0.50, max=0.94. Shape descriptors: circularity=0.565, solidity=0.948, aspect_ratio=2.6.",
+          "image_relative_extent_pct": 0.41439,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.7638,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_HIGH_CONCERN_RELIABLE: Direct cover breach or articulation distress with reliable confidence."
+          ],
+          "recommended_inspector_action": [
+            "Check alignment, tilt, and expansion movement clearance against temperature curves.",
+            "Examine elastomeric pads for bulging, debonding, or cracking.",
+            "Verify anchor bolt tightness and clear debris/grit accumulation from bearing seat."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 5,
+          "finding_id": "FINDING-EJOIN-005",
+          "class_name": "EJoint",
+          "queue_urgency": "PRIORITY_INSPECTION_REVIEW",
+          "composite_verification_score": 0.703,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected EJoint component of 2753 px (0.8962% of image). Spatial centroid at (345.25499455139845, 43.89683981111515) within bounding box [297, 4, 380, 83]. Model confidence: mean=0.58, min=0.50, max=0.68. Shape descriptors: circularity=0.378, solidity=0.753, aspect_ratio=2.1.",
+          "image_relative_extent_pct": 0.89616,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.5799,
+          "optical_uncertainty_level": "HIGH",
+          "uncertainty_factors": [
+            "Model confidence (0.58) below reliability threshold (0.70)"
+          ],
+          "triggered_policy_rules": [
+            "RULE_HIGH_CONCERN_UNCERTAIN: High concern feature with moderate confidence."
+          ],
+          "recommended_inspector_action": [
+            "Inspect joint seal watertightness and examine substructure directly below for leakage.",
+            "Measure physical joint gap against design ambient temperature range.",
+            "Check nosing concrete/steel for impact fractures, loose armor, or debris impaction."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 6,
+          "finding_id": "FINDING-CRACK-002",
+          "class_name": "Crack",
+          "queue_urgency": "PRIORITY_INSPECTION_REVIEW",
+          "composite_verification_score": 0.5397,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Crack component of 1428 px (0.4648% of image). Spatial centroid at (302.0035014005602, 216.8564425770308) within bounding box [289, 154, 319, 309]. Model confidence: mean=0.83, min=0.50, max=1.00. Centerline skeleton length: 204 px, estimated width: 7.0 px, aspect ratio: 5.6.",
+          "image_relative_extent_pct": 0.46484,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.8329,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_MODERATE_CONCERN: Linear cracking or progressive concrete degradation pathway."
+          ],
+          "recommended_inspector_action": [
+            "Measure physical crack width using an optical crack comparator card or gauge.",
+            "Determine whether crack pattern reflects flexure, shear, torsion, or plastic shrinkage.",
+            "Verify whether crack is active (dynamic thermal/live load movement) or dormant."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 7,
+          "finding_id": "FINDING-WEATH-017",
+          "class_name": "Weathering",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.6255,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Weathering component of 99657 px (32.4404% of image). Spatial centroid at (273.50755089958557, 247.40493894056615) within bounding box [0, 153, 579, 363]. Model confidence: mean=0.90, min=0.50, max=1.00. Shape descriptors: circularity=0.469, solidity=0.919, aspect_ratio=2.8.",
+          "image_relative_extent_pct": 32.44043,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.9026,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Check if aggregate exposure has progressed into active surface paste erosion.",
+            "Confirm absence of cracking or delamination beneath weathered skin."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 8,
+          "finding_id": "FINDING-EFFLO-007",
+          "class_name": "Efflorescence",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.6075,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Efflorescence component of 6310 px (2.0540% of image). Spatial centroid at (521.3857369255151, 240.41014263074484) within bounding box [483, 171, 550, 311]. Model confidence: mean=0.81, min=0.50, max=0.99. Centerline skeleton length: 227 px, estimated width: 27.8 px, aspect ratio: 2.2.",
+          "image_relative_extent_pct": 2.05404,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.8126,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Trace moisture source (deck leakage, clogged drains, or joint failure).",
+            "Check whether efflorescence is accompanied by rust staining or active dripping.",
+            "Inspect underside of deck slab or diaphragm for signs of internal leaching."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 9,
+          "finding_id": "FINDING-WETSP-020",
+          "class_name": "Wetspot",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.5844,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Wetspot component of 16361 px (5.3258% of image). Spatial centroid at (124.58553878124809, 247.70441904529062) within bounding box [64, 172, 187, 331]. Model confidence: mean=0.70, min=0.50, max=0.87. Shape descriptors: circularity=0.664, solidity=0.930, aspect_ratio=1.3.",
+          "image_relative_extent_pct": 5.32585,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.6971,
+          "optical_uncertainty_level": "MODERATE",
+          "uncertainty_factors": [
+            "Model confidence (0.70) below reliability threshold (0.70)"
+          ],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Identify origin of moisture (e.g. leaking joint, scupper overflow).",
+            "Verify whether water has freeze-thaw potential during sub-zero operational periods."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 10,
+          "finding_id": "FINDING-RUST-012",
+          "class_name": "Rust",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.4521,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Rust component of 2015 px (0.6559% of image). Spatial centroid at (234.3439205955335, 50.282382133995036) within bounding box [215, 3, 257, 103]. Model confidence: mean=0.88, min=0.50, max=1.00. Centerline skeleton length: 119 px, estimated width: 16.9 px, aspect ratio: 3.7.",
+          "image_relative_extent_pct": 0.65592,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.8755,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Probe rust-stained area for hollow-sounding delamination planes.",
+            "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
+            "Measure concrete cover thickness with a magnetic covermeter."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 11,
+          "finding_id": "FINDING-RUST-015",
+          "class_name": "Rust",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.4295,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Rust component of 1621 px (0.5277% of image). Spatial centroid at (530.7470697100555, 220.33929673041334) within bounding box [521, 171, 542, 274]. Model confidence: mean=0.84, min=0.50, max=0.99. Centerline skeleton length: 141 px, estimated width: 11.5 px, aspect ratio: 5.1.",
+          "image_relative_extent_pct": 0.52767,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.8425,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Probe rust-stained area for hollow-sounding delamination planes.",
+            "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
+            "Measure concrete cover thickness with a magnetic covermeter."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 12,
+          "finding_id": "FINDING-RUST-013",
+          "class_name": "Rust",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.4163,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Rust component of 1937 px (0.6305% of image). Spatial centroid at (295.88022715539495, 41.88538977800723) within bounding box [266, 5, 322, 75]. Model confidence: mean=0.71, min=0.50, max=0.97. Shape descriptors: circularity=0.383, solidity=0.764, aspect_ratio=1.3.",
+          "image_relative_extent_pct": 0.63053,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.7122,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Probe rust-stained area for hollow-sounding delamination planes.",
+            "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
+            "Measure concrete cover thickness with a magnetic covermeter."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 13,
+          "finding_id": "FINDING-WEATH-018",
+          "class_name": "Weathering",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.4023,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Weathering component of 2119 px (0.6898% of image). Spatial centroid at (217.2203869749882, 428.58706937234547) within bounding box [179, 412, 258, 448]. Model confidence: mean=0.61, min=0.50, max=0.75. Shape descriptors: circularity=0.519, solidity=0.922, aspect_ratio=2.3.",
+          "image_relative_extent_pct": 0.68978,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.6054,
+          "optical_uncertainty_level": "MODERATE",
+          "uncertainty_factors": [
+            "Model confidence (0.61) below reliability threshold (0.70)"
+          ],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Check if aggregate exposure has progressed into active surface paste erosion.",
+            "Confirm absence of cracking or delamination beneath weathered skin."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 14,
+          "finding_id": "FINDING-EFFLO-006",
+          "class_name": "Efflorescence",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.382,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Efflorescence component of 1221 px (0.3975% of image). Spatial centroid at (443.35380835380835, 185.6019656019656) within bounding box [422, 167, 461, 210]. Model confidence: mean=0.69, min=0.50, max=0.84. Centerline skeleton length: 55 px, estimated width: 22.2 px, aspect ratio: 1.1.",
+          "image_relative_extent_pct": 0.39746,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.6865,
+          "optical_uncertainty_level": "MODERATE",
+          "uncertainty_factors": [
+            "Model confidence (0.69) below reliability threshold (0.70)"
+          ],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Trace moisture source (deck leakage, clogged drains, or joint failure).",
+            "Check whether efflorescence is accompanied by rust staining or active dripping.",
+            "Inspect underside of deck slab or diaphragm for signs of internal leaching."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 15,
+          "finding_id": "FINDING-RUST-014",
+          "class_name": "Rust",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.3541,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Rust component of 191 px (0.0622% of image). Spatial centroid at (410.9371727748691, 57.64397905759162) within bounding box [404, 50, 420, 67]. Model confidence: mean=0.76, min=0.50, max=0.96. Shape descriptors: circularity=0.867, solidity=1.000, aspect_ratio=1.1.",
+          "image_relative_extent_pct": 0.06217,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.7567,
+          "optical_uncertainty_level": "LOW",
+          "uncertainty_factors": [],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Probe rust-stained area for hollow-sounding delamination planes.",
+            "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
+            "Measure concrete cover thickness with a magnetic covermeter."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 16,
+          "finding_id": "FINDING-WEATH-019",
+          "class_name": "Weathering",
+          "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
+          "composite_verification_score": 0.3193,
+          "is_structural": true,
+          "visual_evidence_summary": "Detected Weathering component of 328 px (0.1068% of image). Spatial centroid at (19.15548780487805, 442.8841463414634) within bounding box [11, 428, 27, 459]. Model confidence: mean=0.56, min=0.50, max=0.62. Shape descriptors: circularity=0.737, solidity=1.000, aspect_ratio=2.0.",
+          "image_relative_extent_pct": 0.10677,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.555,
+          "optical_uncertainty_level": "HIGH",
+          "uncertainty_factors": [
+            "Model confidence (0.56) below reliability threshold (0.70)"
+          ],
+          "triggered_policy_rules": [
+            "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
+          ],
+          "recommended_inspector_action": [
+            "Check if aggregate exposure has progressed into active surface paste erosion.",
+            "Confirm absence of cracking or delamination beneath weathered skin."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 17,
+          "finding_id": "FINDING-PEQUI-008",
+          "class_name": "PEquipment",
+          "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
+          "composite_verification_score": 0.029,
+          "is_structural": false,
+          "visual_evidence_summary": "Detected PEquipment component of 1860 px (0.6055% of image). Spatial centroid at (624.7575268817204, 449.71344086021503) within bounding box [601, 409, 640, 480]. Model confidence: mean=0.86, min=0.50, max=0.99. Shape descriptors: circularity=0.569, solidity=0.950, aspect_ratio=1.8.",
+          "image_relative_extent_pct": 0.60547,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.858,
+          "optical_uncertainty_level": "MODERATE",
+          "uncertainty_factors": [
+            "Non-structural category; zero direct load capacity impact"
+          ],
+          "triggered_policy_rules": [
+            "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
+          ],
+          "recommended_inspector_action": [
+            "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 18,
+          "finding_id": "FINDING-PEQUI-010",
+          "class_name": "PEquipment",
+          "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
+          "composite_verification_score": 0.0242,
+          "is_structural": false,
+          "visual_evidence_summary": "Detected PEquipment component of 1320 px (0.4297% of image). Spatial centroid at (53.77878787878788, 473.4166666666667) within bounding box [0, 464, 123, 480]. Model confidence: mean=0.75, min=0.50, max=0.92. Centerline skeleton length: 109 px, estimated width: 12.1 px, aspect ratio: 8.1.",
+          "image_relative_extent_pct": 0.42969,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.7518,
+          "optical_uncertainty_level": "MODERATE",
+          "uncertainty_factors": [
+            "Non-structural category; zero direct load capacity impact"
+          ],
+          "triggered_policy_rules": [
+            "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
+          ],
+          "recommended_inspector_action": [
+            "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 19,
+          "finding_id": "FINDING-PEQUI-009",
+          "class_name": "PEquipment",
+          "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
+          "composite_verification_score": 0.019,
+          "is_structural": false,
+          "visual_evidence_summary": "Detected PEquipment component of 961 px (0.3128% of image). Spatial centroid at (312.42247658688865, 446.6420395421436) within bounding box [290, 429, 345, 465]. Model confidence: mean=0.60, min=0.50, max=0.78. Shape descriptors: circularity=0.409, solidity=0.774, aspect_ratio=1.5.",
+          "image_relative_extent_pct": 0.31283,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.6031,
+          "optical_uncertainty_level": "HIGH",
+          "uncertainty_factors": [
+            "Model confidence (0.60) below reliability threshold (0.70)",
+            "Non-structural category; zero direct load capacity impact"
+          ],
+          "triggered_policy_rules": [
+            "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
+          ],
+          "recommended_inspector_action": [
+            "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        },
+        {
+          "rank": 20,
+          "finding_id": "FINDING-PEQUI-011",
+          "class_name": "PEquipment",
+          "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
+          "composite_verification_score": 0.0162,
+          "is_structural": false,
+          "visual_evidence_summary": "Detected PEquipment component of 174 px (0.0566% of image). Spatial centroid at (325.64942528735634, 471.98850574712645) within bounding box [319, 466, 335, 479]. Model confidence: mean=0.62, min=0.50, max=0.72. Shape descriptors: circularity=0.921, solidity=1.000, aspect_ratio=1.2.",
+          "image_relative_extent_pct": 0.05664,
+          "roi_relative_extent_pct": null,
+          "model_confidence": 0.6216,
+          "optical_uncertainty_level": "HIGH",
+          "uncertainty_factors": [
+            "Model confidence (0.62) below reliability threshold (0.70)",
+            "Non-structural category; zero direct load capacity impact"
+          ],
+          "triggered_policy_rules": [
+            "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
+          ],
+          "recommended_inspector_action": [
+            "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
+          ],
+          "decision_limitations": [
+            "Optical 2D estimation only; subsurface defect depth is unobserved.",
+            "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
+            "Physical metric dimensions require calibrated optical rangefinder."
+          ],
+          "human_override": null
+        }
+      ],
+      "disclaimer": "STAGE 4 RESEARCH DISCLAIMER: The Inspection Review Queue provides an evidence-weighted ranking of visual defect findings strictly to prioritize human inspector site visits and verification. It does NOT assert official structural risk, repair deadlines, maintenance work orders, structural failure probabilities, or certified AASHTO bridge element condition ratings."
+    },
+    "output_b_engineering_maintenance_priority": {
+      "image_id": "images",
+      "timestamp_utc": "2026-11-24T05:39:28.479550+00:00",
+      "status": "NOT_ASSESSED",
+      "official_repair_priority": "NOT_ASSESSED",
+      "official_repair_deadline": null,
+      "official_structural_safety_rating": null,
+      "official_aashto_condition_state": null,
+      "abstention_reason": "ENGINEERING MAINTENANCE PRIORITY ABSTENTION: Actionable bridge maintenance priority, repair work orders, and statutory condition states CANNOT be determined from 2D optical computer vision detections alone. Official engineering prioritization strictly requires: (1) verified structural component identity and load path criticality, (2) physical metric dimensions and internal defect depth from calibrated NDT tools, (3) documented historical progression rates, and (4) formal approval by a licensed Professional Engineer (PE/SE) under agency-adopted maintenance decision criteria. Consequently, official maintenance priority is marked NOT_ASSESSED.",
+      "missing_engineering_prerequisites": [
+        "Verified structural component identity (BIM or inspection plan)",
+        "Element load path criticality (AASHTO / NBI element classification)",
+        "Physical metric defect dimensions (calibrated optical/laser measurement)",
+        "Internal defect depth & delamination plane (NDT sounding, GPR, or UPV)",
+        "Formal validation and sign-off by a licensed Professional Engineer (PE/SE)",
+        "Formally adopted Department of Transportation (DOT) maintenance decision policy"
+      ],
+      "contradiction_warnings": [],
+      "priority_decision": {
+        "status": "NOT_ASSESSED",
+        "official_repair_priority": "NOT_ASSESSED",
+        "official_repair_deadline": null,
+        "official_structural_safety_rating": null,
+        "official_aashto_condition_state": null,
+        "abstention_reason": "ENGINEERING MAINTENANCE PRIORITY ABSTENTION: Actionable bridge maintenance priority, repair work orders, and statutory condition states CANNOT be determined from 2D optical computer vision detections alone. Official engineering prioritization strictly requires: (1) verified structural component identity and load path criticality, (2) physical metric dimensions and internal defect depth from calibrated NDT tools, (3) documented historical progression rates, and (4) formal approval by a licensed Professional Engineer (PE/SE) under agency-adopted maintenance decision criteria. Consequently, official maintenance priority is marked NOT_ASSESSED."
+      },
+      "governance_and_compliance": {
+        "decision_criteria_approved_by_agency": false,
+        "is_pe_certified": false,
+        "missing_engineering_prerequisites": [
+          "Verified structural component identity (BIM or inspection plan)",
+          "Element load path criticality (AASHTO / NBI element classification)",
+          "Physical metric defect dimensions (calibrated optical/laser measurement)",
+          "Internal defect depth & delamination plane (NDT sounding, GPR, or UPV)",
+          "Formal validation and sign-off by a licensed Professional Engineer (PE/SE)",
+          "Formally adopted Department of Transportation (DOT) maintenance decision policy"
+        ],
+        "contradiction_warnings": []
+      },
+      "disclaimer": "ENGINEERING MAINTENANCE PRIORITY ABSTENTION: Actionable bridge maintenance priority, repair work orders, and statutory condition states CANNOT be determined from 2D optical computer vision detections alone. Official engineering prioritization strictly requires: (1) verified structural component identity and load path criticality, (2) physical metric dimensions and internal defect depth from calibrated NDT tools, (3) documented historical progression rates, and (4) formal approval by a licensed Professional Engineer (PE/SE) under agency-adopted maintenance decision criteria. Consequently, official maintenance priority is marked NOT_ASSESSED."
+    },
+    "verified_engineering_context": null,
+    "audit_trail": {
+      "policy_name": "ProductionAbstentionPolicy",
+      "policy_version": "1.0.0",
+      "policy_type": "PRODUCTION_ABSTENTION",
+      "evaluated_at_utc": "2026-11-24T05:39:28.479213+00:00",
+      "stage3_image_id": "images",
+      "stage3_visual_concern": "HIGH_VISUAL_CONCERN",
+      "stage3_review_flags": [
+        "BEARING_ARTICULATION_REVIEW",
+        "CRACK_DELAMINATION_REVIEW",
+        "EXPANSION_JOINT_REVIEW",
+        "SURFACE_MOISTURE_LEACHING_REVIEW",
+        "POSSIBLE_SPALLING_REVIEW",
+        "NON_STRUCTURAL_SURFACE_COVERAGE"
+      ],
+      "input_observations_count": 20,
+      "engineering_context_supplied": false,
+      "human_overrides_applied_count": 0,
+      "abstention_enforced": true
+    }
+  }
+}

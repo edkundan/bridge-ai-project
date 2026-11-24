@@ -74,14 +74,14 @@ AVAILABLE_DEMO_CASES = {
         "non_structural_count": 0,
     },
     "uploaded_test_cases": {
-        "title": "Uploaded Inspection Case (images.jpeg: 32 Findings, 10 Classes)",
-        "description": "Real bridge inspection image (images.jpeg) evaluated with Experiment 02 checkpoint (tau=0.50): 32 findings (24 structural, 8 non-structural) across 10 classes.",
+        "title": "Uploaded Inspection Case (images.jpeg: 20 Findings, 9 Classes)",
+        "description": "Real bridge inspection image (images.jpeg) evaluated with Experiment 02 checkpoint (tau=0.50, min_area=150): 20 findings (16 structural, 4 non-structural) across 9 classes.",
         "dir": REPO_ROOT / "demo_data" / "uploaded_test_cases",
         "has_real_image": True,
         "image_file": "images.jpeg",
-        "findings_count": 32,
-        "structural_count": 24,
-        "non_structural_count": 8,
+        "findings_count": 20,
+        "structural_count": 16,
+        "non_structural_count": 4,
     },
 }
 

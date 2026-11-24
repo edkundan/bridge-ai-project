@@ -344,6 +344,78 @@ class TestDashboardIntegration(unittest.TestCase):
         self.assertEqual(maint["status"], "NOT_ASSESSED")
         self.assertEqual(maint["official_repair_priority"], "NOT_ASSESSED")
 
+    def test_images_exported_json_nested_kpi_mapping(self):
+        """
+        Regression test: Verify that the exact exported Stage 2 nested schema
+        from real-image inference (images_full_inspection_data.json) maps properly:
+        - stage_2_measurements.summary.total_components_count = 20
+        - stage_2_measurements.summary.total_detected_classes = 9
+        - stage_2_measurements.summary.coverage_metrics.structural_union_image_area_pct = 41.33236
+        - stage_2_measurements.summary.coverage_metrics.non_structural_union_image_area_pct = 1.40462
+        - stage_2_measurements.summary.coverage_metrics.union_defect_image_area_pct = 42.73698
+        - Stage 4 review queue has 20 findings (16 structural, 4 non-structural).
+        - Assert that querying top-level keys directly (the old bug) yields None/0,
+          whereas extract_measurement_summary yields the exact correct nonzero values.
+        """
+        import json
+        from src.dashboard.components import extract_measurement_summary
+
+        fixture_path = Path("tests/fixtures/images_full_inspection_data.json")
+        if not fixture_path.exists():
+            fixture_path = Path("demo_data/uploaded_test_cases/images_full_inspection_data.json")
+        self.assertTrue(fixture_path.exists(), f"Missing fixture {fixture_path}")
+
+        with open(fixture_path, "r", encoding="utf-8") as f:
+            full_data = json.load(f)
+
+        s2 = full_data["stage_2_measurements"]
+        summary = s2["summary"]
+        cov = summary["coverage_metrics"]
+
+        # Confirm the exact verified JSON values exist in the fixture
+        self.assertEqual(summary["total_components_count"], 20)
+        self.assertEqual(summary["total_detected_classes"], 9)
+        self.assertEqual(cov["structural_union_image_area_pct"], 41.33236)
+        self.assertEqual(cov["non_structural_union_image_area_pct"], 1.40462)
+        self.assertEqual(cov["union_defect_image_area_pct"], 42.73698)
+
+        # 1. Test extraction from stage_2_measurements directly
+        metrics_s2 = extract_measurement_summary(s2)
+        self.assertEqual(metrics_s2["total_findings"], 20, "Total findings must be 20, never 0")
+        self.assertEqual(metrics_s2["total_classes"], 9, "Detected classes must be 9, never 0")
+        self.assertEqual(metrics_s2["structural_union_image_area_pct"], 41.33236, "Structural % must be 41.33236, never 0.0")
+        self.assertEqual(metrics_s2["non_structural_union_image_area_pct"], 1.40462, "Non-structural % must be 1.40462, never 0.0")
+        self.assertEqual(metrics_s2["union_defect_image_area_pct"], 42.73698, "Total union % must be 42.73698, never 0.0")
+
+        # 2. Test extraction from full inspection JSON dictionary
+        metrics_full = extract_measurement_summary(full_data)
+        self.assertEqual(metrics_full["total_findings"], 20)
+        self.assertEqual(metrics_full["total_classes"], 9)
+        self.assertEqual(metrics_full["structural_union_image_area_pct"], 41.33236)
+        self.assertEqual(metrics_full["non_structural_union_image_area_pct"], 1.40462)
+        self.assertEqual(metrics_full["union_defect_image_area_pct"], 42.73698)
+
+        # 3. Verify bug reproduction: demonstrating that top-level .get(..., 0) produces zero
+        self.assertIsNone(s2.get("total_components_count"), "Top-level total_components_count is None in Stage 2 schema")
+        self.assertIsNone(s2.get("total_detected_classes"), "Top-level total_detected_classes is None in Stage 2 schema")
+        self.assertIsNone(s2.get("structural_union_image_area_pct"), "Top-level structural_union_image_area_pct is None in Stage 2 schema")
+
+        # 4. Stage 4 review queue consistency
+        queue = full_data["stage_4_prioritization"]["output_a_inspection_review_queue"]
+        q_sum = queue["queue_summary"]
+        self.assertEqual(q_sum["total_findings_count"], 20)
+        self.assertEqual(q_sum["structural_findings_count"], 16)
+        self.assertEqual(q_sum["non_structural_findings_count"], 4)
+        self.assertEqual(q_sum["structural_findings_count"] + q_sum["non_structural_findings_count"], 20)
+        self.assertEqual(len(queue["ranked_queue_items"]), 20)
+        self.assertEqual(metrics_s2["total_findings"], q_sum["total_findings_count"])
+
+        # 5. Check legacy TIER_1_CRITICAL deprecation marking
+        s3 = full_data["stage_3_visual_severity"]
+        self.assertIn("legacy_tier_deprecation", s3)
+        self.assertTrue(s3["legacy_tier_deprecation"]["is_deprecated"])
+        self.assertIn("deprecated", s3["legacy_tier_deprecation"]["warning"].lower())
+
     def test_empty_prediction_handling_reports_zero(self):
         """
         Regression test: Verify that an all-zero prediction correctly produces

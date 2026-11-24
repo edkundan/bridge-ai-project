@@ -1,24 +1,24 @@
 {
   "metadata": {
     "image_id": "images",
-    "timestamp_utc": "2026-11-24T05:28:29.116076+00:00",
+    "timestamp_utc": "2026-11-24T05:52:07.329523+00:00",
     "policy_name": "ProductionAbstentionPolicy",
     "policy_version": "1.0.0",
     "policy_type": "PRODUCTION_ABSTENTION"
   },
   "output_a_inspection_review_queue": {
     "image_id": "images",
-    "timestamp_utc": "2026-11-24T05:28:29.116092+00:00",
+    "timestamp_utc": "2026-11-24T05:52:07.329537+00:00",
     "queue_summary": {
-      "total_findings_count": 32,
-      "structural_findings_count": 24,
-      "non_structural_findings_count": 8,
+      "total_findings_count": 20,
+      "structural_findings_count": 16,
+      "non_structural_findings_count": 4,
       "highest_queue_urgency": "URGENT_INSPECTION_REVIEW"
     },
     "ranked_queue_items": [
       {
         "rank": 1,
-        "finding_id": "FINDING-EJOIN-006",
+        "finding_id": "FINDING-EJOIN-003",
         "class_name": "EJoint",
         "queue_urgency": "URGENT_INSPECTION_REVIEW",
         "composite_verification_score": 0.8742,
@@ -46,7 +46,7 @@
       },
       {
         "rank": 2,
-        "finding_id": "FINDING-SPALL-027",
+        "finding_id": "FINDING-SPALL-016",
         "class_name": "Spalling",
         "queue_urgency": "URGENT_INSPECTION_REVIEW",
         "composite_verification_score": 0.8494,
@@ -74,7 +74,7 @@
       },
       {
         "rank": 3,
-        "finding_id": "FINDING-EJOIN-007",
+        "finding_id": "FINDING-EJOIN-004",
         "class_name": "EJoint",
         "queue_urgency": "URGENT_INSPECTION_REVIEW",
         "composite_verification_score": 0.7952,
@@ -130,7 +130,7 @@
       },
       {
         "rank": 5,
-        "finding_id": "FINDING-EJOIN-008",
+        "finding_id": "FINDING-EJOIN-005",
         "class_name": "EJoint",
         "queue_urgency": "PRIORITY_INSPECTION_REVIEW",
         "composite_verification_score": 0.703,
@@ -160,37 +160,7 @@
       },
       {
         "rank": 6,
-        "finding_id": "FINDING-BEARI-002",
-        "class_name": "Bearing",
-        "queue_urgency": "PRIORITY_INSPECTION_REVIEW",
-        "composite_verification_score": 0.5785,
-        "is_structural": true,
-        "visual_evidence_summary": "Detected Bearing component of 25 px (0.0081% of image). Spatial centroid at (223.92, 155.24) within bounding box [220, 152, 228, 158]. Model confidence: mean=0.51, min=0.50, max=0.54. Shape descriptors: circularity=0.793, solidity=1.000, aspect_ratio=1.8.",
-        "image_relative_extent_pct": 0.00814,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5125,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.51) below reliability threshold (0.70)"
-        ],
-        "triggered_policy_rules": [
-          "RULE_HIGH_CONCERN_UNCERTAIN: High concern feature with moderate confidence."
-        ],
-        "recommended_inspector_action": [
-          "Check alignment, tilt, and expansion movement clearance against temperature curves.",
-          "Examine elastomeric pads for bulging, debonding, or cracking.",
-          "Verify anchor bolt tightness and clear debris/grit accumulation from bearing seat."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 7,
-        "finding_id": "FINDING-CRACK-005",
+        "finding_id": "FINDING-CRACK-002",
         "class_name": "Crack",
         "queue_urgency": "PRIORITY_INSPECTION_REVIEW",
         "composite_verification_score": 0.5397,
@@ -217,8 +187,8 @@
         "human_override": null
       },
       {
-        "rank": 8,
-        "finding_id": "FINDING-WEATH-028",
+        "rank": 7,
+        "finding_id": "FINDING-WEATH-017",
         "class_name": "Weathering",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.6255,
@@ -244,8 +214,8 @@
         "human_override": null
       },
       {
-        "rank": 9,
-        "finding_id": "FINDING-EFFLO-010",
+        "rank": 8,
+        "finding_id": "FINDING-EFFLO-007",
         "class_name": "Efflorescence",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.6075,
@@ -272,8 +242,8 @@
         "human_override": null
       },
       {
-        "rank": 10,
-        "finding_id": "FINDING-WETSP-032",
+        "rank": 9,
+        "finding_id": "FINDING-WETSP-020",
         "class_name": "Wetspot",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.5844,
@@ -301,8 +271,8 @@
         "human_override": null
       },
       {
-        "rank": 11,
-        "finding_id": "FINDING-RUST-019",
+        "rank": 10,
+        "finding_id": "FINDING-RUST-012",
         "class_name": "Rust",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.4521,
@@ -329,8 +299,8 @@
         "human_override": null
       },
       {
-        "rank": 12,
-        "finding_id": "FINDING-RUST-024",
+        "rank": 11,
+        "finding_id": "FINDING-RUST-015",
         "class_name": "Rust",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.4295,
@@ -357,8 +327,8 @@
         "human_override": null
       },
       {
-        "rank": 13,
-        "finding_id": "FINDING-RUST-020",
+        "rank": 12,
+        "finding_id": "FINDING-RUST-013",
         "class_name": "Rust",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.4163,
@@ -385,8 +355,8 @@
         "human_override": null
       },
       {
-        "rank": 14,
-        "finding_id": "FINDING-WEATH-029",
+        "rank": 13,
+        "finding_id": "FINDING-WEATH-018",
         "class_name": "Weathering",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.4023,
@@ -414,8 +384,8 @@
         "human_override": null
       },
       {
-        "rank": 15,
-        "finding_id": "FINDING-EFFLO-009",
+        "rank": 14,
+        "finding_id": "FINDING-EFFLO-006",
         "class_name": "Efflorescence",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.382,
@@ -444,8 +414,8 @@
         "human_override": null
       },
       {
-        "rank": 16,
-        "finding_id": "FINDING-RUST-021",
+        "rank": 15,
+        "finding_id": "FINDING-RUST-014",
         "class_name": "Rust",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.3541,
@@ -472,38 +442,8 @@
         "human_override": null
       },
       {
-        "rank": 17,
-        "finding_id": "FINDING-RUST-023",
-        "class_name": "Rust",
-        "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
-        "composite_verification_score": 0.3299,
-        "is_structural": true,
-        "visual_evidence_summary": "Detected Rust component of 116 px (0.0378% of image). Spatial centroid at (439.7931034482759, 158.85344827586206) within bounding box [430, 155, 448, 164]. Model confidence: mean=0.65, min=0.50, max=0.81. Shape descriptors: circularity=0.748, solidity=1.000, aspect_ratio=2.1.",
-        "image_relative_extent_pct": 0.03776,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.6507,
-        "optical_uncertainty_level": "MODERATE",
-        "uncertainty_factors": [
-          "Model confidence (0.65) below reliability threshold (0.70)"
-        ],
-        "triggered_policy_rules": [
-          "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
-        ],
-        "recommended_inspector_action": [
-          "Probe rust-stained area for hollow-sounding delamination planes.",
-          "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
-          "Measure concrete cover thickness with a magnetic covermeter."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 18,
-        "finding_id": "FINDING-WEATH-030",
+        "rank": 16,
+        "finding_id": "FINDING-WEATH-019",
         "class_name": "Weathering",
         "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
         "composite_verification_score": 0.3193,
@@ -531,187 +471,8 @@
         "human_override": null
       },
       {
-        "rank": 19,
-        "finding_id": "FINDING-CAVIT-003",
-        "class_name": "Cavity",
-        "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
-        "composite_verification_score": 0.3189,
-        "is_structural": true,
-        "visual_evidence_summary": "Detected Cavity component of 17 px (0.0055% of image). Spatial centroid at (302.0, 291.0) within bounding box [301, 288, 304, 295]. Model confidence: mean=0.62, min=0.51, max=0.74. Shape descriptors: circularity=1.000, solidity=1.000, aspect_ratio=3.0.",
-        "image_relative_extent_pct": 0.00553,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.616,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.62) below reliability threshold (0.70)",
-          "Small defect area (17 px) near noise filter boundary"
-        ],
-        "triggered_policy_rules": [
-          "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
-        ],
-        "recommended_inspector_action": [
-          "Measure diameter and depth to ensure it does not compromise cover."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 20,
-        "finding_id": "FINDING-RUST-026",
-        "class_name": "Rust",
-        "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
-        "composite_verification_score": 0.3185,
-        "is_structural": true,
-        "visual_evidence_summary": "Detected Rust component of 118 px (0.0384% of image). Spatial centroid at (500.6271186440678, 320.3050847457627) within bounding box [492, 314, 510, 328]. Model confidence: mean=0.59, min=0.50, max=0.70. Shape descriptors: circularity=0.621, solidity=1.000, aspect_ratio=2.8.",
-        "image_relative_extent_pct": 0.03841,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5937,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.59) below reliability threshold (0.70)"
-        ],
-        "triggered_policy_rules": [
-          "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
-        ],
-        "recommended_inspector_action": [
-          "Probe rust-stained area for hollow-sounding delamination planes.",
-          "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
-          "Measure concrete cover thickness with a magnetic covermeter."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 21,
-        "finding_id": "FINDING-CAVIT-004",
-        "class_name": "Cavity",
-        "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
-        "composite_verification_score": 0.3138,
-        "is_structural": true,
-        "visual_evidence_summary": "Detected Cavity component of 16 px (0.0052% of image). Spatial centroid at (418.625, 392.875) within bounding box [417, 391, 422, 396]. Model confidence: mean=0.59, min=0.50, max=0.72. Shape descriptors: circularity=1.000, solidity=1.000, aspect_ratio=1.0.",
-        "image_relative_extent_pct": 0.00521,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5906,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.59) below reliability threshold (0.70)",
-          "Small defect area (16 px) near noise filter boundary"
-        ],
-        "triggered_policy_rules": [
-          "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
-        ],
-        "recommended_inspector_action": [
-          "Measure diameter and depth to ensure it does not compromise cover."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 22,
-        "finding_id": "FINDING-RUST-025",
-        "class_name": "Rust",
-        "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
-        "composite_verification_score": 0.3041,
-        "is_structural": true,
-        "visual_evidence_summary": "Detected Rust component of 22 px (0.0072% of image). Spatial centroid at (469.59090909090907, 311.1818181818182) within bounding box [466, 310, 475, 313]. Model confidence: mean=0.54, min=0.50, max=0.57. Centerline skeleton length: 5 px, estimated width: 4.4 px, aspect ratio: 4.0.",
-        "image_relative_extent_pct": 0.00716,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5412,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.54) below reliability threshold (0.70)",
-          "Small defect area (22 px) near noise filter boundary"
-        ],
-        "triggered_policy_rules": [
-          "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
-        ],
-        "recommended_inspector_action": [
-          "Probe rust-stained area for hollow-sounding delamination planes.",
-          "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
-          "Measure concrete cover thickness with a magnetic covermeter."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 23,
-        "finding_id": "FINDING-WEATH-031",
-        "class_name": "Weathering",
-        "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
-        "composite_verification_score": 0.3033,
-        "is_structural": true,
-        "visual_evidence_summary": "Detected Weathering component of 121 px (0.0394% of image). Spatial centroid at (130.20661157024793, 448.8099173553719) within bounding box [124, 443, 138, 455]. Model confidence: mean=0.52, min=0.50, max=0.55. Shape descriptors: circularity=0.846, solidity=1.000, aspect_ratio=1.2.",
-        "image_relative_extent_pct": 0.03939,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5167,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.52) below reliability threshold (0.70)"
-        ],
-        "triggered_policy_rules": [
-          "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
-        ],
-        "recommended_inspector_action": [
-          "Check if aggregate exposure has progressed into active surface paste erosion.",
-          "Confirm absence of cracking or delamination beneath weathered skin."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 24,
-        "finding_id": "FINDING-RUST-022",
-        "class_name": "Rust",
-        "queue_urgency": "ROUTINE_INSPECTION_REVIEW",
-        "composite_verification_score": 0.3016,
-        "is_structural": true,
-        "visual_evidence_summary": "Detected Rust component of 17 px (0.0055% of image). Spatial centroid at (281.88235294117646, 86.05882352941177) within bounding box [281, 83, 284, 90]. Model confidence: mean=0.53, min=0.50, max=0.57. Shape descriptors: circularity=1.000, solidity=1.000, aspect_ratio=3.0.",
-        "image_relative_extent_pct": 0.00553,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5293,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.53) below reliability threshold (0.70)",
-          "Small defect area (17 px) near noise filter boundary"
-        ],
-        "triggered_policy_rules": [
-          "RULE_LOW_CONCERN: Surface weathering, efflorescence, or superficial staining."
-        ],
-        "recommended_inspector_action": [
-          "Probe rust-stained area for hollow-sounding delamination planes.",
-          "Determine whether rust originates from embedded rebar vs. external metallic hardware.",
-          "Measure concrete cover thickness with a magnetic covermeter."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 25,
-        "finding_id": "FINDING-PEQUI-011",
+        "rank": 17,
+        "finding_id": "FINDING-PEQUI-008",
         "class_name": "PEquipment",
         "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
         "composite_verification_score": 0.029,
@@ -738,8 +499,8 @@
         "human_override": null
       },
       {
-        "rank": 26,
-        "finding_id": "FINDING-PEQUI-014",
+        "rank": 18,
+        "finding_id": "FINDING-PEQUI-010",
         "class_name": "PEquipment",
         "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
         "composite_verification_score": 0.0242,
@@ -766,8 +527,8 @@
         "human_override": null
       },
       {
-        "rank": 27,
-        "finding_id": "FINDING-PEQUI-012",
+        "rank": 19,
+        "finding_id": "FINDING-PEQUI-009",
         "class_name": "PEquipment",
         "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
         "composite_verification_score": 0.019,
@@ -795,8 +556,8 @@
         "human_override": null
       },
       {
-        "rank": 28,
-        "finding_id": "FINDING-PEQUI-016",
+        "rank": 20,
+        "finding_id": "FINDING-PEQUI-011",
         "class_name": "PEquipment",
         "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
         "composite_verification_score": 0.0162,
@@ -822,130 +583,13 @@
           "Physical metric dimensions require calibrated optical rangefinder."
         ],
         "human_override": null
-      },
-      {
-        "rank": 29,
-        "finding_id": "FINDING-PEQUI-018",
-        "class_name": "PEquipment",
-        "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
-        "composite_verification_score": 0.0146,
-        "is_structural": false,
-        "visual_evidence_summary": "Detected PEquipment component of 146 px (0.0475% of image). Spatial centroid at (158.81506849315068, 474.1917808219178) within bounding box [140, 472, 176, 479]. Model confidence: mean=0.56, min=0.50, max=0.63. Centerline skeleton length: 42 px, estimated width: 3.5 px, aspect ratio: 5.8.",
-        "image_relative_extent_pct": 0.04753,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5596,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.56) below reliability threshold (0.70)",
-          "Non-structural category; zero direct load capacity impact"
-        ],
-        "triggered_policy_rules": [
-          "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
-        ],
-        "recommended_inspector_action": [
-          "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 30,
-        "finding_id": "FINDING-PEQUI-015",
-        "class_name": "PEquipment",
-        "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
-        "composite_verification_score": 0.0139,
-        "is_structural": false,
-        "visual_evidence_summary": "Detected PEquipment component of 73 px (0.0238% of image). Spatial centroid at (276.5753424657534, 469.52054794520546) within bounding box [269, 466, 284, 474]. Model confidence: mean=0.54, min=0.50, max=0.61. Shape descriptors: circularity=0.693, solidity=1.000, aspect_ratio=2.2.",
-        "image_relative_extent_pct": 0.02376,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5442,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.54) below reliability threshold (0.70)",
-          "Non-structural category; zero direct load capacity impact"
-        ],
-        "triggered_policy_rules": [
-          "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
-        ],
-        "recommended_inspector_action": [
-          "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 31,
-        "finding_id": "FINDING-PEQUI-013",
-        "class_name": "PEquipment",
-        "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
-        "composite_verification_score": 0.0136,
-        "is_structural": false,
-        "visual_evidence_summary": "Detected PEquipment component of 16 px (0.0052% of image). Spatial centroid at (277.0, 458.5) within bounding box [275, 457, 280, 461]. Model confidence: mean=0.54, min=0.50, max=0.60. Shape descriptors: circularity=1.000, solidity=1.000, aspect_ratio=1.3.",
-        "image_relative_extent_pct": 0.00521,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5425,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.54) below reliability threshold (0.70)",
-          "Small defect area (16 px) near noise filter boundary",
-          "Non-structural category; zero direct load capacity impact"
-        ],
-        "triggered_policy_rules": [
-          "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
-        ],
-        "recommended_inspector_action": [
-          "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
-      },
-      {
-        "rank": 32,
-        "finding_id": "FINDING-PEQUI-017",
-        "class_name": "PEquipment",
-        "queue_urgency": "INFORMATIONAL_NON_STRUCTURAL",
-        "composite_verification_score": 0.0136,
-        "is_structural": false,
-        "visual_evidence_summary": "Detected PEquipment component of 39 px (0.0127% of image). Spatial centroid at (296.6923076923077, 473.0) within bounding box [293, 470, 301, 477]. Model confidence: mean=0.54, min=0.50, max=0.59. Shape descriptors: circularity=1.000, solidity=1.000, aspect_ratio=1.1.",
-        "image_relative_extent_pct": 0.0127,
-        "roi_relative_extent_pct": null,
-        "model_confidence": 0.5368,
-        "optical_uncertainty_level": "HIGH",
-        "uncertainty_factors": [
-          "Model confidence (0.54) below reliability threshold (0.70)",
-          "Non-structural category; zero direct load capacity impact"
-        ],
-        "triggered_policy_rules": [
-          "RULE_NON_STRUCTURAL_CATEGORY: Mapped to informational tracking."
-        ],
-        "recommended_inspector_action": [
-          "Confirm secure mounting; ensure utility supports do not damage bridge concrete."
-        ],
-        "decision_limitations": [
-          "Optical 2D estimation only; subsurface defect depth is unobserved.",
-          "Reinforcement cross-section loss cannot be confirmed without caliper/NDT sounding.",
-          "Physical metric dimensions require calibrated optical rangefinder."
-        ],
-        "human_override": null
       }
     ],
     "disclaimer": "STAGE 4 RESEARCH DISCLAIMER: The Inspection Review Queue provides an evidence-weighted ranking of visual defect findings strictly to prioritize human inspector site visits and verification. It does NOT assert official structural risk, repair deadlines, maintenance work orders, structural failure probabilities, or certified AASHTO bridge element condition ratings."
   },
   "output_b_engineering_maintenance_priority": {
     "image_id": "images",
-    "timestamp_utc": "2026-11-24T05:28:29.116663+00:00",
+    "timestamp_utc": "2026-11-24T05:52:07.329922+00:00",
     "status": "NOT_ASSESSED",
     "official_repair_priority": "NOT_ASSESSED",
     "official_repair_deadline": null,
@@ -989,7 +633,7 @@
     "policy_name": "ProductionAbstentionPolicy",
     "policy_version": "1.0.0",
     "policy_type": "PRODUCTION_ABSTENTION",
-    "evaluated_at_utc": "2026-11-24T05:28:29.116076+00:00",
+    "evaluated_at_utc": "2026-11-24T05:52:07.329523+00:00",
     "stage3_image_id": "images",
     "stage3_visual_concern": "HIGH_VISUAL_CONCERN",
     "stage3_review_flags": [
@@ -1000,7 +644,7 @@
       "POSSIBLE_SPALLING_REVIEW",
       "NON_STRUCTURAL_SURFACE_COVERAGE"
     ],
-    "input_observations_count": 32,
+    "input_observations_count": 20,
     "engineering_context_supplied": false,
     "human_overrides_applied_count": 0,
     "abstention_enforced": true
