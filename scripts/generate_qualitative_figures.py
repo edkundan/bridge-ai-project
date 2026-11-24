@@ -259,6 +259,7 @@ def evaluate_candidates(
                     "gt_mask": gt,
                     "pred_mask": pred,
                     "has_gt": bool(gt_px > 0),
+                    "transform_info": meta.get("transform_info"),
                 }
                 results_by_class[c].append(record)
 
@@ -338,6 +339,9 @@ def render_qualitative_figure(
     Panel 2: Ground-truth segmentation mask
     Panel 3: Experiment 02 prediction mask
     Panel 4: Error visualization (True Positives, False Positives, False Negatives)
+
+    Applies letterbox cropping identically across all 4 panels for visualization only,
+    isolating the actual bridge structure while preserving spatial alignment.
     """
     img = unnormalize_image(case["image_tensor"])
     gt_mask = case["gt_mask"]
@@ -356,9 +360,6 @@ def render_qualitative_figure(
     fp = case["fp_pixels"]
     fn = case["fn_pixels"]
 
-    total_px = 512 * 512
-    gt_pct = (gt_px / total_px) * 100.0
-    pred_pct = (pred_px / total_px) * 100.0
     class_color_rgb = CLASS_COLOR_PALETTE_RGB[c_idx]
 
     # Panel 2: Ground-Truth Overlay
@@ -398,63 +399,90 @@ def render_qualitative_figure(
         cnts, _ = cv2.findContours(fn_bool.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         cv2.drawContours(err_overlay, cnts, -1, COLOR_FN, 2)
 
-    # Setup publication figure layout (1 row, 4 columns)
-    fig, axes = plt.subplots(1, 4, figsize=(20, 5.5), dpi=dpi)
+    # Crop letterbox padding for visualization only using preprocessing metadata
+    transform_info = case.get("transform_info")
+    if transform_info and isinstance(transform_info, dict):
+        pad_top = int(transform_info.get("pad_top", 0))
+        pad_bottom = int(transform_info.get("pad_bottom", 0))
+        pad_left = int(transform_info.get("pad_left", 0))
+        pad_right = int(transform_info.get("pad_right", 0))
+        h, w = img.shape[:2]
+        y1 = pad_top
+        y2 = h - pad_bottom if pad_bottom > 0 else h
+        x1 = pad_left
+        x2 = w - pad_right if pad_right > 0 else w
 
-    # (a) Original image
+        if y2 > y1 and x2 > x1:
+            img = img[y1:y2, x1:x2]
+            gt_overlay = gt_overlay[y1:y2, x1:x2]
+            pred_overlay = pred_overlay[y1:y2, x1:x2]
+            err_overlay = err_overlay[y1:y2, x1:x2]
+
+    # Setup publication figure layout (1 row, 4 equal panels)
+    # Dimension panels based on the unpadded image aspect ratio
+    crop_h, crop_w = img.shape[:2]
+    panel_aspect = crop_w / crop_h
+    panel_height = 4.0
+    panel_width = panel_height * panel_aspect
+    fig_width = max(16.0, panel_width * 4 + 1.2)
+    fig_height = panel_height + 1.3
+
+    fig, axes = plt.subplots(1, 4, figsize=(fig_width, fig_height), dpi=dpi)
+
+    # (a) Original
     axes[0].imshow(img)
-    axes[0].set_title(f"(a) Original Bridge Image\nID: {sample_id}", fontsize=11, fontweight="bold", pad=8)
+    axes[0].set_title("(a) Original", fontsize=11, fontweight="bold", pad=8)
     axes[0].axis("off")
 
-    # (b) Ground-Truth
+    # (b) Ground Truth
     axes[1].imshow(gt_overlay)
-    axes[1].set_title(
-        f"(b) Ground-Truth Annotation\nClass: {class_name} ({gt_px:,} px, {gt_pct:.2f}%)",
-        fontsize=11,
-        fontweight="bold",
-        pad=8,
-    )
+    axes[1].set_title("(b) Ground Truth", fontsize=11, fontweight="bold", pad=8)
     axes[1].axis("off")
-    gt_patch = mpatches.Patch(color=np.array(class_color_rgb) / 255.0, label=f"GT: {class_name}")
-    axes[1].legend(handles=[gt_patch], loc="lower right", framealpha=0.88, fontsize=9)
 
     # (c) Prediction
     axes[2].imshow(pred_overlay)
-    axes[2].set_title(
-        f"(c) Experiment 02 Prediction (\u03c4={threshold:.2f})\nClass: {class_name} ({pred_px:,} px, {pred_pct:.2f}%)",
-        fontsize=11,
-        fontweight="bold",
-        pad=8,
-    )
+    axes[2].set_title("(c) Prediction", fontsize=11, fontweight="bold", pad=8)
     axes[2].axis("off")
-    pred_patch = mpatches.Patch(color=np.array(class_color_rgb) / 255.0, label=f"Pred: {class_name}")
-    axes[2].legend(handles=[pred_patch], loc="lower right", framealpha=0.88, fontsize=9)
 
-    # (d) Error Analysis
+    # (d) Error Map
     axes[3].imshow(err_overlay)
-    axes[3].set_title(
-        f"(d) Error Analysis Breakdown\nIoU: {iou:.4f} | Dice (F1): {dice:.4f}",
-        fontsize=11,
-        fontweight="bold",
-        pad=8,
-    )
+    axes[3].set_title("(d) Error Map", fontsize=11, fontweight="bold", pad=8)
     axes[3].axis("off")
 
-    tp_patch = mpatches.Patch(color=np.array(COLOR_TP) / 255.0, label=f"True Positive (TP): {tp:,} px")
-    fp_patch = mpatches.Patch(color=np.array(COLOR_FP) / 255.0, label=f"False Positive (FP): {fp:,} px")
-    fn_patch = mpatches.Patch(color=np.array(COLOR_FN) / 255.0, label=f"False Negative (FN): {fn:,} px")
-    axes[3].legend(handles=[tp_patch, fp_patch, fn_patch], loc="lower right", framealpha=0.88, fontsize=8.5)
-
-    # Main Figure Title
-    fig.suptitle(
-        f"Stage 6.2 Qualitative Evaluation: {class_name} | {outcome_label.upper()} | Sample: {sample_id}\n"
-        f"IoU = {iou:.4f} | Dice = {dice:.4f} | Precision = {prec:.4f} | Recall = {rec:.4f}",
-        fontsize=12.5,
-        fontweight="bold",
-        y=0.98,
+    # Single compact TP/FP/FN legend on Panel (d)
+    tp_patch = mpatches.Patch(color=np.array(COLOR_TP) / 255.0, label=f"TP ({tp:,} px)")
+    fp_patch = mpatches.Patch(color=np.array(COLOR_FP) / 255.0, label=f"FP ({fp:,} px)")
+    fn_patch = mpatches.Patch(color=np.array(COLOR_FN) / 255.0, label=f"FN ({fn:,} px)")
+    axes[3].legend(
+        handles=[tp_patch, fp_patch, fn_patch],
+        loc="lower right",
+        framealpha=0.90,
+        fontsize=8.5,
+        borderpad=0.3,
+        handlelength=1.0,
+        handletextpad=0.4,
     )
 
-    plt.tight_layout()
+    # Concise main heading in dedicated top margin
+    fig.suptitle(
+        f"Qualitative Segmentation Evaluation: {class_name} ({outcome_label})",
+        fontsize=13,
+        fontweight="bold",
+        y=0.97,
+    )
+
+    # Separate caption area below heading with generous spacing (no overlap)
+    fig.text(
+        0.5,
+        0.91,
+        f"Sample: {sample_id}  |  Class: {class_name}  |  IoU: {iou:.4f}  |  Dice: {dice:.4f}  |  Precision: {prec:.4f}  |  Recall: {rec:.4f}  |  Threshold: tau={threshold:.2f}",
+        ha="center",
+        va="top",
+        fontsize=10,
+        color="#333333",
+    )
+
+    plt.subplots_adjust(top=0.84, bottom=0.04, left=0.02, right=0.98, wspace=0.05)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(output_path, dpi=dpi, bbox_inches="tight")
     plt.close(fig)
