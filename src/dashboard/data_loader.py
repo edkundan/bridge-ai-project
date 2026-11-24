@@ -178,6 +178,7 @@ def load_saved_demo_case(case_id: str) -> Dict[str, Any]:
     # Normalize measurement dictionary top-level keys for backward compatibility
     if out["measurement_dict"]:
         m_dict = out["measurement_dict"]
+        out["stage_2_measurements"] = m_dict
         summary = m_dict.get("summary") or {}
         cov = summary.get("coverage_metrics") or {}
         for k in ["total_components_count", "total_detected_classes", "summed_class_pixel_area", "summed_class_image_area_pct"]:
@@ -306,10 +307,13 @@ def run_live_pipeline(
         "probability_maps": probs,
         "measurement_result": measurement_result,
         "measurement_dict": measurement_result.to_dict(),
+        "stage_2_measurements": measurement_result.to_dict(),
         "stage3_report": stage3_report,
         "severity_dict": stage3_report.to_dict(),
+        "stage_3_visual_severity": stage3_report.to_dict(),
         "stage4_result": stage4_result,
         "prioritization_dict": stage4_result.to_dict(),
+        "stage_4_prioritization": stage4_result.to_dict(),
         "review_queue_dict": stage4_result.inspection_review_queue.to_dict(),
         "maintenance_priority_dict": stage4_result.engineering_maintenance_priority.to_dict(),
     }

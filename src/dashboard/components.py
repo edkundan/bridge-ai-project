@@ -471,6 +471,7 @@ def render_image_and_overlay_viewer(
 def render_measurements_panel(
     measurement_dict: Optional[Union[ImageMeasurementResult, Dict[str, Any]]] = None,
     measurement: Optional[Union[ImageMeasurementResult, Dict[str, Any]]] = None,
+    result: Optional[Dict[str, Any]] = None,
 ):
     """
     Renders the quantitative defect measurement section.
@@ -479,59 +480,48 @@ def render_measurements_panel(
     """
     st.subheader("📐 Quantitative Defect Measurements (Stage 2)")
 
-    meas = measurement if measurement is not None else measurement_dict
-    if not meas:
+    target = result if result is not None else (measurement if measurement is not None else measurement_dict)
+    if not target:
         st.info("No measurement data available.")
         return
 
-    # Unwrap full export JSON or pipeline bundles if passed
-    if isinstance(meas, dict):
-        if "stage_2_measurements" in meas and isinstance(meas["stage_2_measurements"], dict):
-            meas = meas["stage_2_measurements"]
-        elif "measurement_dict" in meas and isinstance(meas["measurement_dict"], dict):
-            meas = meas["measurement_dict"]
+    # Extract from the CURRENT live inference result
+    if isinstance(target, dict) and "stage_2_measurements" in target and isinstance(target["stage_2_measurements"], dict):
+        meas = target["stage_2_measurements"]
+    elif isinstance(target, dict) and "measurement_dict" in target and isinstance(target["measurement_dict"], dict):
+        meas = target["measurement_dict"]
+    else:
+        meas = target
 
-    # Extract metrics defensively across top-level, live dataclass, or nested summary/coverage_metrics
-    metrics = extract_measurement_summary(meas)
+    if isinstance(meas, dict) and "summary" in meas and isinstance(meas["summary"], dict):
+        summary = meas["summary"]
+        coverage = summary.get("coverage_metrics", {}) if isinstance(summary.get("coverage_metrics"), dict) else {}
+        total_findings = summary.get("total_components_count", 0)
+        detected_classes = summary.get("total_detected_classes", 0)
+        structural_pct = coverage.get("structural_union_image_area_pct", 0.0)
+        non_structural_pct = coverage.get("non_structural_union_image_area_pct", 0.0)
+        union_pct = coverage.get("union_defect_image_area_pct", 0.0)
+    else:
+        # Fallback / Dataclass object extraction
+        metrics_fallback = extract_measurement_summary(meas)
+        total_findings = metrics_fallback["total_findings"]
+        detected_classes = metrics_fallback["total_classes"]
+        structural_pct = metrics_fallback["structural_union_image_area_pct"]
+        non_structural_pct = metrics_fallback["non_structural_union_image_area_pct"]
+        union_pct = metrics_fallback["union_defect_image_area_pct"]
 
-    # Metric Cards
+    # Render using the actual current values
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
-        st.metric(
-            label="Total Findings",
-            value=f"{metrics['total_findings']}",
-            help="Total connected components across all detected classes.",
-        )
+        st.metric("Total Findings", total_findings)
     with col2:
-        st.metric(
-            label="Detected Classes",
-            value=f"{metrics['total_classes']} / 19",
-            help="Number of active semantic classes with foreground pixels.",
-        )
+        st.metric("Detected Classes", f"{detected_classes}/19")
     with col3:
-        st.metric(
-            label="Structural Union",
-            value=f"{metrics['structural_union_image_area_pct']:.3f}%",
-            delta=f"{metrics['structural_union_pixel_area']:,} px",
-            delta_color="inverse",
-            help="Spatial union of all structural defect classes (excludes cosmetic markings).",
-        )
+        st.metric("Structural Union", f"{structural_pct:.3f}%")
     with col4:
-        st.metric(
-            label="Non-Structural Union",
-            value=f"{metrics['non_structural_union_image_area_pct']:.3f}%",
-            delta=f"{metrics['non_structural_union_pixel_area']:,} px",
-            delta_color="off",
-            help="Spatial union of aesthetic markings (e.g., Graffiti, Restformwork).",
-        )
+        st.metric("Non-Structural Union", f"{non_structural_pct:.3f}%")
     with col5:
-        st.metric(
-            label="Total Defect Union",
-            value=f"{metrics['union_defect_image_area_pct']:.3f}%",
-            delta=f"{metrics['union_defect_pixel_area']:,} px",
-            delta_color="off",
-            help="Overall spatial union footprint across all 19 classes.",
-        )
+        st.metric("Total Defect Union", f"{union_pct:.3f}%")
 
     # Class-Level Table
     st.markdown("#### Detected Class Summary Table")
