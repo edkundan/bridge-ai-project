@@ -82,6 +82,10 @@ class ProductionAbstentionPolicy(BasePrioritizationPolicy):
         non_structural_weight: float = 0.05,
         min_reliable_confidence: float = 0.70,
         min_reliable_area_pixels: int = 25,
+        weight_visual_concern: float = 0.40,
+        weight_defect_area: float = 0.25,
+        weight_confidence: float = 0.20,
+        weight_criticality: float = 0.15,
     ):
         self.w_high = high_concern_weight
         self.w_mod = moderate_concern_weight
@@ -89,6 +93,10 @@ class ProductionAbstentionPolicy(BasePrioritizationPolicy):
         self.w_non_struct = non_structural_weight
         self.min_reliable_confidence = min_reliable_confidence
         self.min_reliable_area_pixels = min_reliable_area_pixels
+        self.weight_visual_concern = weight_visual_concern
+        self.weight_defect_area = weight_defect_area
+        self.weight_confidence = weight_confidence
+        self.weight_criticality = weight_criticality
 
     def _compute_concern_weight(self, visual_concern: str) -> float:
         if visual_concern == VisualConcernLevel.HIGH_VISUAL_CONCERN.value:
@@ -165,10 +173,10 @@ class ProductionAbstentionPolicy(BasePrioritizationPolicy):
             # Weights: Concern (40%), Extent (25%), Model Confidence (20%), Criticality (15%)
             if obs.is_structural:
                 composite_score = (
-                    0.40 * w_concern
-                    + 0.25 * extent_norm
-                    + 0.20 * conf
-                    + 0.15 * w_crit
+                    self.weight_visual_concern * w_concern
+                    + self.weight_defect_area * extent_norm
+                    + self.weight_confidence * conf
+                    + self.weight_criticality * w_crit
                 )
             else:
                 # Non-structural items (Graffiti, etc.) capped at non-structural weight

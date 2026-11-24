@@ -1,0 +1,10 @@
+scenario_id,scenario_name,perturbed_parameter,perturbation_pct,w_visual_concern,w_defect_area,w_confidence,w_criticality,spearman_rho,kendall_tau,top5_jaccard,top10_jaccard,mean_abs_displacement,max_abs_displacement,category_shifts,total_findings,structural_findings,maintenance_priority_status
+0,Scenario 0: Baseline,None,+0.0%,0.400000,0.250000,0.200000,0.150000,1.000000,1.000000,1.0000,1.0000,0.0000,0,0,20,16,NOT_ASSESSED
+1,Scenario 1: +20% Visual Concern,weight_visual_concern,+20.0%,0.444444,0.231481,0.185185,0.138889,1.000000,1.000000,1.0000,1.0000,0.0000,0,0,20,16,NOT_ASSESSED
+2,Scenario 2: +20% Defect Area,weight_defect_area,+20.0%,0.380952,0.285714,0.190476,0.142857,1.000000,1.000000,1.0000,1.0000,0.0000,0,0,20,16,NOT_ASSESSED
+3,Scenario 3: +20% Model Confidence,weight_confidence,+20.0%,0.384615,0.240385,0.230769,0.144231,1.000000,1.000000,1.0000,1.0000,0.0000,0,0,20,16,NOT_ASSESSED
+4,Scenario 4: +20% Criticality,weight_criticality,+20.0%,0.388350,0.242718,0.194175,0.174757,1.000000,1.000000,1.0000,1.0000,0.0000,0,0,20,16,NOT_ASSESSED
+5,Scenario 5: -20% Visual Concern,weight_visual_concern,-20.0%,0.347826,0.271739,0.217391,0.163043,1.000000,1.000000,1.0000,1.0000,0.0000,0,0,20,16,NOT_ASSESSED
+6,Scenario 6: -20% Defect Area,weight_defect_area,-20.0%,0.421053,0.210526,0.210526,0.157895,1.000000,1.000000,1.0000,1.0000,0.0000,0,0,20,16,NOT_ASSESSED
+7,Scenario 7: -20% Model Confidence,weight_confidence,-20.0%,0.416667,0.260417,0.166667,0.156250,1.000000,1.000000,1.0000,1.0000,0.0000,0,0,20,16,NOT_ASSESSED
+8,Scenario 8: -20% Criticality,weight_criticality,-20.0%,0.412371,0.257732,0.206186,0.123711,1.000000,1.000000,1.0000,1.0000,0.0000,0,0,20,16,NOT_ASSESSED
