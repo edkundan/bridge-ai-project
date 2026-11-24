@@ -59,7 +59,8 @@ class DefectVisualizer:
         probability_maps: Optional[np.ndarray] = None,
         roi_mask: Optional[np.ndarray] = None,
         alpha: float = 0.45,
-        show_bboxes: bool = True,
+        show_masks: bool = True,
+        show_bboxes: bool = False,
         show_labels: bool = False,
         show_roi: bool = True,
         show_banner: bool = True,
@@ -68,8 +69,9 @@ class DefectVisualizer:
     ) -> np.ndarray:
         """
         Renders defect masks, bounding boxes, labels, and ROI boundaries onto image.
-        Supports selective highlighting of a specific finding ID or class, with component
-        labels hidden by default to keep the visual inspection view clean and uncluttered.
+        Supports selective highlighting of a specific finding ID or class.
+        By default, renders clean class-color segmentation masks without component labels
+        or cluttering bounding boxes, keeping visual inspection clear and legible.
 
         Args:
             image_rgb: Original RGB image array (H, W, 3) in uint8 [0, 255].
@@ -77,8 +79,9 @@ class DefectVisualizer:
             probability_maps: Optional (19, H, W) float array to render exact masks.
             roi_mask: Optional (H, W) ROI mask.
             alpha: Transparency weight for mask blending (0.0 to 1.0).
-            show_bboxes: Whether to render bounding boxes around components.
-            show_labels: Whether to render text callouts (defaults to False for clean display).
+            show_masks: Whether to render class-color segmentation masks (default True).
+            show_bboxes: Whether to render bounding boxes around unselected components (default False).
+            show_labels: Whether to render text callouts (default False for clean display).
             show_roi: Whether to render ROI boundary.
             show_banner: Whether to render top summary header banner.
             highlight_finding_id: Optional finding ID to highlight prominently (e.g. 'FINDING-CRACK-001').
@@ -122,7 +125,7 @@ class DefectVisualizer:
         is_filtered_class = bool(highlight_class and highlight_class not in ("All", "All Classes", "All Detected Classes"))
 
         # 1. Render defect masks
-        if probability_maps is not None:
+        if show_masks and probability_maps is not None:
             for class_name, summary in class_dict.items():
                 is_detected = summary.get("detected", False) if isinstance(summary, dict) else summary.detected
                 if not is_detected:
@@ -279,8 +282,6 @@ class DefectVisualizer:
             )
 
             canvas = np.vstack([banner, canvas])
-
-        return canvas
 
         return canvas
 

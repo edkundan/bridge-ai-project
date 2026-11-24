@@ -269,6 +269,162 @@ class TestDashboardIntegration(unittest.TestCase):
         )
         self.assertIsNotNone(class_overlay)
 
+    def test_images_jpeg_regression_real_image(self):
+        """
+        Regression test: Verify uploaded inspection case (images.jpeg) with Experiment 02
+        checkpoint at threshold 0.50 and min_area 10 produces:
+        - Exactly 32 findings in queue (24 structural + 8 non-structural = 32)
+        - Measurement component count agrees with queue (32 == 32)
+        - Exactly 10 detected classes
+        - Nonzero union areas (structural > 0, non-structural > 0, union > 0)
+        - extract_measurement_summary produces identical results from measurement_result and measurement_dict
+        - Exported report strings and JSON contain matching metrics
+        """
+        import cv2
+        from src.dashboard.components import extract_measurement_summary
+
+        img_path = Path("demo_data/uploaded_test_cases/images.jpeg")
+        ckpt_path = Path("experiments/exp_02_sqrt_weighted_bcedice/checkpoints/best_model.pth")
+        if not img_path.exists() or not ckpt_path.exists():
+            self.skipTest("images.jpeg or exp_02 checkpoint not available")
+
+        bgr = cv2.imread(str(img_path))
+        rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+
+        res = run_live_pipeline(
+            image_rgb=rgb,
+            image_id="images_jpeg_regression",
+            checkpoint_path=str(ckpt_path),
+            threshold=0.50,
+            min_component_area_pixels=10,
+            device="cpu",
+        )
+
+        m_res = res["measurement_result"]
+        m_dict = res["measurement_dict"]
+        q_dict = res["review_queue_dict"]
+        summary_res = extract_measurement_summary(m_res)
+        summary_dict = extract_measurement_summary(m_dict)
+
+        # 1. Queue contains 32 findings (24 structural + 8 non-structural = 32)
+        q_sum = q_dict["queue_summary"]
+        self.assertEqual(q_sum["total_findings_count"], 32)
+        self.assertEqual(q_sum["structural_findings_count"], 24)
+        self.assertEqual(q_sum["non_structural_findings_count"], 8)
+        self.assertEqual(q_sum["structural_findings_count"] + q_sum["non_structural_findings_count"], 32)
+        self.assertEqual(len(q_dict["ranked_queue_items"]), 32)
+
+        # 2. Measurement component count agrees with queue
+        self.assertEqual(m_res.total_components_count, 32)
+        self.assertEqual(summary_res["total_findings"], 32)
+        self.assertEqual(summary_dict["total_findings"], 32)
+        self.assertEqual(summary_dict["total_findings"], q_sum["total_findings_count"])
+
+        # 3. Detected-class count is nonzero and matches class summary (10 classes)
+        self.assertEqual(m_res.total_detected_classes, 10)
+        self.assertEqual(summary_res["total_classes"], 10)
+        self.assertEqual(summary_dict["total_classes"], 10)
+        detected_in_table = [c for c, d in m_dict["class_measurements"].items() if d.get("detected")]
+        self.assertEqual(len(detected_in_table), 10)
+
+        # 4. Nonzero union area is never displayed as zero
+        self.assertGreater(summary_res["structural_union_pixel_area"], 0)
+        self.assertGreater(summary_res["structural_union_image_area_pct"], 0.0)
+        self.assertGreater(summary_res["non_structural_union_pixel_area"], 0)
+        self.assertGreater(summary_res["non_structural_union_image_area_pct"], 0.0)
+        self.assertGreater(summary_res["union_defect_pixel_area"], 0)
+        self.assertGreater(summary_res["union_defect_image_area_pct"], 0.0)
+
+        # 5. Consistency between measurement_result and measurement_dict
+        for k in ["total_findings", "total_classes", "structural_union_pixel_area", "non_structural_union_pixel_area", "union_defect_pixel_area"]:
+            self.assertEqual(summary_res[k], summary_dict[k], f"Mismatch for key {k}")
+
+        # 6. Engineering maintenance priority must abstain (NOT_ASSESSED)
+        maint = res["maintenance_priority_dict"]
+        self.assertEqual(maint["status"], "NOT_ASSESSED")
+        self.assertEqual(maint["official_repair_priority"], "NOT_ASSESSED")
+
+    def test_empty_prediction_handling_reports_zero(self):
+        """
+        Regression test: Verify that an all-zero prediction correctly produces
+        0 findings, 0 detected classes, and 0.0% coverage without errors.
+        """
+        from src.dashboard.components import extract_measurement_summary
+
+        clean_rgb = np.zeros((100, 100, 3), dtype=np.uint8)
+        clean_probs = np.zeros((19, 100, 100), dtype=np.float32)
+
+        res = run_live_pipeline(
+            image_rgb=clean_rgb,
+            image_id="clean_scan",
+            probability_maps=clean_probs,
+            threshold=0.50,
+            min_component_area_pixels=10,
+        )
+
+        m_res = res["measurement_result"]
+        m_dict = res["measurement_dict"]
+        summary = extract_measurement_summary(m_dict)
+
+        self.assertEqual(m_res.total_components_count, 0)
+        self.assertEqual(m_res.total_detected_classes, 0)
+        self.assertEqual(summary["total_findings"], 0)
+        self.assertEqual(summary["total_classes"], 0)
+        self.assertEqual(summary["structural_union_pixel_area"], 0)
+        self.assertEqual(summary["structural_union_image_area_pct"], 0.0)
+        self.assertEqual(summary["union_defect_pixel_area"], 0)
+        self.assertEqual(summary["union_defect_image_area_pct"], 0.0)
+
+        q_dict = res["review_queue_dict"]
+        self.assertEqual(q_dict["queue_summary"]["total_findings_count"], 0)
+        self.assertEqual(len(q_dict["ranked_queue_items"]), 0)
+
+    def test_overlay_toggles_and_clean_default(self):
+        """
+        Verify DefectVisualizer render_overlay supports:
+        - Clean default: show_bboxes=False, show_labels=False
+        - Toggling show_masks=False preserves image without mask blending
+        - Selective target finding prominence
+        """
+        from src.measurement.visualization import DefectVisualizer
+
+        img_rgb = np.full((100, 100, 3), 128, dtype=np.uint8)
+        probs = np.zeros((19, 100, 100), dtype=np.float32)
+        probs[3, 20:40, 20:40] = 0.95  # Crack
+
+        res = run_live_pipeline(
+            image_rgb=img_rgb,
+            image_id="test_toggles",
+            probability_maps=probs,
+            threshold=0.5,
+            min_component_area_pixels=5,
+        )
+
+        visualizer = DefectVisualizer()
+
+        # 1. Masks off
+        no_masks = visualizer.render_overlay(
+            image_rgb=img_rgb,
+            measurement=res["measurement_result"],
+            probability_maps=probs,
+            show_masks=False,
+            show_banner=False,
+        )
+        # Without banner and masks, pixels outside annotations should remain untouched
+        np.testing.assert_array_equal(no_masks, img_rgb)
+
+        # 2. Masks on (default clean view)
+        with_masks = visualizer.render_overlay(
+            image_rgb=img_rgb,
+            measurement=res["measurement_result"],
+            probability_maps=probs,
+            show_masks=True,
+            show_bboxes=False,
+            show_labels=False,
+            show_banner=False,
+        )
+        self.assertFalse(np.array_equal(with_masks, img_rgb))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -165,8 +165,13 @@ def main():
 
         img_source = st.sidebar.selectbox(
             "Image Input Source:",
-            options=["Upload Custom Image", "Load Benchmark Image (Validation 0000)", "Load Benchmark Image (Train 0722)"],
-            index=1,
+            options=[
+                "Upload Custom Image",
+                "Load Benchmark Image (Validation 0000)",
+                "Load Benchmark Image (Train 0722)",
+                "Load Benchmark Image (Uploaded Case: images.jpeg)",
+            ],
+            index=0,
         )
 
         input_image_rgb = None
@@ -184,6 +189,12 @@ def main():
                 bgr = cv2.imread(str(p))
                 input_image_rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
                 image_id = "dacl10k_v2_validation_0000"
+        elif img_source == "Load Benchmark Image (Uploaded Case: images.jpeg)":
+            p = REPO_ROOT / "demo_data" / "uploaded_test_cases" / "images.jpeg"
+            if p.exists():
+                bgr = cv2.imread(str(p))
+                input_image_rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+                image_id = "images"
         else:
             p = REPO_ROOT / "demo_data" / "dacl10k_v2_train_0722" / "dacl10k_v2_train_0722.jpg"
             if p.exists():
@@ -191,7 +202,9 @@ def main():
                 input_image_rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
                 image_id = "dacl10k_v2_train_0722"
 
-        ckpt_default = "experiments/segmentation_baseline/checkpoints/best_model.pth"
+        exp02_ckpt = "experiments/exp_02_sqrt_weighted_bcedice/checkpoints/best_model.pth"
+        base_ckpt = "experiments/segmentation_baseline/checkpoints/best_model.pth"
+        ckpt_default = exp02_ckpt if (REPO_ROOT / exp02_ckpt).exists() else base_ckpt
         ckpt_input = st.sidebar.text_input("Model Checkpoint Path:", value=ckpt_default)
         threshold = st.sidebar.slider("Detection Threshold (tau):", min_value=0.10, max_value=0.95, value=0.50, step=0.05)
         min_area = st.sidebar.slider("Min Component Area (px):", min_value=5, max_value=300, value=10, step=5)
@@ -231,7 +244,9 @@ def main():
     # Extract components
     image_rgb = data_bundle.get("image_rgb")
     overlay_rgb = data_bundle.get("overlay_rgb")
+    measurement_result = data_bundle.get("measurement_result")
     measurement_dict = data_bundle.get("measurement_dict")
+    measurement = measurement_result if measurement_result is not None else measurement_dict
     severity_dict = data_bundle.get("severity_dict")
     prioritization_dict = data_bundle.get("prioritization_dict")
     review_queue_dict = data_bundle.get("review_queue_dict")
@@ -247,6 +262,7 @@ def main():
     render_image_and_overlay_viewer(
         image_rgb=image_rgb,
         overlay_rgb=overlay_rgb,
+        measurement=measurement,
         measurement_dict=measurement_dict,
         selected_finding_id=selected_finding_id,
         probability_maps=data_bundle.get("probability_maps"),
@@ -255,7 +271,7 @@ def main():
     st.markdown("---")
 
     # C. Quantitative Defect Measurements
-    render_measurements_panel(measurement_dict)
+    render_measurements_panel(measurement=measurement, measurement_dict=measurement_dict)
 
     st.markdown("---")
 
@@ -271,6 +287,7 @@ def main():
 
     # F. Export Artifacts
     render_export_panel(
+        measurement=measurement,
         measurement_dict=measurement_dict,
         severity_dict=severity_dict,
         prioritization_dict=prioritization_dict,

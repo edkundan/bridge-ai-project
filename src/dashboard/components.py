@@ -9,7 +9,7 @@ Description:
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import cv2
 import numpy as np
@@ -17,7 +17,7 @@ import pandas as pd
 import streamlit as st
 
 from src.data.dataset import DACL10K_CLASSES
-from src.measurement.schema import CALIBRATION_DISCLAIMER, NON_STRUCTURAL_CLASSES
+from src.measurement.schema import CALIBRATION_DISCLAIMER, NON_STRUCTURAL_CLASSES, ImageMeasurementResult
 from src.measurement.visualization import DefectVisualizer
 from src.prioritization.schema import (
     RESEARCH_DEMO_POLICY_DISCLAIMER,
@@ -56,12 +56,15 @@ def safe_render_dataframe(
         st.markdown(styled_html, unsafe_allow_html=True)
 
 
-def extract_measurement_summary(measurement_dict: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+def extract_measurement_summary(
+    measurement: Optional[Union[ImageMeasurementResult, Dict[str, Any]]]
+) -> Dict[str, Any]:
     """
-    Extracts summary metrics robustly from top-level keys or nested summary/coverage_metrics.
+    Extracts summary metrics robustly from ImageMeasurementResult or dictionary
+    (supporting top-level keys, nested summary, or coverage_metrics).
     Guarantees consistent non-zero counts and percentages for dashboard cards and exported reports.
     """
-    if not measurement_dict:
+    if not measurement:
         return {
             "total_findings": 0,
             "total_classes": 0,
@@ -73,58 +76,122 @@ def extract_measurement_summary(measurement_dict: Optional[Dict[str, Any]]) -> D
             "union_defect_pixel_area": 0,
         }
 
+    # Direct extraction from live ImageMeasurementResult object
+    if isinstance(measurement, ImageMeasurementResult):
+        return {
+            "total_findings": int(measurement.total_components_count),
+            "total_classes": int(measurement.total_detected_classes),
+            "structural_union_image_area_pct": round(float(measurement.structural_union_image_area_pct), 5),
+            "structural_union_pixel_area": int(measurement.structural_union_pixel_area),
+            "non_structural_union_image_area_pct": round(float(measurement.non_structural_union_image_area_pct), 5),
+            "non_structural_union_pixel_area": int(measurement.non_structural_union_pixel_area),
+            "union_defect_image_area_pct": round(float(measurement.union_defect_image_area_pct), 5),
+            "union_defect_pixel_area": int(measurement.union_defect_pixel_area),
+        }
+
+    # Dictionary parsing with defensive nesting and fallback
+    measurement_dict = measurement
     summary = measurement_dict.get("summary") if isinstance(measurement_dict.get("summary"), dict) else {}
     cov = summary.get("coverage_metrics") if isinstance(summary.get("coverage_metrics"), dict) else {}
+    if not cov and isinstance(measurement_dict.get("coverage_metrics"), dict):
+        cov = measurement_dict.get("coverage_metrics")
+
+    cm = measurement_dict.get("class_measurements", {})
+    if not isinstance(cm, dict):
+        cm = {}
+    cm_comp_count = sum(len(c.get("components", [])) for c in cm.values() if isinstance(c, dict))
+    cm_detected_classes = sum(1 for c in cm.values() if isinstance(c, dict) and c.get("detected", False))
 
     # Total findings
     total_findings = measurement_dict.get("total_components_count")
     if total_findings is None:
         total_findings = summary.get("total_components_count")
-    if total_findings is None:
-        cm = measurement_dict.get("class_measurements", {})
-        total_findings = sum(len(c.get("components", [])) for c in cm.values()) if isinstance(cm, dict) else 0
+    if total_findings is None or (total_findings == 0 and cm_comp_count > 0):
+        total_findings = cm_comp_count
 
     # Total detected classes
     total_classes = measurement_dict.get("total_detected_classes")
     if total_classes is None:
         total_classes = summary.get("total_detected_classes")
-    if total_classes is None:
-        cm = measurement_dict.get("class_measurements", {})
-        total_classes = sum(1 for c in cm.values() if c.get("detected", False)) if isinstance(cm, dict) else 0
+    if total_classes is None or (total_classes == 0 and cm_detected_classes > 0):
+        total_classes = cm_detected_classes
 
+    # Structural union area
     struct_pct = measurement_dict.get("structural_union_image_area_pct")
     if struct_pct is None:
-        struct_pct = cov.get("structural_union_image_area_pct", 0.0)
+        struct_pct = cov.get("structural_union_image_area_pct")
+    if struct_pct is None:
+        struct_pct = summary.get("structural_union_image_area_pct")
+    if (struct_pct is None or struct_pct == 0.0) and cm:
+        struct_pct = sum(
+            c.get("image_relative_area_pct", 0.0)
+            for cname, c in cm.items()
+            if cname not in NON_STRUCTURAL_CLASSES and isinstance(c, dict) and c.get("detected", False)
+        )
 
     struct_px = measurement_dict.get("structural_union_pixel_area")
     if struct_px is None:
-        struct_px = cov.get("structural_union_pixel_area", 0)
+        struct_px = cov.get("structural_union_pixel_area")
+    if struct_px is None:
+        struct_px = summary.get("structural_union_pixel_area")
+    if (struct_px is None or struct_px == 0) and cm:
+        struct_px = sum(
+            c.get("total_pixel_area", 0)
+            for cname, c in cm.items()
+            if cname not in NON_STRUCTURAL_CLASSES and isinstance(c, dict) and c.get("detected", False)
+        )
 
+    # Non-structural union area
     non_struct_pct = measurement_dict.get("non_structural_union_image_area_pct")
     if non_struct_pct is None:
-        non_struct_pct = cov.get("non_structural_union_image_area_pct", 0.0)
+        non_struct_pct = cov.get("non_structural_union_image_area_pct")
+    if non_struct_pct is None:
+        non_struct_pct = summary.get("non_structural_union_image_area_pct")
+    if (non_struct_pct is None or non_struct_pct == 0.0) and cm:
+        non_struct_pct = sum(
+            c.get("image_relative_area_pct", 0.0)
+            for cname, c in cm.items()
+            if cname in NON_STRUCTURAL_CLASSES and isinstance(c, dict) and c.get("detected", False)
+        )
 
     non_struct_px = measurement_dict.get("non_structural_union_pixel_area")
     if non_struct_px is None:
-        non_struct_px = cov.get("non_structural_union_pixel_area", 0)
+        non_struct_px = cov.get("non_structural_union_pixel_area")
+    if non_struct_px is None:
+        non_struct_px = summary.get("non_structural_union_pixel_area")
+    if (non_struct_px is None or non_struct_px == 0) and cm:
+        non_struct_px = sum(
+            c.get("total_pixel_area", 0)
+            for cname, c in cm.items()
+            if cname in NON_STRUCTURAL_CLASSES and isinstance(c, dict) and c.get("detected", False)
+        )
 
+    # Total defect union area
     total_union_pct = measurement_dict.get("union_defect_image_area_pct")
     if total_union_pct is None:
-        total_union_pct = cov.get("union_defect_image_area_pct", 0.0)
+        total_union_pct = cov.get("union_defect_image_area_pct")
+    if total_union_pct is None:
+        total_union_pct = summary.get("union_defect_image_area_pct")
+    if (total_union_pct is None or total_union_pct == 0.0) and (struct_pct > 0 or non_struct_pct > 0):
+        total_union_pct = (struct_pct or 0.0) + (non_struct_pct or 0.0)
 
     total_union_px = measurement_dict.get("union_defect_pixel_area")
     if total_union_px is None:
-        total_union_px = cov.get("union_defect_pixel_area", 0)
+        total_union_px = cov.get("union_defect_pixel_area")
+    if total_union_px is None:
+        total_union_px = summary.get("union_defect_pixel_area")
+    if (total_union_px is None or total_union_px == 0) and (struct_px > 0 or non_struct_px > 0):
+        total_union_px = (struct_px or 0) + (non_struct_px or 0)
 
     return {
-        "total_findings": int(total_findings),
-        "total_classes": int(total_classes),
-        "structural_union_image_area_pct": float(struct_pct),
-        "structural_union_pixel_area": int(struct_px),
-        "non_structural_union_image_area_pct": float(non_struct_pct),
-        "non_structural_union_pixel_area": int(non_struct_px),
-        "union_defect_image_area_pct": float(total_union_pct),
-        "union_defect_pixel_area": int(total_union_px),
+        "total_findings": int(total_findings or 0),
+        "total_classes": int(total_classes or 0),
+        "structural_union_image_area_pct": round(float(struct_pct or 0.0), 5),
+        "structural_union_pixel_area": int(struct_px or 0),
+        "non_structural_union_image_area_pct": round(float(non_struct_pct or 0.0), 5),
+        "non_structural_union_pixel_area": int(non_struct_px or 0),
+        "union_defect_image_area_pct": round(float(total_union_pct or 0.0), 5),
+        "union_defect_pixel_area": int(total_union_px or 0),
     }
 
 
@@ -190,13 +257,15 @@ def render_header_and_disclaimers():
 def render_image_and_overlay_viewer(
     image_rgb: Optional[np.ndarray],
     overlay_rgb: Optional[np.ndarray],
-    measurement_dict: Optional[Dict[str, Any]],
+    measurement_dict: Optional[Union[ImageMeasurementResult, Dict[str, Any]]] = None,
     selected_finding_id: Optional[str] = None,
     probability_maps: Optional[np.ndarray] = None,
+    measurement: Optional[Union[ImageMeasurementResult, Dict[str, Any]]] = None,
 ):
     """
     Renders high-resolution visual comparison tabs: Composite Overlay, Original Image, and Finding Callout.
-    Supports clean uncluttered overlays (labels hidden by default), class filtering, and finding highlighting.
+    Supports clean uncluttered overlays (masks on, bboxes and labels hidden by default), class filtering,
+    independent visualization toggles, and finding highlighting.
     """
     st.subheader("🖼️ Visual Inspection & Defect Overlays")
 
@@ -204,8 +273,17 @@ def render_image_and_overlay_viewer(
         st.info("No image available for visual display.")
         return
 
-    # Extract detected classes and finding IDs for interactive controls
-    class_measurements = measurement_dict.get("class_measurements", {}) if measurement_dict else {}
+    meas = measurement if measurement is not None else measurement_dict
+    if isinstance(meas, ImageMeasurementResult):
+        class_measurements = {k: v.to_dict() for k, v in meas.class_measurements.items()}
+        meas_payload = meas.to_dict()
+    elif isinstance(meas, dict):
+        class_measurements = meas.get("class_measurements", {})
+        meas_payload = meas
+    else:
+        class_measurements = {}
+        meas_payload = {}
+
     detected_classes = [cname for cname, cdata in class_measurements.items() if cdata.get("detected", False)]
     all_finding_ids: List[str] = []
     finding_counter = 1
@@ -219,7 +297,7 @@ def render_image_and_overlay_viewer(
 
     with tab1:
         # Highlighting and display controls
-        col_c1, col_c2, col_c3 = st.columns([1, 1, 1])
+        col_c1, col_c2 = st.columns([1, 1])
         with col_c1:
             class_filter = st.selectbox(
                 "🎯 Filter / Highlight Class:",
@@ -237,12 +315,38 @@ def render_image_and_overlay_viewer(
                 index=default_finding_idx,
                 key="overlay_finding_filter",
             )
-        with col_c3:
-            show_all_labels = st.checkbox(
-                "🏷️ Show all component text labels",
+
+        # Independent visualization toggles
+        col_t1, col_t2, col_t3, col_t4 = st.columns([1, 1, 1, 1])
+        with col_t1:
+            show_masks = st.checkbox(
+                "🎭 Show Defect Masks",
+                value=True,
+                help="Toggle class-color segmentation mask overlay on/off.",
+                key="overlay_show_masks_toggle",
+            )
+        with col_t2:
+            show_bboxes = st.checkbox(
+                "📦 Show Bounding Boxes",
                 value=False,
-                help="Text labels are hidden by default to keep defect contours clean. When unchecked, only highlighted findings display text tags.",
+                help="Bounding boxes are hidden by default to keep contours clean. Check to show boxes around all components.",
+                key="overlay_show_bboxes_toggle",
+            )
+        with col_t3:
+            show_all_labels = st.checkbox(
+                "🏷️ Show Component Labels",
+                value=False,
+                help="Text labels are hidden by default to avoid clutter. When unchecked, only highlighted findings display text tags.",
                 key="overlay_show_labels_toggle",
+            )
+        with col_t4:
+            alpha = st.slider(
+                "Mask Opacity (Alpha):",
+                min_value=0.1,
+                max_value=0.9,
+                value=0.45,
+                step=0.05,
+                key="overlay_alpha_slider",
             )
 
         active_finding = finding_filter if finding_filter != "None (Show All)" else selected_finding_id
@@ -250,14 +354,16 @@ def render_image_and_overlay_viewer(
 
         # Dynamically render overlay
         display_overlay = None
-        if image_rgb is not None and measurement_dict:
+        if image_rgb is not None and meas_payload:
             try:
                 visualizer = DefectVisualizer()
                 display_overlay = visualizer.render_overlay(
                     image_rgb=image_rgb,
-                    measurement=measurement_dict,
+                    measurement=meas,
                     probability_maps=probability_maps,
-                    show_bboxes=True,
+                    alpha=alpha,
+                    show_masks=show_masks,
+                    show_bboxes=show_bboxes,
                     show_labels=show_all_labels,
                     highlight_finding_id=active_finding,
                     highlight_class=active_class,
@@ -274,7 +380,7 @@ def render_image_and_overlay_viewer(
                 caption_parts.append(f"Target: {active_finding}")
             if active_class:
                 caption_parts.append(f"Class: {active_class}")
-            caption_parts.append("(clean view: labels hidden by default)" if not show_all_labels else "(all labels visible)")
+            caption_parts.append("clean view: masks on, bboxes/labels off" if (not show_bboxes and not show_all_labels) else "expanded annotations active")
 
             st.image(
                 display_overlay,
@@ -353,19 +459,24 @@ def render_image_and_overlay_viewer(
                 st.warning(f"Could not find bounding box coordinates for {selected_finding_id}.")
 
 
-def render_measurements_panel(measurement_dict: Optional[Dict[str, Any]]):
+def render_measurements_panel(
+    measurement_dict: Optional[Union[ImageMeasurementResult, Dict[str, Any]]] = None,
+    measurement: Optional[Union[ImageMeasurementResult, Dict[str, Any]]] = None,
+):
     """
     Renders the quantitative defect measurement section.
     Distinguishes individual class areas from union area, and structural from non-structural damage.
+    Supports live ImageMeasurementResult object or JSON measurement dictionary.
     """
     st.subheader("📐 Quantitative Defect Measurements (Stage 2)")
 
-    if not measurement_dict:
+    meas = measurement if measurement is not None else measurement_dict
+    if not meas:
         st.info("No measurement data available.")
         return
 
-    # Extract metrics defensively across top-level or nested summary/coverage_metrics
-    metrics = extract_measurement_summary(measurement_dict)
+    # Extract metrics defensively across top-level, live dataclass, or nested summary/coverage_metrics
+    metrics = extract_measurement_summary(meas)
 
     # Metric Cards
     col1, col2, col3, col4, col5 = st.columns(5)
@@ -408,7 +519,12 @@ def render_measurements_panel(measurement_dict: Optional[Dict[str, Any]]):
 
     # Class-Level Table
     st.markdown("#### Detected Class Summary Table")
-    class_measurements = measurement_dict.get("class_measurements", {})
+    if isinstance(meas, ImageMeasurementResult):
+        class_measurements = {k: v.to_dict() for k, v in meas.class_measurements.items()}
+    elif isinstance(meas, dict):
+        class_measurements = meas.get("class_measurements", {})
+    else:
+        class_measurements = {}
     rows = []
     for cname, cdata in class_measurements.items():
         if cdata.get("detected", False):
@@ -695,12 +811,13 @@ def render_maintenance_assessment_panel(
 
 
 def render_export_panel(
-    measurement_dict: Optional[Dict[str, Any]],
-    severity_dict: Optional[Dict[str, Any]],
-    prioritization_dict: Optional[Dict[str, Any]],
+    measurement_dict: Optional[Union[ImageMeasurementResult, Dict[str, Any]]] = None,
+    severity_dict: Optional[Dict[str, Any]] = None,
+    prioritization_dict: Optional[Dict[str, Any]] = None,
     review_queue_dict: Optional[Dict[str, Any]] = None,
     maintenance_priority_dict: Optional[Dict[str, Any]] = None,
     image_id: str = "inspection_image",
+    measurement: Optional[Union[ImageMeasurementResult, Dict[str, Any]]] = None,
 ):
     """
     Renders export and download buttons for JSON data and inspection reports.
@@ -708,7 +825,10 @@ def render_export_panel(
     """
     st.subheader("💾 Export Inspection Artifacts")
 
-    metrics = extract_measurement_summary(measurement_dict)
+    meas = measurement if measurement is not None else measurement_dict
+    metrics = extract_measurement_summary(meas)
+    m_payload = meas.to_dict() if isinstance(meas, ImageMeasurementResult) else meas
+
     q_dict = review_queue_dict or (prioritization_dict or {}).get("output_a_inspection_review_queue", {})
     m_dict = maintenance_priority_dict or (prioritization_dict or {}).get("output_b_engineering_maintenance_priority", {})
     queue_items = q_dict.get("ranked_queue_items", [])
@@ -720,7 +840,7 @@ def render_export_panel(
         combined_payload = {
             "image_id": image_id,
             "exported_at_utc": datetime.now(timezone.utc).isoformat(),
-            "stage_2_measurements": measurement_dict,
+            "stage_2_measurements": m_payload,
             "stage_3_visual_severity": severity_dict,
             "stage_4_prioritization": prioritization_dict or {
                 "output_a_inspection_review_queue": q_dict,

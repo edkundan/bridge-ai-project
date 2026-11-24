@@ -73,6 +73,16 @@ AVAILABLE_DEMO_CASES = {
         "structural_count": 3,
         "non_structural_count": 0,
     },
+    "uploaded_test_cases": {
+        "title": "Uploaded Inspection Case (images.jpeg: 32 Findings, 10 Classes)",
+        "description": "Real bridge inspection image (images.jpeg) evaluated with Experiment 02 checkpoint (tau=0.50): 32 findings (24 structural, 8 non-structural) across 10 classes.",
+        "dir": REPO_ROOT / "demo_data" / "uploaded_test_cases",
+        "has_real_image": True,
+        "image_file": "images.jpeg",
+        "findings_count": 32,
+        "structural_count": 24,
+        "non_structural_count": 8,
+    },
 }
 
 
@@ -276,13 +286,17 @@ def run_live_pipeline(
         engineering_context=engineering_context,
     )
 
-    # 5. Visualization Overlay
+    # 5. Visualization Overlay (Default clean view: masks blended, labels and bboxes hidden)
     visualizer = DefectVisualizer()
     overlay_rgb = visualizer.render_overlay(
         image_rgb=image_rgb,
         measurement=measurement_result,
+        probability_maps=probs,
         roi_mask=roi_mask,
         alpha=0.45,
+        show_masks=True,
+        show_bboxes=False,
+        show_labels=False,
     )
 
     return {
